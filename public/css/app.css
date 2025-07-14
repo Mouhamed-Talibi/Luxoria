@@ -12,3 +12,62 @@ body {
     overflow-x: hidden;
     font-family: "Lexend", sans-serif;
 }
+
+/* Loader Styles */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.loader {
+    width: 20vw;
+    max-width: 120px;
+    height: 22px;
+    border-radius: 40px;
+    border: 2px solid var(--light-blue);
+    position: relative;
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    margin: 2px;
+    width: 25%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    background: var(--gray);
+    animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+    50% { left: 100%; transform: translateX(calc(-100% - 4px)); }
+}
+
+.loader-container p {
+    margin-top: 15px;
+    color: var(--soft-blue);
+    font-size: 20px;
+}
+
+/* Content Styles (initially hidden) */
+#content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#content.show {
+    display: block;
+    opacity: 1;
+}
