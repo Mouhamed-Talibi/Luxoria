@@ -85,6 +85,7 @@ body {
 
 .navbar .auth-links .signup:hover {
     background-color: var(--soft-blue);
+    transition: .3s all ease-in-out;
 }
 
 .nav-link:hover {
@@ -104,4 +105,29 @@ body {
 .nav-item form input:hover,
 .nav-item form input:focus {
     border: 1px solid var(--blue);
+}
+
+/* footer */
+.quick-links ul li a{
+    color: var(--soft-blue);
+}
+
+.quick-links ul li a:hover {
+    color: var(--blue);
+    border-bottom: 1px solid var(--soft-blue);
+    transition: .4s all ease;
+}
+
+.customer-service ul li a{
+    color: var(--soft-blue);
+}
+
+.customer-service ul li a:hover {
+    color: var(--blue);
+    border-bottom: 1px solid var(--soft-blue);
+    transition: .4s all ease;
+}
+
+.contact p {
+    color: var(--light-blue);
 }

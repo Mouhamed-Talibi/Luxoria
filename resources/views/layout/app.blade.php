@@ -8,7 +8,7 @@
     {{-- csrf-token --}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- logo --}}
-    <link rel="icon" href="{{ asset('assets/luxoria.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/luxoria-1.png') }}" type="image/png">
 
     <title>
         Luxoria - @yield('title')
@@ -41,7 +41,7 @@
         @include('partials.navbar')
 
         {{-- main content --}}
-        <main>
+        <main class="py-5 pb-5">
             @yield('content')
         </main>
 
