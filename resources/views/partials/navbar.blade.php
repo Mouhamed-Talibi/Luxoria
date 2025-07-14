@@ -1,6 +1,6 @@
 <!-- start nav -->
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container">
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
         <!-- logo -->
         <a class="navbar-brand fs-4" href="#">
             <img src="{{ asset('assets/luxoria.png') }}" alt="" style="height:70px; width:70px;">
@@ -13,7 +13,7 @@
         <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <!-- sidebar header -->
             <div class="offcanvas-header text-dark borde-bottom">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bootstrap Navbar-1</h5>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Luxoria</h5>
                 <button type="button" class="btn-close btn-close-dark shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <!-- sidebar body -->
@@ -31,11 +31,21 @@
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
+                    <li class="nav-item mx-2">
+                        <form class="d-flex align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="search_input" placeholder="Find your product" class="form-control">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa-solid fa-magnifying-glass text-light"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </li>
                 </ul>
                 <!-- login / Signup -->
-                <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                    <a href="" class="text-dark">Login</a>
-                    <a href="" class="text-dark text-decoration-none px-3 py-1 rounded-4" style="background-color: #28a2c7;">Sign Up</a>
+                <div class="auth-links d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                    <a href="" class="login">Login</a>
+                    <a href="" class="text-decoration-none px-3 py-1 rounded-4 signup">Sign Up</a>
                 </div>
             </div>
         </div>

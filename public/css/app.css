@@ -2,6 +2,7 @@
     --deep-black: #000000;
     --gray: #7d7d7d;
     --soft-blue: #90A4AE;
+    --blue: #76b8da;
     --light-blue: #cfd8DC;
 }
 
@@ -70,4 +71,37 @@ body {
 #content.show {
     display: block;
     opacity: 1;
+}
+
+/* navbar */
+.navbar {
+    border-bottom: 1px solid var(--soft-blue);
+}
+
+.navbar .auth-links .signup {
+    background-color: var(--blue);
+    color: white;
+}
+
+.navbar .auth-links .signup:hover {
+    background-color: var(--soft-blue);
+}
+
+.nav-link:hover {
+    color: var(--soft-blue);
+    border-bottom: 1px solid var(--blue);
+    transition: .3s all ease;
+}
+
+.navbar .auth-links .login {
+    color: var(--deep-black);
+}
+
+.navbar .auth-links .login:hover {
+    color: var(--blue);
+}
+
+.nav-item form input:hover,
+.nav-item form input:focus {
+    border: 1px solid var(--blue);
 }
