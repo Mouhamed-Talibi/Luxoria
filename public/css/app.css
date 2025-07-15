@@ -131,3 +131,17 @@ body {
 .contact p {
     color: var(--light-blue);
 }
+
+/* login */
+.form-input .input-group input:hover, 
+.form-input .input-group input:focus {
+    box-shadow: none;
+}
+
+.form-input .input-group:focus {
+    border: 1px solid var(--blue);
+}
+
+.form-input .input-group:hover span i  {
+    color: var(--soft-blue);
+}
