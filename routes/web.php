@@ -11,6 +11,9 @@
     // auth routes
     Route::prefix('auth')->name('auth.')->group(function() {
         // login form route
-        route::get('/login', [AuthController::class, 'loginForm'])
+        Route::get('/login', [AuthController::class, 'loginForm'])
             ->name('login_form');
+        // signup form route
+        Route::get('/signup', [AuthController::class, 'signupForm'])
+            ->name('signup_form');
     });

@@ -45,7 +45,7 @@
                 <!-- login / Signup -->
                 <div class="auth-links d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
                     <a href="{{ route('auth.login_form') }}" class="login">Login</a>
-                    <a href="" class="text-decoration-none px-3 py-1 rounded-4 signup">Sign Up</a>
+                    <a href="{{ route('auth.signup_form') }}" class="text-decoration-none px-3 py-1 rounded-4 signup">Sign Up</a>
                 </div>
             </div>
         </div>

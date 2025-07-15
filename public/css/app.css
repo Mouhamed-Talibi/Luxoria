@@ -145,3 +145,8 @@ body {
 .form-input .input-group:hover span i  {
     color: var(--soft-blue);
 }
+
+.form-image img {
+    height: 320px;
+    width: 100%;
+}

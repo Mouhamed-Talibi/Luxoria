@@ -10,4 +10,9 @@
         public function loginForm() {
             return view('auth.login');
         }
+
+        // signupForm method
+        public function signupForm() {
+            return view('auth.signup');
+        }
     }
