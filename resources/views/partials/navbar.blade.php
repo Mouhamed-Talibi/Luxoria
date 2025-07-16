@@ -19,28 +19,31 @@
             <!-- sidebar body -->
             <div class="offcanvas-body d-flex flex-column flex-lg-row p-2 p-lg-0">
                 <ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <form class="d-flex align-items-center">
-                            <div class="input-group">
-                                <input type="text" name="search_input" placeholder="Find your product" class="form-control">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa-solid fa-magnifying-glass text-light"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </li>
+                    {{-- auth links --}}
+                    @auth
+                        <li class="nav-item mx-2">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <form class="d-flex align-items-center">
+                                <div class="input-group">
+                                    <input type="text" name="search_input" placeholder="Find your product" class="form-control">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-solid fa-magnifying-glass text-light"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </li>
+                    @endauth
                 </ul>
                 <!-- login / Signup -->
                 <div class="auth-links d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">

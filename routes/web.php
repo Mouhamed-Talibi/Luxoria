@@ -13,6 +13,9 @@
         // login form route
         Route::get('/login', [AuthController::class, 'loginForm'])
             ->name('login_form');
+        // login route
+        Route::post('/login', [AuthController::class, 'login'])
+            ->name('login');
         // signup form route
         Route::get('/signup', [AuthController::class, 'signupForm'])
             ->name('signup_form');
@@ -25,4 +28,11 @@
         // confirm account route
         Route::get('/confirm_email/{hash}', [AuthController::class, 'confirmEmail'])
             ->name('confirm_email');
+    });
+
+    // app routes
+    Route::middleware(['verified'])->prefix('app')->name('app.')->group(function(){
+        // home route
+        Route::get('/home', [AppController::class, 'index'])
+            ->name('home');
     });

@@ -2,18 +2,46 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\LoginRequest;
     use App\Http\Requests\SignupRequest;
     use App\Mail\EmailConfirmation;
     use App\Models\User;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Hash;
     use Illuminate\Support\Facades\Mail;
+    use Illuminate\Support\Facades\RateLimiter;
 
     class AuthController extends Controller
     {
         // loginForm method
         public function loginForm() {
             return view('auth.login');
+        }
+
+        // login method
+        public function login(LoginRequest $request)
+        {
+            $credentials = $request->validated();
+            // check user exists
+            $user = User::where('email', $credentials['email'])->first();
+            if(!$user) {
+                return back()->with('error', 'No Account Found !');
+            }
+
+            // compare data
+            if(Auth::attempt($credentials)) {
+                if($user->role === "admin") {
+                    return redirect()->route('admin.dashboard')
+                        ->with('success', "Welcome Back Admin");
+                }
+
+                $request->session()->regenerate();
+                return redirect()->route('app.home')
+                    ->with('success', "Welcome Back {$user->name}");
+            }
+
+            return back()->with('error', 'Invalid Credentials');
         }
 
         // signupForm method
