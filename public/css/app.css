@@ -147,6 +147,14 @@ body {
 }
 
 .form-image img {
-    height: 320px;
+    height: 350px;
     width: 100%;
+}
+
+/* falshbacks */
+.icon-container {
+    transition: transform 0.3s ease;
+}
+.modal.show .icon-container {
+    transform: scale(1.1);
 }

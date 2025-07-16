@@ -11,7 +11,7 @@
                 <form action="" class="shadow p-3">
                     {{-- form image --}}
                     <div class="form-image">
-                        <img src="{{ asset('assets/signup.jpg') }}" alt="" class="img-fluid rounded-3">
+                        <img src="{{ asset('assets/login.jpg') }}" alt="" class="img-fluid rounded-3">
                     </div>
                     {{-- form input --}}
                     <div class="form-input mt-3">

@@ -37,6 +37,9 @@
 
     {{-- content site --}}
     <div id="content">
+        {{-- fa=lashbacks --}}
+        <x-flashbacks/>
+
         {{-- navbar --}}
         @include('partials.navbar')
 
@@ -53,5 +56,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     {{-- loader --}}
     <script src="{{ asset('js/loader.js') }}"></script>
+
+    @stack('scripts')
 </body>
 </html>
