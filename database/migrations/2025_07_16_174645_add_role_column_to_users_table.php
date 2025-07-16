@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('address')->nullable()->after('email');
-            $table->unsignedInteger('age')->nullable()->after('address');
-            $table->string('phone')->after('age')->nullable();
-            $table->enum('gender', ["male", "female"])->after('phone');
-            $table->softDeletes();
+            $table->enum('role', ['admin', 'user'])->default('user')
+                ->after('password');
         });
     }
 

@@ -1,6 +1,6 @@
 <footer class="bg-dark text-white pt-5 pb-4">
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-center">
             <!-- Logo & Description Column -->
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="text-center text-md-start">
@@ -17,7 +17,7 @@
             </div>
 
             <!-- Quick Links Column -->
-            <div class="quick-links col-md-6 col-lg-2 mb-4">
+            <div class="quick-links col-md-6 col-lg-2 mb-4 text-center text-lg-start">
                 <h5 class="text-uppercase mb-4">Quick Links</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2"><a href="#" class="text-decoration-none">Home</a></li>
@@ -29,7 +29,7 @@
             </div>
 
             <!-- Customer Service Column -->
-            <div class="customer-service col-md-6 col-lg-2 mb-4">
+            <div class="customer-service col-md-6 col-lg-2 mb-4 text-center text-lg-start">
                 <h5 class="text-uppercase mb-4">Customer Service</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2"><a href="#" class="text-decoration-none">My Account</a></li>
@@ -41,7 +41,7 @@
             </div>
 
             <!-- Newsletter Column -->
-            <div class="contact col-md-6 col-lg-4 mb-4">
+            <div class="contact col-md-6 col-lg-4 mb-4 text-center text-lg-start">
                 <h5 class="text-uppercase mb-3">Contact Us</h5>
                 <p class=" mb-1"><i class="fas fa-map-marker-alt me-2 text-info"></i> Agadir, Morocco</p>
                 <p class=" mb-1"><i class="fas fa-phone me-2 text-info"></i> +212 638182872</p>

@@ -16,4 +16,13 @@
         // signup form route
         Route::get('/signup', [AuthController::class, 'signupForm'])
             ->name('signup_form');
+        // signup route
+        Route::post('/signup', [AuthController::class, 'signup'])
+            ->name('signup');
+        // verify email route
+        Route::get('/verify_email', [AuthController::class, 'verifyEmail'])
+            ->name('verify_email');
+        // confirm account route
+        Route::get('/confirm_email/{hash}', [AuthController::class, 'confirmEmail'])
+            ->name('confirm_email');
     });
