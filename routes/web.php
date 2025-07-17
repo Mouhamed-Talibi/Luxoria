@@ -1,5 +1,6 @@
 <?php
 
+    use App\Http\Controllers\AdminController;
     use App\Http\Controllers\AppController;
     use App\Http\Controllers\AuthController;
     use Illuminate\Support\Facades\Route;
@@ -31,8 +32,15 @@
     });
 
     // app routes
-    Route::middleware(['verified'])->prefix('app')->name('app.')->group(function(){
+    Route::middleware(['verified', 'auth'])->prefix('app')->name('app.')->group(function(){
         // home route
         Route::get('/home', [AppController::class, 'index'])
             ->name('home');
+    });
+
+    // admin routes
+    Route::middleware(['verified', 'auth', 'admin'])->prefix('admin')->name('admin.')->group(function(){
+        // dashboard routes
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])
+            ->name('dashboard');
     });
