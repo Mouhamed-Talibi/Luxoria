@@ -8,7 +8,7 @@
     {{-- csrf-token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- fav icon --}}
-    <link rel="icon" href="{{ asset('assets/logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/luxoria-1.png') }}" type="image/png">
     {{-- google fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
     {{-- loader --}}
     <div id="loader" class="loader-container">
         <div class="loader"></div>
-        <p>Loading PostForge, Please Wait..</p>
+        <p>Loading Luxoria, Please Wait..</p>
     </div>
 
     {{-- content site --}}
@@ -46,7 +46,7 @@
             <!-- Sidebar -->
             <aside class="sidebar col-md-3 col-lg-2 d-md-block">
                 <div class="sidebar-header">
-                    <h4>PostForge</h4>
+                    <h4>Luxoria</h4>
                     <hr class="text-primary">
                 </div>
                 <ul class="nav flex-column px-3">
@@ -57,56 +57,12 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Posts 
+                            <i class="bi bi-people"></i> Categories 
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
                             <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-person-plus me-2"></i> New Post 
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-list-ul me-2"></i> Posts List
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-list-ul me-2"></i> Find Post
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="creatorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Creators
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="creatorsDropdown">
-                            <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-person-plus me-2"></i> New Creator
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-list-ul me-2"></i> Creators List
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-list-ul me-2"></i> Banned Creators 
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Categories
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                            <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-person-plus me-2"></i> New Category
+                                <a class="dropdown-item" href="{{ route('admin.add_category') }}">
+                                    <i class="bi bi-person-plus me-2"></i> New Category 
                                 </a>
                             </li>
                             <li>
@@ -114,16 +70,26 @@
                                     <i class="bi bi-list-ul me-2"></i> Catgeories List
                                 </a>
                             </li>
+                            <li>
+                                <a class="dropdown-item" href="">
+                                    <i class="bi bi-list-ul me-2"></i> Find Category
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Creator Links
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-people"></i> Products
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="productsDropdown">
                             <li>
                                 <a class="dropdown-item" href="">
-                                    <i class="bi bi-person-plus me-2"></i> Posts
+                                    <i class="bi bi-person-plus me-2"></i> New Product
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">
+                                    <i class="bi bi-list-ul me-2"></i> Products List
                                 </a>
                             </li>
                         </ul>
@@ -144,7 +110,7 @@
                             <div class="dropdown">
                                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span>
-                                        <img src="" alt="" class="img-fluid rounded-circle"
+                                        <img src="{{ asset('assets/user.png ')}}" alt="" class="img-fluid rounded-circle"
                                             style="width: 50px; height: 50px; object-fit: cover;">
                                     </span>
                                 </a>

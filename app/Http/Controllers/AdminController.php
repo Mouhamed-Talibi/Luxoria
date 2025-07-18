@@ -15,6 +15,13 @@ class AdminController extends Controller
     }
 
     /**
+     * Display dashboard
+     */
+    public function addCategory() {
+        return view('admin.add_category');
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()

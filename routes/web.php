@@ -43,4 +43,7 @@
         // dashboard routes
         Route::get('/dashboard', [AdminController::class, 'dashboard'])
             ->name('dashboard');
+        // add category route
+        Route::get('/add_category', [AdminController::class, 'addCategory'])
+            ->name('add_category');
     });
