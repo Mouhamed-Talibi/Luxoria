@@ -32,7 +32,7 @@ class AdminController extends Controller
         // handle image upload
         if ($request->hasFile('image')) {
             $validatedInputs['image'] = $request->file('image')->store(
-                'uploads/categories/' . now()->format('Y/m'),
+                'uploads/categories/' . date('Y'),
                 'public'
             );
         }

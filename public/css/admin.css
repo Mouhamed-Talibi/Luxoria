@@ -106,3 +106,24 @@ body {
         margin-left: 0 !important;
     }
 }
+
+/* categories */
+.hover-effect {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    border-color: var(--blue);
+}
+.object-fit-cover {
+    object-fit: cover;
+    object-position: center;
+}
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

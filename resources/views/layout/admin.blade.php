@@ -66,7 +66,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{ route('admin.categories')}}">
                                     <i class="bi bi-list-ul me-2"></i> Catgeories List
                                 </a>
                             </li>
