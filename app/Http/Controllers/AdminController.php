@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddCategoryRequest;
 use App\Models\Admin;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,10 +17,34 @@ class AdminController extends Controller
     }
 
     /**
-     * Display dashboard
+     * Display add category form
      */
     public function addCategory() {
         return view('admin.add_category');
+    }
+
+    /**
+     * store category
+     */
+    public function storeCategory(AddCategoryRequest $request) {
+        $validatedInputs = $request->validated();
+
+        // handle image upload
+        if ($request->hasFile('image')) {
+            $validatedInputs['image'] = $request->file('image')->store(
+                'uploads/categories/' . now()->format('Y/m'),
+                'public'
+            );
+        }
+
+        Category::create([
+            'name' => $validatedInputs['name'],
+            'slug' => str_replace(" ", "-", $validatedInputs['name']),
+            'description' => $validatedInputs['description'],
+            'image' => $validatedInputs['image'],
+        ]);
+        return to_route('admin.categories')
+            ->with('success', 'Category Created Successfully');
     }
 
     /**

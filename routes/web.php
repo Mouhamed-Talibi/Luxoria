@@ -3,6 +3,7 @@
     use App\Http\Controllers\AdminController;
     use App\Http\Controllers\AppController;
     use App\Http\Controllers\AuthController;
+    use App\Http\Controllers\CategoryController;
     use Illuminate\Support\Facades\Route;
 
     // home route
@@ -46,4 +47,10 @@
         // add category route
         Route::get('/add_category', [AdminController::class, 'addCategory'])
             ->name('add_category');
+        // insert category
+        Route::post('/insert_category', [AdminController::class, 'storeCategory'])
+            ->name('insert_category');
+        // categories list
+        Route::get('/categories', [CategoryController::class, 'index'])
+            ->name('categories');
     });

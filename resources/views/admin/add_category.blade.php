@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-8 col-md-6">
-                    <form action="{{ route('auth.login') }}" class="shadow p-3" method="POST">
+                    <form action="{{ route('admin.insert_category') }}" class="shadow p-3 mt-4" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h2 class="text-center mb-3">Add Category</h2>
                         {{-- form input --}}
