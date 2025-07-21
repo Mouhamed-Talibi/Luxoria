@@ -62,4 +62,7 @@
         // delete category
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
             ->name('destroy_category');
+        // restore category
+        Route::get('/categories/{category}/restore', [CategoryController::class, 'restore'])
+            ->name('restore_category');
     });

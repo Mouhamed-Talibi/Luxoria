@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddCategoryRequest;
 use App\Models\Admin;
 use App\Models\Category;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -26,25 +28,43 @@ class AdminController extends Controller
     /**
      * store category
      */
-    public function storeCategory(AddCategoryRequest $request) {
-        $validatedInputs = $request->validated();
+    public function storeCategory(AddCategoryRequest $request)
+    {
+        try {
+            $validatedInputs = $request->validated();
 
-        // handle image upload
-        if ($request->hasFile('image')) {
-            $validatedInputs['image'] = $request->file('image')->store(
-                'uploads/categories/' . date('Y'),
-                'public'
-            );
+            // Handle image upload
+            if ($request->hasFile('image')) {
+                $validatedInputs['image'] = $request->file('image')->store(
+                    'uploads/categories/' . date('Y'),
+                    'public'
+                );
+            }
+
+            // Create category
+            Category::create([
+                'name' => $validatedInputs['name'],
+                'slug' => Str::slug($validatedInputs['name']),
+                'description' => $validatedInputs['description'],
+                'image' => $validatedInputs['image'] ?? null,
+            ]);
+
+            return to_route('admin.categories')
+                ->with('success', 'Category Created Successfully');
+
+        } catch (QueryException $e) {
+            // Check if it's a duplicate entry error
+            if ($e->errorInfo[1] == 1062) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'This category already exists. Please choose a different name.');
+            }
+            
+            // For other database errors
+            return back()
+                ->withInput()
+                ->with('error', 'An error occurred while saving the category.');
         }
-
-        Category::create([
-            'name' => $validatedInputs['name'],
-            'slug' => str_replace(" ", "-", $validatedInputs['name']),
-            'description' => $validatedInputs['description'],
-            'image' => $validatedInputs['image'],
-        ]);
-        return to_route('admin.categories')
-            ->with('success', 'Category Created Successfully');
     }
 
     /**

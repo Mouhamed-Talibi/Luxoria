@@ -70,6 +70,9 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="text-center p-3">
+                                <span class="mb-3">
+                                    <i class="fa-solid fa-trash fa-2x text-danger mb-3"></i>
+                                </span>
                                 <h2 id="deleteLabel{{ $category->id }}">Confirm Deleting</h2>
                                 <hr class="w-25 mx-auto">
                                 <p class="mt-4 w-75 mx-auto">
@@ -96,6 +99,62 @@
                         <a href="{{ route('admin.add_category') }}" class="btn mt-3" style="background-color: var(--blue); color: white;">
                             <i class="fa-solid fa-plus me-2"></i>Create Category
                         </a>
+                    </div>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- categories trash --}}
+        <hr class="mt-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h3 class="display-8 fw-bold" style="color: var(--deep-black);">
+                <i class="fa-solid fa-tags me-2"></i>Categories Trash 
+            </h3>
+        </div>
+
+        <!-- Categories Grid -->
+        <div class="row g-4">
+            @forelse ($trashedCategories as $category)
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-effect">
+                        <!-- Category Image -->
+                        <div class="card-img-top overflow-hidden" style="height: 200px; background-color: var(--light-blue);">
+                            @if($category->image)
+                                <img src="{{ Storage::url($category->image) }}" 
+                                    alt="{{ $category->name }}"
+                                    class="img-fluid w-100 h-100" style="object-fit: cover;">
+                            @else
+                                <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-image fa-3x" style="color: var(--gray);"></i>
+                                </div>
+                            @endif
+                        </div>
+
+                        <!-- Category Body -->
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold mb-3" style="color: var(--deep-black);">
+                                {{ $category->name }}
+                            </h3>
+                            <p class="card-text text-muted mb-4">
+                                {{ Str::limit($category->description, 120) }}
+                            </p>
+                        </div>
+
+                        {{-- category actins --}}
+                        <div class="text-center mb-3">
+                            <a href="{{ route('admin.restore_category', $category->id)}}" class="btn btn-outline-success">
+                                <i class="fa-solid fa-trash-can-arrow-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            @empty
+                <div class="col-12">
+                    <div class="text-center py-5" style="background-color: var(--light-blue); border-radius: 10px;">
+                        <i class="fa-solid fa-tags fa-3x mb-3" style="color: var(--gray);"></i>
+                        <h4 class="fw-bold" style="color: var(--deep-black);">No Trashed Categories Found</h4>
                     </div>
                 </div>
             @endforelse

@@ -14,7 +14,8 @@
         // categories index method
         public function index() {
             $categories = Category::paginate(6);
-            return view('admin.categories', compact('categories'));
+            $trashedCategories = Category::onlyTrashed()->paginate(6);
+            return view('admin.categories', compact(['categories', 'trashedCategories']));
         }
 
         // edit category method
@@ -93,5 +94,18 @@
             } catch (\Exception $e) {
                 return back()->with('error', 'Failed to delete category: ' . $e->getMessage());
             }
+        }
+
+        // restore category method
+        public function restore($id)
+        {
+            // Find the soft-deleted category (including trashed)
+            $category = Category::withTrashed()->findOrFail($id);
+            
+            // Restore the category
+            $category->restore();
+            
+            return redirect()->route('admin.categories')
+                ->with('success', 'Category restored successfully');
         }
     }
