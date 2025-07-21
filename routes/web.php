@@ -53,4 +53,13 @@
         // categories list
         Route::get('/categories', [CategoryController::class, 'index'])
             ->name('categories');
+        // edit category form
+        Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])
+            ->name('edit_category');
+        // update category
+        Route::put('/categories/{category}', [CategoryController::class, 'update'])
+            ->name('update_category');
+        // delete category
+        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
+            ->name('destroy_category');
     });

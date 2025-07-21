@@ -3,9 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
+
+    use SoftDeletes;
+
+    /**
+     * fillable properties for mass assignment
+     */
     protected $fillable = [
         'name',
         'image', 

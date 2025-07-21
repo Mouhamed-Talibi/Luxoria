@@ -1,11 +1,10 @@
 @extends('layout.admin')
 
-    @section('title')
-        Categories
-    @endsection
+@section('title')
+    Categories
+@endsection
 
-    @section('content')
-        @section('content')
+@section('content')
     <div class="container py-4">
         <!-- Header with Add Button -->
         <div class="d-flex justify-content-between align-items-center mb-5">
@@ -27,7 +26,7 @@
                             @if($category->image)
                                 <img src="{{ Storage::url($category->image) }}" 
                                     alt="{{ $category->name }}"
-                                    class="img-fluid w-100 h-100 object-fit-cover">
+                                    class="img-fluid w-100 h-100" style="object-fit: cover;">
                             @else
                                 <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-image fa-3x" style="color: var(--gray);"></i>
@@ -47,18 +46,44 @@
 
                         <!-- Action Buttons -->
                         <div class="card-footer bg-transparent border-0 d-flex justify-content-center gap-2">
-                            <a href="" 
-                            class="btn btn-sm" 
-                            style="background-color: var(--soft-blue); color: white;">
+                            <a href="{{ route('admin.edit_category', $category->id) }}" 
+                                class="btn btn-sm" 
+                                style="background-color: var(--soft-blue); color: white;" 
+                                title="Edit Category">
                                 <i class="fa-solid fa-pen-to-square me-1"></i>
                             </a>
-                            <form action="" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
-                                    <i class="fa-solid fa-trash me-1"></i>
-                                </button>
-                            </form>
+                            
+                            <button 
+                                type="button" 
+                                class="btn btn-sm btn-outline-danger" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#deleteModal{{ $category->id }}"
+                                title="Delete Category">
+                                <i class="fa-solid fa-trash me-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteModal{{ $category->id }}" tabindex="-1" aria-labelledby="deleteLabel{{ $category->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="text-center p-3">
+                                <h2 id="deleteLabel{{ $category->id }}">Confirm Deleting</h2>
+                                <hr class="w-25 mx-auto">
+                                <p class="mt-4 w-75 mx-auto">
+                                    Are you sure you want to delete "{{ $category->name }}"? This action cannot be undone.
+                                </p>
+                            </div>
+                            <div class="links d-flex gap-2 justify-content-center mb-3">
+                                <button type="button" class="btn btn-sm border border-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <form action="{{ route('admin.destroy_category', $category->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm text-light bg-danger">Delete</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,4 +108,4 @@
             </div>
         @endif
     </div>
-    @endsection
+@endsection
