@@ -70,11 +70,6 @@
                                     <i class="bi bi-list-ul me-2"></i> Catgeories List
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="">
-                                    <i class="bi bi-list-ul me-2"></i> Find Category
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -125,23 +120,27 @@
                                 </ul>
                             </div>
                             <!-- Logout Modal -->
-                            <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-dark text-light px-5">
-                                            <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0 text-center p-4">
+                                        <!-- Icon and Message -->
+                                        <div class="modal-icon-wrapper my-4">
+                                            <div class="logout-icon bg-soft-danger text-danger rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                                                <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+                                            </div>
+                                            <h5 class="fw-bold mb-3">Ready to Leave?</h5>
+                                            <p class="text-muted px-3">Are you sure you want to log out of your account?</p>
                                         </div>
-                                        <div class="modal-body py-5 px-4">
-                                            <p class="fw-bold">Are you sure you want to log out?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-                                            <!-- Actual Logout Form -->
-                                            <form action="" method="POST" class="d-inline">
+
+                                        <!-- Action Buttons -->
+                                        <div class="d-flex justify-content-center gap-3 mb-2">
+                                            <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">
+                                                Cancel
+                                            </button>
+                                            <form action="{{ route('auth.logout') }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                    Logout <i class="fa-solid fa-right-from-bracket"></i>
+                                                <button type="submit" class="btn btn-danger px-4">
+                                                    <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
                                                 </button>
                                             </form>
                                         </div>

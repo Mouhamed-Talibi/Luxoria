@@ -8,7 +8,7 @@
 
     // home route
     Route::get('/', [AppController::class, 'home'])
-        ->name('app.home');
+        ->name('app.app');
 
     // auth routes
     Route::prefix('auth')->name('auth.')->group(function() {
@@ -30,6 +30,9 @@
         // confirm account route
         Route::get('/confirm_email/{hash}', [AuthController::class, 'confirmEmail'])
             ->name('confirm_email');
+        // logout route
+        Route::post('/logout', [AuthController::class, 'logout'])
+            ->name('logout');
     });
 
     // app routes
@@ -37,6 +40,7 @@
         // home route
         Route::get('/home', [AppController::class, 'index'])
             ->name('home');
+        
     });
 
     // admin routes
@@ -65,4 +69,5 @@
         // restore category
         Route::get('/categories/{category}/restore', [CategoryController::class, 'restore'])
             ->name('restore_category');
+        // 
     });
