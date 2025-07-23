@@ -43,13 +43,40 @@
                                 </div>
                             </form>
                         </li>
+                        {{-- lang switcher --}}
+                        <div class="dropdown mx-3">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ strtoupper(app()->getLocale()) }}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('app.lang.switch', 'en') }}">English</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('app.lang.switch', 'ar') }}">العربية</a>
+                                </li>
+                            </ul>
+                        </div>
                     @endauth
                 </ul>
-                <!-- login / Signup -->
-                <div class="auth-links d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                    <a href="{{ route('auth.login_form') }}" class="login">Login</a>
-                    <a href="{{ route('auth.signup_form') }}" class="text-decoration-none px-3 py-1 rounded-4 signup">Sign Up</a>
-                </div>
+
+                {{-- logout link --}}
+                <form action="{{route('app.logout')}}" class="d-inline float-end" method="POST">
+                    @csrf
+
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="fa-duotone fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </button>
+                </form>
+
+                @guest
+                    <!-- login / Signup -->
+                    <div class="auth-links d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                        <a href="{{ route('auth.login_form') }}" class="login">Login</a>
+                        <a href="{{ route('auth.signup_form') }}" class="text-decoration-none px-3 py-1 rounded-4 signup">Sign Up</a>
+                    </div>
+                @endguest
             </div>
         </div>
     </div>

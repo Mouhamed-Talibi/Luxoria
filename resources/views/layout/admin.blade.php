@@ -51,7 +51,7 @@
                 </div>
                 <ul class="nav flex-column px-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="">
+                        <a class="nav-link active" href="{{ route('admin.dashboard') }}">
                             <i class="bi bi-speedometer2"></i> Dashboard
                         </a>
                     </li>
@@ -83,7 +83,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{ route('admin.products') }}">
                                     <i class="bi bi-list-ul me-2"></i> Products List
                                 </a>
                             </li>

@@ -26,7 +26,7 @@
         Route::post('/signup', [AuthController::class, 'signup'])
             ->name('signup');
         // verify email route
-        Route::get('/verify_email', [AuthController::class, 'verifyEmail'])
+        Route::get('/email/verify', [AuthController::class, 'verifyEmail'])
             ->name('verify_email');
         // confirm account route
         Route::get('/confirm_email/{hash}', [AuthController::class, 'confirmEmail'])
@@ -41,7 +41,9 @@
         // home route
         Route::get('/home', [AppController::class, 'index'])
             ->name('home');
-        
+        // lang switch
+        Route::get('/lang/{local}', [AppController::class, 'langSwitch'])
+            ->name('lang.switch');
     });
 
     // admin routes
@@ -50,10 +52,10 @@
         Route::get('/dashboard', [AdminController::class, 'dashboard'])
             ->name('dashboard');
         // add category route
-        Route::get('/add_category', [AdminController::class, 'addCategory'])
+        Route::get('/categories/add', [AdminController::class, 'addCategory'])
             ->name('add_category');
         // insert category
-        Route::post('/insert_category', [AdminController::class, 'storeCategory'])
+        Route::post('/categories/store', [AdminController::class, 'storeCategory'])
             ->name('insert_category');
         // categories list
         Route::get('/categories', [CategoryController::class, 'index'])
@@ -71,10 +73,10 @@
         Route::get('/categories/{category}/restore', [CategoryController::class, 'restore'])
             ->name('restore_category');
         // create product route
-        Route::get('/add_product', [ProductController::class, 'create'])
+        Route::get('/products/add', [ProductController::class, 'create'])
             ->name('add_product');
         // store product
-        Route::post('/store_product', [ProductController::class, 'store'])
+        Route::post('/products/store', [ProductController::class, 'store'])
             ->name('store_product');
         // products route
         Route::get('/products', [ProductController::class, 'index'])
