@@ -8,7 +8,7 @@
                         <i class="fas fa-check-circle text-success fs-1"></i>
                     </div>
                     <p class="text-muted mb-4">{{ session('success') }}</p>
-                    <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">حسنا</button>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                         <i class="fas fa-exclamation-circle text-danger fs-1"></i>
                     </div>
                     <p class="text-muted mb-4">{{ session('error') }}</p>
-                    <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">حسنا</button>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         <i class="fas fa-exclamation-triangle text-warning fs-1"></i>
                     </div>
                     <p class="text-muted mb-4">{{ session('warning') }}</p>
-                    <button type="button" class="btn btn-warning px-4" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-warning px-4" data-bs-dismiss="modal">حسنا</button>
                 </div>
             </div>
         </div>

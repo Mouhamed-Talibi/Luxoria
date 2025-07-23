@@ -54,9 +54,30 @@ class SignupRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.regex' => 'The name may only contain letters and spaces',
-            'password.regex' => 'Password may only contain letters, numbers, and symbols: !@#$%^&*()-_=+{};:,<.>',
-            'gender.in' => 'Gender must be either male or female',
+            // name
+            'name.required' => 'يرجى إدخال الاسم.',
+            'name.string' => 'يجب أن يكون الاسم نصًا.',
+            'name.min' => 'يجب أن يحتوي الاسم على 3 أحرف على الأقل.',
+            'name.max' => 'يجب ألا يتجاوز الاسم 50 حرفًا.',
+            'name.regex' => 'يجب أن يحتوي الاسم على حروف ومسافات فقط.',
+
+            // email
+            'email.required' => 'يرجى إدخال عنوان البريد الإلكتروني.',
+            'email.email' => 'يرجى إدخال عنوان بريد إلكتروني صالح.',
+            'email.max' => 'يجب ألا يتجاوز البريد الإلكتروني 255 حرفًا.',
+            'email.unique' => 'هذا البريد الإلكتروني مستخدم بالفعل.',
+
+            // gender
+            'gender.required' => 'يرجى تحديد الجنس.',
+            'gender.in' => 'يجب أن يكون الجنس إما ذكرًا أو أنثى.',
+
+            // password
+            'password.required' => 'يرجى إدخال كلمة المرور.',
+            'password.string' => 'يجب أن تكون كلمة المرور نصًا.',
+            'password.min' => 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل.',
+            'password.max' => 'يجب ألا تتجاوز كلمة المرور 50 حرفًا.',
+            'password.confirmed' => 'تأكيد كلمة المرور غير متطابق.',
+            'password.regex' => 'يمكن أن تحتوي كلمة المرور على حروف، أرقام، والرموز التالية فقط: !@#$%^&*()-_=+{};:,<.>',
         ];
     }
 }

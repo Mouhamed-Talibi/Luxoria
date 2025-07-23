@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Redirect;
     use Illuminate\Support\Facades\Session;
 
@@ -20,9 +21,17 @@
 
         // lang switch method
         public function langSwitch($locale) {
-            if (in_array($locale, ['en', 'ar'])) {
+            // check if locale is valid (optional)
+            if (! in_array($locale, ['en', 'ar'])) {
+                abort(400);
+            }
+
+            // Set the locale
+            App::setLocale($locale);
+
+            // Store in session
             Session::put('locale', $locale);
-        }
-        return Redirect::back();
+
+            return Redirect::back();
         }
     }

@@ -5,5 +5,7 @@
     @endsection
 
     @section('content')
-        <h1 class="text-center">This is the app home page</h1>
+        <h1 class="text-center">
+            الصفحة الرئيسية
+        </h1>
     @endsection

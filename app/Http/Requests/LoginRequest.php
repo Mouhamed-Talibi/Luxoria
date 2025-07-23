@@ -33,9 +33,9 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.exists' => 'The provided credentials do not match our records.',
-            'email.required' => 'Please enter your email address',
-            'password.required' => 'Please enter your password'
+            'email.exists' => 'بيانات الاعتماد المقدمة غير مطابقة لسجلاتنا.',
+            'email.required' => 'يرجى إدخال عنوان بريدك الإلكتروني.',
+            'password.required' => 'يرجى إدخال كلمة المرور الخاصة بك.',
         ];
     }
 }

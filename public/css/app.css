@@ -11,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-family: "Lexend", sans-serif;
+    font-family: "Noto Kufi Arabic", sans-serif;
 }
 
 /* Loader Styles */
@@ -130,6 +130,17 @@ body {
 
 .contact p {
     color: var(--light-blue);
+}
+
+footer .social-icons a {
+    color: var(--soft-blue);
+}
+
+footer .social-icons a:hover i{
+    color: var(--blue);
+    transform: scale(1.01);
+    transition: .3s all ease;
+    font-size: 20px;
 }
 
 /* login */

@@ -26,7 +26,7 @@
             // check user exists
             $user = User::where('email', $credentials['email'])->first();
             if(!$user) {
-                return back()->with('error', 'No Account Found !');
+                return back()->with('error', 'لم يتم العثور على حساب بهذا البريد الإلكتروني');
             }
 
             // compare data
@@ -38,10 +38,10 @@
 
                 $request->session()->regenerate();
                 return redirect()->route('app.home')
-                    ->with('success', "Welcome Back {$user->name}");
+                    ->with('success', "مرحباً بعودتك  $user->name ");
             }
 
-            return back()->with('error', 'Invalid Credentials');
+            return back()->with('error', 'بيانات الاعتماد غير صحيحة');
         }
 
         // signupForm method
@@ -68,7 +68,7 @@
             return redirect()
                 ->route('auth.verify_email')
                 ->with("success", 
-                "We've sent you an email verification link. Please check your email messages and confirm your account");
+                "تم إرسال رابط التحقق إلى بريدك الإلكتروني. يُرجى التحقق من رسائل البريد الإلكتروني وتأكيد حسابك.");
         }
 
         // verify Email method
@@ -93,7 +93,7 @@
                 $saved = $user->save();
                 if($saved) {
                     return redirect()->route('auth.login_form')
-                        ->with('success', 'Your account has been verified. You can now login');
+                        ->with('success', 'تم التحقق من حسابك بنجاح. يمكنك الآن تسجيل الدخول.');
                 } else {
                     abort(404);
                 }
@@ -107,6 +107,6 @@
             $request->session()->regenerateToken();
 
             return redirect()->route('app.app')
-                ->with('success', 'You have been logged out successfully'); 
+                ->with('success', 'لقد تم تسجيل خروجك بنجاح.'); 
         }
     }
