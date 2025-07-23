@@ -4,6 +4,7 @@
     use App\Http\Controllers\AppController;
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\CategoryController;
+    use App\Http\Controllers\ProductController;
     use Illuminate\Support\Facades\Route;
 
     // home route
@@ -69,5 +70,10 @@
         // restore category
         Route::get('/categories/{category}/restore', [CategoryController::class, 'restore'])
             ->name('restore_category');
-        // 
+        // create product route
+        Route::get('/add_product', [ProductController::class, 'create'])
+            ->name('add_product');
+        // store product
+        Route::post('/store_product', [ProductController::class, 'store'])
+            ->name('store_product');
     });
