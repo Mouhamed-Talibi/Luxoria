@@ -45,6 +45,24 @@
                                     @enderror
                                 </div>
 
+                                <!-- Category Input -->
+                                <div class="mb-4">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-white border-end-0">
+                                            <i class="fa-solid fa-tag fs-5 text-secondary"></i>
+                                        </span>
+                                        <select name="category" id="" class="form-select">
+                                            <option value="" class="text-secondary border-start-1 @error('category') is-invalid @enderror">Select product category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('category')
+                                        <div class="text-danger mt-2 small">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <!-- Price Input -->
                                 <div class="mb-4">
                                     <div class="input-group">

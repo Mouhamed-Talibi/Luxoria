@@ -76,4 +76,7 @@
         // store product
         Route::post('/store_product', [ProductController::class, 'store'])
             ->name('store_product');
+        // products route
+        Route::get('/products', [ProductController::class, 'index'])
+            ->name('products');
     });

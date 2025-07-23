@@ -20,4 +20,9 @@ class Category extends Model
         'description',
         'total_products',
     ];
+
+    // relationship with products
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
 }
