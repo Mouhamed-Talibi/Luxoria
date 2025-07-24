@@ -139,6 +139,19 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::findOrFail($product->id)->delete();
+        return to_route('admin.products')
+            ->with('success', 'Product deleted successfully');
+    }
+
+    /**
+     * Retore the specified resource from storage.
+     */
+    public function restore($product)
+    {
+        $product = Product::withTrashed()->findOrFail($product);
+        $product->restore();
+        return to_route('admin.products')
+            ->with('success', 'Product Restored successfully');
     }
 }

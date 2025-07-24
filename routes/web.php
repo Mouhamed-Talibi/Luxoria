@@ -90,5 +90,7 @@
         // delete product
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])
             ->name('destroy_product');
-
+        // restore product
+        Route::get('/products/{product}/restore', [ProductController::class, 'restore'])
+            ->name('restore_product');
     });

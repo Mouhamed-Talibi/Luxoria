@@ -34,7 +34,7 @@
                                 <div class="mb-4">
                                     <div class="input-group">
                                         <span class="input-group-text bg-white border-end-0">
-                                            <i class="fa-solid fa-align-left fs-5 text-secondary"></i> <!-- Best for description -->
+                                            <i class="fa-solid fa-align-left fs-5 text-secondary"></i>
                                         </span>
                                         <textarea 
                                             name="description" 
