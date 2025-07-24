@@ -102,6 +102,13 @@
                     </div>
                 </div>
             @endforelse
+            
+            <!-- Pagination -->
+            @if($categories->hasPages())
+                <div class="d-flex justify-content-center mt-5">
+                    {{ $categories->links() }}
+                </div>
+            @endif
         </div>
 
         {{-- categories trash --}}
@@ -161,9 +168,9 @@
         </div>
 
         <!-- Pagination -->
-        @if($categories->hasPages())
+        @if($trashedCategories->hasPages())
             <div class="d-flex justify-content-center mt-5">
-                {{ $categories->links() }}
+                {{ $trashedCategories->links() }}
             </div>
         @endif
     </div>

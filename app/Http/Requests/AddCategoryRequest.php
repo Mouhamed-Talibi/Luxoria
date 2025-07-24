@@ -27,13 +27,13 @@
                     'required',
                     'string',
                     'max:50',
-                    'regex:/^[a-zA-Z\s]+$/',
+                    'regex:/^[\p{Arabic}a-zA-Z\s]+$/u', // Supports Arabic and English letters
                 ],
                 'description' => [
                     'required',
                     'string',
                     'max:500',
-                    'regex:/^[a-zA-Z0-9\s\-\.,;:!?\'"()@#$%&*\/]+$/',
+                    'regex:/^[\p{Arabic}a-zA-Z0-9\s\-\.,؛؟!:\'\"()@#$%&*\/]+$/u', // Arabic punctuation added
                 ],
                 'image' => [
                     'required',

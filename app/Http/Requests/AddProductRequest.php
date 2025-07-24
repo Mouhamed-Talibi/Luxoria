@@ -7,19 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AddProductRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return Auth::check() && Auth::user()->role === "admin";
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
@@ -28,13 +20,13 @@ class AddProductRequest extends FormRequest
                 'string',
                 'max:50',
                 'unique:products,name',
-                'regex:/^[\pL\s]+$/u'
+                'regex:/^[\p{Arabic}\pL\s\-]+$/u' // Supports Arabic, Latin letters, spaces and hyphens
             ],
             'description' => [
                 'required',
                 'string',
                 'max:2000',
-                'regex:/^[\pL\s\.,\-]+$/u'
+                'regex:/^[\p{Arabic}\pL0-9\s\-\.,،؛؟!:\'\"()@#$%&*\/]+$/u' // Full Arabic support with punctuation
             ],
             'price' => [
                 'required',
@@ -61,23 +53,26 @@ class AddProductRequest extends FormRequest
         ];
     }
 
-        /**
-         * Get the error messages for the defined validation rules.
-         *
-         * @return array<string, string>
-         */
-        public function messages(): array
-        {
-            return [
-                'name.required' => 'The name field is required.',
-                'name.regex' => 'The name may only contain letters and spaces.',
-                'description.required' => 'The description field is required.',
-                'description.regex' => 'The description may only contain letters, spaces, points, commas, and dashes.',
-                'price.required' => 'The price field is required.',
-                'price.regex' => 'The price must be a valid number with up to two decimal places.',
-                'stock.required' => 'The stock field is required.',
-                'image.required' => 'An image is required for the product.',
-                'category.required' => 'the category field is required'
-            ];
-        }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'حقل اسم المنتج مطلوب',
+            'name.regex' => 'يجب أن يحتوي اسم المنتج على أحرف عربية/إنجليزية فقط مع المسافات',
+            'description.required' => 'حقل الوصف مطلوب',
+            'description.regex' => 'يحتوي الوصف على أحرف غير مسموحة. يُسمح فقط بالأحرف العربية/الإنجليزية، الأرقام وعلامات الترقيم الأساسية',
+            'price.required' => 'حقل السعر مطلوب',
+            'price.regex' => 'يجب أن يكون السعر رقمًا صحيحًا أو عشريًا بخانتين كحد أقصى',
+            'price.min' => 'يجب أن يكون السعر أكبر من أو يساوي 0.01',
+            'stock.required' => 'حقل الكمية المتاحة مطلوب',
+            'stock.integer' => 'يجب أن تكون الكمية رقماً صحيحاً',
+            'stock.min' => 'يجب أن تكون الكمية أكبر من أو تساوي الصفر',
+            'image.required' => 'صورة المنتج مطلوبة',
+            'image.image' => 'يجب أن يكون الملف صورة',
+            'image.mimes' => 'يجب أن تكون الصورة من نوع: jpeg, png, jpg, gif, webp',
+            'image.max' => 'يجب ألا تتجاوز الصورة 2 ميجابايت',
+            'category.required' => 'حقل الفئة مطلوب',
+            'category.integer' => 'يجب اختيار فئة صحيحة',
+            'category.min' => 'يجب اختيار فئة صحيحة'
+        ];
+    }
 }

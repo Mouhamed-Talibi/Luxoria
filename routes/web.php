@@ -81,4 +81,14 @@
         // products route
         Route::get('/products', [ProductController::class, 'index'])
             ->name('products');
+        // edit product form
+        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
+            ->name('edit_product');
+        // update product 
+        Route::put('/products/{product}', [ProductController::class, 'update'])
+            ->name('update_product');
+        // delete product
+        Route::delete('/products/{product}', [ProductController::class, 'destroy'])
+            ->name('destroy_product');
+
     });

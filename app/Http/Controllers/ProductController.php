@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddProductCategory;
 use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -81,15 +83,55 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('admin.edit_product', compact(['product', 'categories']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $validatedData = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            // Handle image upload if present
+            if ($request->hasFile('image')) {
+                // Delete old image if exists
+                if ($product->image && Storage::disk('public')->exists($product->image)) {
+                    Storage::disk('public')->delete($product->image);
+                }
+                
+                $validatedData['image'] = $request->file('image')
+                    ->store('uploads/products/'.date('Y'), 'public');
+            }
+
+            // Update product
+            $product->update([
+                'name' => $validatedData['name'],
+                'slug' => Str::slug($validatedData['name']),
+                'description' => $validatedData['description'],
+                'price' => $validatedData['price'],
+                'stock' => $validatedData['stock'],
+                'category_id' => $validatedData['category'],
+                'image' => $validatedData['image'] ?? $product->image,
+            ]);
+
+            DB::commit();
+
+            return to_route('admin.products')
+                ->with('success', 'Product updated successfully');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Product update failed: ' . $e->getMessage());
+            
+            return back()
+                ->withInput()
+                ->with('error', 'Failed to update product. Please try again.');
+        }
     }
 
     /**

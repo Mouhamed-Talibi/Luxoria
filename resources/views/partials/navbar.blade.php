@@ -24,14 +24,15 @@
                             <li class="nav-item mx-2">
                                 <a class="nav-link active" aria-current="page" href="#">الرئيسية</a>
                             </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">من نحن</a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">الخدمات</a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">اتصل بنا</a>
+                            <li class="nav-item dropdown mx-2">
+                                <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    حولنا                                                       
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="aboutDropdown" dir="rtl">
+                                    <li><a class="dropdown-item" href="#">من نحن</a></li>
+                                    <li><a class="dropdown-item" href="#">الخدمات</a></li>
+                                    <li><a class="dropdown-item" href="#">اتصل بنا</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item mx-2">
                                 <form class="d-flex align-items-center">

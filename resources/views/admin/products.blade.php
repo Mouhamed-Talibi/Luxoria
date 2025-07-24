@@ -46,7 +46,7 @@
 
                         <!-- Action Buttons -->
                         <div class="card-footer bg-transparent border-0 d-flex justify-content-center gap-2">
-                            <a href="{{ route('admin.edit_category', $product->id) }}" 
+                            <a href="{{ route('admin.edit_product', $product->id) }}" 
                                 class="btn btn-sm" 
                                 style="background-color: var(--soft-blue); color: white;" 
                                 title="Edit product">
@@ -81,7 +81,7 @@
                             </div>
                             <div class="links d-flex gap-2 justify-content-center mb-3">
                                 <button type="button" class="btn btn-sm border border-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <form action="{{ route('admin.destroy_category', $product->id) }}" method="POST">
+                                <form action="{{ route('admin.destroy_product', $product->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm text-light bg-danger">Delete</button>
