@@ -1,86 +1,104 @@
 <div dir="rtl">
-    <!-- البداية: شريط التنقل -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <!-- الشعار -->
-            <a class="navbar-brand fs-4" href="#">
-                <img src="{{ asset('assets/luxoria.png') }}" alt="" style="height:70px; width:70px;">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('assets/luxoria.png') }}" alt="Logo" width="70" height="70">
             </a>
-            <!-- زر التبديل -->
-            <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- الشريط الجانبي -->
-            <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <!-- رأس الشريط الجانبي -->
-                <div class="offcanvas-header text-dark borde-bottom">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">لكسوريا</h5>
-                    <button type="button" class="btn-close btn-close-dark shadow-none" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
+
+            <!-- Offcanvas Menu -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title">لكسوريا</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <!-- جسم الشريط الجانبي -->
-                <div class="offcanvas-body d-flex flex-column flex-lg-row p-2 p-lg-0">
-                    <ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3">
+                
+                <div class="offcanvas-body">
+                    <!-- Main Navigation -->
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 mb-3 mb-lg-0">
                         @auth
-                            <li class="nav-item mx-2">
-                                <a class="nav-link active" aria-current="page" href="#">الرئيسية</a>
-                            </li>
-                            <li class="nav-item dropdown mx-2">
-                                <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    حولنا                                                       
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="aboutDropdown" dir="rtl">
-                                    <li><a class="dropdown-item" href="#">من نحن</a></li>
-                                    <li><a class="dropdown-item" href="#">الخدمات</a></li>
-                                    <li><a class="dropdown-item" href="#">اتصل بنا</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <form class="d-flex align-items-center">
-                                    <div class="input-group">
-                                        <input type="text" name="search_input" placeholder="ابحث عن منتجك" class="form-control">
-                                        <button type="submit" class="btn">
-                                            <i class="fa-solid fa-magnifying-glass text-primary"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </li>
-                            <!-- مبدل اللغة -->
-                            <div class="dropdown mx-3">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ strtoupper(app()->getLocale()) }}
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('app.lang.switch', 'ar') }}">العربية</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('app.lang.switch', 'en') }}">English</a>
-                                    </li>
-                                </ul>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">الرئيسية</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                حولنا
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end text-end">
+                                <li><a class="dropdown-item" href="#">من نحن</a></li>
+                                <li><a class="dropdown-item" href="#">الخدمات</a></li>
+                                <li><a class="dropdown-item" href="#">اتصل بنا</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <form class="d-flex mt-2 mt-lg-0">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="ابحث عن منتجك">
+                                    <button class="btn text-primary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </li>
                         @endauth
                     </ul>
 
-                    @auth
-                        <!-- زر تسجيل الخروج -->
-                        <form action="{{ route('auth.logout') }}" class="d-inline float-end" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-danger">
-                                <i class="fa-duotone fa-solid fa-right-from-bracket"></i>
-                                تسجيل الخروج
+                    <!-- Auth Section -->
+                    <div class="d-flex flex-column flex-lg-row align-items-center gap-3">
+                        @auth
+                        <div class="d-flex align-items-center gap-3">
+                            <!-- Cart Icon -->
+                            <a href="#" class="btn btn-lg position-relative">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                    0
+                                </span>
+                            </a>
+                            
+                            <!-- Logout Button -->
+                            <button type="button" class="btn btn-outline-danger rounded-circle p-0 d-flex align-items-center justify-content-center" 
+                                    style="width: 2.5rem; height: 2.5rem;"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt"></i>
                             </button>
-                        </form>
-                    @endauth
-
-                    @guest
-                        <!-- تسجيل الدخول / إنشاء حساب -->
-                        <div class="auth-links d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                            <a href="{{ route('auth.login_form') }}" class="login">تسجيل الدخول</a>
-                            <a href="{{ route('auth.signup_form') }}" class="text-decoration-none px-3 py-1 rounded-4 signup">إنشاء حساب</a>
                         </div>
-                    @endguest
+                        @endauth
+
+                        @guest
+                        <div class="d-flex flex-column flex-lg-row gap-3 w-100 justify-content-center">
+                            <a href="{{ route('auth.login_form') }}" class="btn btn-outline-primary">تسجيل الدخول</a>
+                            <a href="{{ route('auth.signup_form') }}" class="btn btn-primary">إنشاء حساب</a>
+                        </div>
+                        @endguest
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true" dir="rtl">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                    <i class="fas fa-sign-out-alt fa-3x text-danger mb-3"></i>
+                    <h5 class="mb-3">تأكيد تسجيل الخروج</h5>
+                    <p class="text-muted">سيتم إغلاق جلسة العمل الحالية</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary mx-2" data-bs-dismiss="modal">إلغاء</button>
+                    <form action="{{ route('auth.logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-danger mx-2">تأكيد</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

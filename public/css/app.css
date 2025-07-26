@@ -169,3 +169,26 @@ footer .social-icons a:hover i{
 .modal.show .icon-container {
     transform: scale(1.1);
 }
+
+/* right drop down */
+.offcanvas-body .dropdown-menu {
+    z-index: 1060 !important;
+}
+
+/* RTL specific adjustments */
+[dir="rtl"] .dropdown-menu {
+        text-align: right;
+    }
+[dir="rtl"] .fa {
+    margin-left: 0.5rem;
+    margin-right: 0 !important;
+}
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+}
+@media (min-width: 992px) {
+    .offcanvas-body {
+        flex-direction: row;
+    }
+}
