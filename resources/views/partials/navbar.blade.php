@@ -51,23 +51,24 @@
                     <!-- Auth Section -->
                     <div class="d-flex flex-column flex-lg-row align-items-center gap-3">
                         @auth
-                        <div class="d-flex align-items-center gap-3">
-                            <!-- Cart Icon -->
-                            <a href="#" class="btn btn-lg position-relative">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                                    0
-                                </span>
-                            </a>
-                            
-                            <!-- Logout Button -->
-                            <button type="button" class="btn btn-outline-danger rounded-circle p-0 d-flex align-items-center justify-content-center" 
-                                    style="width: 2.5rem; height: 2.5rem;"
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </button>
-                        </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <!-- Cart Icon -->
+                                <a href="#" class="btn position-relative p-2">
+                                    <i class="fas fa-shopping-cart fs-5"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary" style="font-size: 0.6rem; padding: 0.25em 0.4em;">
+                                        0
+                                    </span>
+                                </a>
+                                
+                                <!-- Logout Button -->
+                                <button type="button" 
+                                        class="btn btn-outline-danger rounded-circle p-0 d-flex align-items-center justify-content-center" 
+                                        style="width: 2.5rem; height: 2.5rem;"
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </button>
+                            </div>
                         @endauth
 
                         @guest

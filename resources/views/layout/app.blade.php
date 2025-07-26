@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ asset('assets/luxoria-1.png') }}" type="image/png">
 
     <title>
-        Luxoria - @yield('title')
+        لوكسوريا - @yield('title')
     </title>
 
     {{-- bootstrap css --}}
