@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Models\Product;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Redirect;
@@ -16,7 +17,8 @@
 
         // index method
         public function index() {
-            return view('app.index');
+            $bestSellingProducts = Product::with('category')->limit(6)->get();
+            return view('app.index', compact('bestSellingProducts'));
         }
 
         // lang switch method
