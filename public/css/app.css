@@ -192,3 +192,101 @@ footer .social-icons a:hover i{
         flex-direction: row;
     }
 }
+
+/* hero image */
+/* Hero Image Container */
+.hero-image-container {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* Hero Image Wrapper */
+.hero-image-wrapper {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+/* Hero Image Styles */
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Responsive Sizing */
+@media (min-width: 1400px) { /* XXL screens */
+    .hero-image-container {
+        height: 600px;
+        width: 600px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) { /* XL screens */
+    .hero-image-container {
+        height: 550px;
+        width: 550px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { /* LG screens */
+    .hero-image-container {
+        height: 500px;
+        width: 500px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { /* MD screens */
+    .hero-image-container {
+        height: 450px;
+        width: 450px;
+    }
+}
+
+@media (max-width: 767px) { /* SM screens */
+    .hero-image-container {
+        height: 350px;
+        width: 100%;
+    }
+}
+
+/* Hover Effects */
+.hero-image-container:hover .hero-img {
+    transform: scale(1.05);
+}
+
+/* serviices */
+.services {
+    background-color: #242323;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.service {
+    border-radius: 5px;
+    background-color: #4e4e4e;
+    color: var(--light-blue);
+}
+
+.service h5 {
+    color: white;
+}
+
+.service i {
+    color: var(--light-blue);
+}
+
+.service p {
+    padding-right: 50px;
+}
+
+.service:hover {
+    transform: translateY(-5px);
+    transition: .3s all ease-in-out;
+}
+
+.service:hover h5 {
+    text-decoration: underline;
+    text-decoration-color: var(--blue);
+}
