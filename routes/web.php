@@ -44,6 +44,9 @@
         // lang switch
         Route::get('/lang/{local}', [AppController::class, 'langSwitch'])
             ->name('lang.switch');
+        // show product page
+        Route::get('products/{product}', [ProductController::class, 'show'])
+            ->name('show_product');
     });
 
     // admin routes

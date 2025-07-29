@@ -17,7 +17,9 @@
 
         // index method
         public function index() {
-            $bestSellingProducts = Product::with('category')->limit(6)->get();
+            $bestSellingProducts = Product::with('category')
+            ->orderBy('name', 'asc')
+            ->limit(8)->get();
             return view('app.index', compact('bestSellingProducts'));
         }
 
