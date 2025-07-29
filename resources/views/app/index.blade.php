@@ -78,7 +78,7 @@
             <div class="products mt-5">
                 <div class="row justify-content-center g-3 g-md-4">
                     @foreach($bestSellingProducts as $product)
-                        <div class="col-md-6 col-lg-3">
+                        <div class="col-6 col-md-6 col-lg-3">
                             <div class="product h-100">
                                 <div class="product-image">
                                     <img src="{{ Storage::url($product->image)}}" alt="{{ $product->name}}" class="img-fluid" loading="lazy">
