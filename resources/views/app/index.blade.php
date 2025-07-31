@@ -133,7 +133,7 @@
                             </div>
                             <div class="category-text text-center p-4">
                                 <h3 class="text-dark mb-0 fs-5 fw-semibold">{{ $category->name }}</h3>
-                                <a href="#" class="stretched-link" aria-label="View {{ $category->name }}"></a>
+                                <a href="{{ route('app.show_category_products', $category)}}" class="stretched-link" aria-label="View {{ $category->name }}"></a>
                             </div>
                         </div>
                     </div>

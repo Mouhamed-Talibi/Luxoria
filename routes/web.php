@@ -47,6 +47,9 @@
         // show product page
         Route::get('products/{product}', [ProductController::class, 'show'])
             ->name('show_product');
+        // show products by category
+        Route::get('categories/{category}', [CategoryController::class, 'show'])
+            ->name('show_category_products');
     });
 
     // admin routes

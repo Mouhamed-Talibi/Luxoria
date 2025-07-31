@@ -25,4 +25,10 @@ class Category extends Model
     public function products() {
         return $this->hasMany(Product::class);
     }
+
+    // get route key name
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

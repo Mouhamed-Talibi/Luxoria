@@ -108,4 +108,10 @@
             return redirect()->route('admin.categories')
                 ->with('success', 'Category restored successfully');
         }
+
+        // show method for products by category
+        public function show(Category $category) {
+            $products = $category->products()->paginate(6);
+            return view('app.category_products', compact('category', 'products'));
+        }
     }
