@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Models\Category;
     use App\Models\Product;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\App;
@@ -18,9 +19,12 @@
         // index method
         public function index() {
             $bestSellingProducts = Product::with('category')
-            ->orderBy('name', 'asc')
-            ->limit(8)->get();
-            return view('app.index', compact('bestSellingProducts'));
+                ->orderBy('name', 'asc')
+                ->limit(8)->get();
+            $categories = Category::orderBy('name', 'asc')
+                ->get();
+            // return view with data
+            return view('app.index', compact(['bestSellingProducts', 'categories']));
         }
 
         // lang switch method

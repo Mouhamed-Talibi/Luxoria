@@ -109,4 +109,36 @@
             </div>
         </div>
     </div>
+
+    {{-- categories --}}
+    <div class="categories py-5 pb-5">
+        <div class="main-title text-center">
+            <i class="fa-solid fa-layer-group fs-2 text-info"></i>
+            <h1 class="display-4 fw-bold mt-2">أصناف المنتجات</h1>
+            <p class="text-secondary">اكتشف منتجاتنا المتنوعة من خلال التصنيفات</p>  
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center g-3 mt-5">
+                {{-- display categories --}}
+                @foreach ($categories as $category)
+                    <div class="col-6 col-md-6 col-lg-3 mb-4">
+                        <div class="category card h-100 border-0 shadow-sm overflow-hidden">
+                            <div class="category-image overflow-hidden">
+                                <img 
+                                    src="{{ Storage::url($category->image)}}" 
+                                    alt="{{ $category->name }}" 
+                                    class="img-fluid w-100 h-auto object-fit-cover"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="category-text text-center p-4">
+                                <h3 class="text-dark mb-0 fs-5 fw-semibold">{{ $category->name }}</h3>
+                                <a href="#" class="stretched-link" aria-label="View {{ $category->name }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection

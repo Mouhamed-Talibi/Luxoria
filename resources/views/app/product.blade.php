@@ -46,6 +46,14 @@
                             <div class="modal-content py-5 pb-5">
                                 <h3 class="text-center">اضافة منتج للسلة</h3>
                                 <hr class="w-25 mx-auto text-primary">
+                                {{-- form modal --}}
+                                <form action="" class="" method="POST">
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

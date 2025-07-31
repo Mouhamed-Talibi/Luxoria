@@ -19,13 +19,13 @@ class UpdateProductRequest extends FormRequest
                 'required',
                 'string',
                 'max:50',
-                'regex:/^[\p{Arabic}\pL\s\-]+$/u'
+                'regex:/^[\p{Arabic}\p{L}0-9\s_\-?]+$/u'
             ],
             'description' => [
                 'required',
                 'string',
                 'max:2000',
-                'regex:/^[\p{Arabic}\pL0-9\s\-\.,،؛؟!:\'\"()@#$%&*\/]+$/u'
+                'regex:/^[\p{Arabic}\p{L}0-9\s_\-?]+$/u'
             ],
             'price' => [
                 'required',

@@ -20,13 +20,13 @@ class AddProductRequest extends FormRequest
                 'string',
                 'max:50',
                 'unique:products,name',
-                'regex:/^[\p{Arabic}\pL\s\-]+$/u' // Supports Arabic, Latin letters, spaces and hyphens
+                'regex:/^[\p{Arabic}\p{L}0-9\s_\-?]+$/u'
             ],
             'description' => [
                 'required',
                 'string',
                 'max:2000',
-                'regex:/^[\p{Arabic}\pL0-9\s\-\.,،؛؟!:\'\"()@#$%&*\/]+$/u' // Full Arabic support with punctuation
+                'regex:/^[\p{Arabic}\p{L}0-9\s_\-?]+$/u'
             ],
             'price' => [
                 'required',

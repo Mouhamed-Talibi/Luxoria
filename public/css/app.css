@@ -346,3 +346,75 @@ footer .social-icons a:hover i{
         height: 500px;
     }
 }
+
+/* Categories Section */
+.categories {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+}
+
+.category {
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.category-image {
+    height: 200px;
+    flex-shrink: 0;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category:hover .category-image img {
+    transform: scale(1.08);
+}
+
+.category-text {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-text h3 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.category:hover .category-text h3 {
+    color: var(--blue);
+}
+
+.stretched-link::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+@media (max-width: 767.98px) {
+    .category-image {
+        height: 160px;
+    }
+}
