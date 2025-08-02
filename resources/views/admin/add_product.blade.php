@@ -97,7 +97,7 @@
                                         <span class="input-group-text bg-white border-end-0">
                                             <i class="fa-solid fa-images text-secondary"></i>
                                         </span>
-                                        <input type="file" name="image" class="form-control border-start-1 @error('image') is-invalid @enderror" 
+                                        <input type="file" name="images[]" id="images" multiple class="form-control border-start-1 @error('image') is-invalid @enderror" 
                                             placeholder="Enter product image" value="{{ old('image') }}">
                                     </div>
                                     @error('image')

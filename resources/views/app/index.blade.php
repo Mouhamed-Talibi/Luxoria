@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <!-- Hero Section -->
-        <div class="hero-section py-5">
+        <div class="hero-section py-2">
             <div class="row justify-content-center align-items-center g-3">
                 <div class="col-md-6 col-lg-5 order-md-1">
                     <div class="hero-text text-end">
@@ -126,7 +126,7 @@
                             <div class="category-image overflow-hidden">
                                 <img 
                                     src="{{ Storage::url($category->image)}}" 
-                                    alt="{{ $category->name }}" 
+                                    alt="{{ $category->name }}"
                                     class="img-fluid w-100 h-auto object-fit-cover"
                                     loading="lazy"
                                 >

@@ -38,37 +38,48 @@ class ProductController extends Controller
      */
     public function store(AddProductRequest $request)
     {
-        $validatedData = $request->validated(); // Fixed method name
-        
-        // Generate slug
+        $validatedData = $request->validated();
         $slug = Str::slug($validatedData['name']);
-        
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')
-                ->store('uploads/products/'.date('Y'), 'public');
-        }
 
-        // Check if product exists (fixed condition)
+        // Check if product exists
         if (Product::where('slug', $slug)->orWhere('name', $validatedData['name'])->exists()) {
             return back()
                 ->withInput()
-                ->with('error', 'A product with this name already exists');
+                ->with('error', 'هذا المنتج موجود بالفعل');
         }
 
-        // Create product (ensure all required fields are included)
-        Product::create([
-            'name' => $validatedData['name'],
-            'slug' => $slug,
-            'description' => $validatedData['description'],
-            'price' => $validatedData['price'],
-            'stock' => $validatedData['stock'],
-            'category_id' => $validatedData['category'],
-            'image' => $validatedData['image'] ?? null,
-        ]);
+        // Use transaction to ensure data consistency
+        return DB::transaction(function () use ($validatedData, $slug, $request) {
+            // Create product
+            $product = Product::create([
+                'name' => $validatedData['name'],
+                'slug' => $slug,
+                'description' => $validatedData['description'],
+                'price' => $validatedData['price'],
+                'stock' => $validatedData['stock'],
+                'category_id' => $validatedData['category'],
+                'image' => null, // We'll set the primary image from the gallery
+            ]);
 
-        return to_route('admin.products')
-            ->with('success', 'Product Added Successfully');
+            // Store and attach images
+            foreach ($request->file('images') as $index => $image) {
+                $path = $image->store('uploads/products/'.date('Y'), 'public');
+                
+                $product->images()->create([
+                    'path' => $path,
+                    'order' => $index,
+                    'is_primary' => $index === 0, // First image is primary
+                ]);
+            }
+
+            // Set the first image as the product's main image
+            $product->update([
+                'image' => $product->images()->where('is_primary', true)->first()->path
+            ]);
+
+            return to_route('admin.products')
+                ->with('success', 'تم إضافة المنتج بنجاح');
+        });
     }
 
     /**

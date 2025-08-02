@@ -26,4 +26,14 @@
         public function category() {
             return $this->belongsTo(Category::class);
         }
+
+        // relashionship with product_images
+        public function images() {
+            return $this->hasMany(ProductImage::class);
+        }
+
+        // primary image
+        public function primaryImage() {
+            return $this->hasOne(ProductImage::class)->where('is_primary', true);
+        }
     }

@@ -111,7 +111,7 @@
 
         // show method for products by category
         public function show(Category $category) {
-            $products = $category->products()->paginate(6);
+            $products = $category->products()->paginate(8);
             return view('app.category_products', compact('category', 'products'));
         }
     }

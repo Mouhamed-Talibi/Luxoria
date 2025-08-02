@@ -5,60 +5,232 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center align-items-center g-3">
+    <div class="container my-5">
+        <div class="row justify-content-center align-items-start g-4">
+            <!-- Product Images Column -->
             <div class="col-md-6 col-lg-6">
-                <div class="product-image-container p-3 bg-dark bg-opacity-25 text-center">
-                    <img src="{{ Storage::url($product->image ) }}" alt="{{ $product->name }}" class="img-fluid" loading="lazy">
+                <!-- Main Carousel -->
+                <div id="productCarousel" class="carousel slide shadow-sm rounded" data-bs-ride="carousel">
+                    <!-- Indicators -->
+                    <div class="carousel-indicators-container mb-2">
+                        <div class="d-flex justify-content-center flex-wrap">
+                            @foreach($product->images as $key => $image)
+                                <button type="button" 
+                                    data-bs-target="#productCarousel" 
+                                    data-bs-slide-to="{{ $key }}" 
+                                    class="mx-1 {{ $key === 0 ? 'active' : '' }}"
+                                    aria-current="{{ $key === 0 ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $key + 1 }}">
+                                    <img src="{{ Storage::url($image->path) }}" 
+                                        alt="Thumbnail {{ $key + 1 }}"
+                                        class="img-thumbnail carousel-thumbnail"
+                                        style="width: 60px; height: 60px; object-fit: cover;">
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
+                    
+                    <!-- Slides -->
+                    <div class="carousel-inner ratio ratio-1x1 bg-light rounded">
+                        @foreach($product->images as $key => $image)
+                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                <img src="{{ Storage::url($image->path) }}" 
+                                    class="d-block w-100 img-fluid p-3"
+                                    style="object-fit: contain; max-height: 500px;"
+                                    alt="{{ $product->name }} - Image {{ $key + 1 }}"
+                                    loading="lazy">
+                            </div>
+                        @endforeach
+                    </div>
+                    
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
+            
+            <!-- Product Details Column -->
             <div class="col-md-6 col-lg-5">
-                <div class="product-details">
-                    <div class="category">
-                        <p class="text-secondary">
-                            {{ $product->category->name }} / {{ $product->name }}
-                        </p>
+                <div class="product-details p-3">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"> الرئيسية/</a></li>
+                            <li class="breadcrumb-item"><a href="#">{{ $product->category->name }}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
+                        </ol>
+                    </nav>
+                    
+                    <!-- Product Name -->
+                    <h1 class="h2 mb-3">{{ $product->name }}</h1>
+                    
+                    <!-- Price -->
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="h6 me-2">{{ number_format($product->price, 2) }} درهم</span>
                     </div>
-                    <div class="name">
-                        <h2>
-                            {{ $product->name }}
-                        </h2>
+                    
+                    <!-- Rating (if available) -->
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="rating-stars text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="price">
-                        <p class="text-primary">
-                            {{ number_format($product->price, 2) }} درهم
-                        </p>
+
+                    <!-- Description -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-2">الوصف</h3>
+                        <p class="text-secondary">{{ $product->description }}</p>
                     </div>
-                    <div class="description">
-                        <p class="text-secondary">
-                            {{ $product->description }}
-                        </p>
-                    </div>
-                    <div class="link">
-                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="ms-2">إضافة إلى السلة</span>
+
+                    <!-- Add to Cart -->
+                    <div class="mb-4">
+                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fas fa-shopping-cart me-2"></i>
+                            إضافة إلى السلة
                         </button>
                     </div>
-                    {{-- add to cart modal --}}
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content py-5 pb-5">
-                                <h3 class="text-center">اضافة منتج للسلة</h3>
-                                <hr class="w-25 mx-auto text-primary">
-                                {{-- form modal --}}
-                                <form action="" class="" method="POST">
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </form>
+                    
+                    <!-- Product Meta -->
+                    <div class="product-meta border-top pt-3">
+                        <div class="row small">
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    <span class="text-muted">القسم:</span>
+                                    <span>{{ $product->category->name }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Add to Cart Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="exampleModalLabel">إضافة {{ $product->name }} إلى السلة</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <form action="" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            
+                            <!-- Quantity Selector -->
+                            <div class="mb-4">
+                                <label for="quantity" class="form-label">الكمية</label>
+                                <div class="input-group" style="max-width: 150px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="decrement">-</button>
+                                    <input type="number" 
+                                            class="form-control text-center" 
+                                            id="quantity" 
+                                            name="quantity" 
+                                            value="1" 
+                                            min="1" 
+                                            max="10">
+                                    <button class="btn btn-outline-secondary" type="button" id="increment">+</button>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-2">
+                                <i class="fas fa-cart-plus me-2"></i>
+                                إضافة إلى السلة - {{ number_format($product->price, 2) }} درهم
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+    // Quantity increment/decrement
+    document.getElementById('increment').addEventListener('click', function() {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity < 10) {
+            quantityInput.value = quantity + 1;
+        }
+    });
+    
+    document.getElementById('decrement').addEventListener('click', function() {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+            quantityInput.value = quantity - 1;
+        }
+    });
+    
+    // Image zoom functionality
+    document.querySelectorAll('.carousel-inner img').forEach(img => {
+        img.addEventListener('click', function() {
+            this.classList.toggle('zoom-img');
+        });
+    });
+</script>
+
+<style>
+    /* Custom styles for the carousel */
+    .carousel-thumbnail {
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+    }
+    
+    .carousel-thumbnail:hover,
+    .carousel-thumbnail.active {
+        opacity: 1;
+        border-color: #a0aec4 !important;
+    }
+    
+    .carousel-indicators-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 8%;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-size: 50%;
+    }
+    
+    .zoom-img {
+        transform: scale(1.5);
+        cursor: zoom-out;
+        z-index: 1000;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+    
+    .rating-stars {
+        font-size: 1.2rem;
+    }
+    
+    @media (max-width: 768px) {
+        .carousel-inner {
+            max-height: 300px;
+        }
+    }
+</style>
 @endsection

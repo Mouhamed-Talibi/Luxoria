@@ -31,12 +31,16 @@
                     </div>
                 @endforeach
                 @else
-                <div class="text-center mt-4">
+                <div class="text-center mt-4b">
                     <i class="fa-solid fa-clock fs-1 text-info"></i>
                     <h1 class="mt-2">قيد التحضير</h1>
                     <p class="mt-3">سيتم اضافة منتجات متعلقة بهذا التصنيف في اقرب وقت ممكن</p>
                 </div>
             @endif
+        </div>
+
+        <div class="float-start pb-3">
+            {{ $products->links() }}
         </div>
     </div>
 @endsection

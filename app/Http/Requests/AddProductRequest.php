@@ -26,7 +26,7 @@ class AddProductRequest extends FormRequest
                 'required',
                 'string',
                 'max:2000',
-                'regex:/^[\p{Arabic}\p{L}0-9\s_\-?]+$/u'
+                'regex:/^[\p{Arabic}\p{L}0-9\s\-.,;:!?"\'()\/@#$%&*+=_<>«»،؛؟ء\p{So}\p{Sc}]+$/u'
             ],
             'price' => [
                 'required',
@@ -44,8 +44,13 @@ class AddProductRequest extends FormRequest
                 'integer',
                 'min:0'
             ],
-            'image' => [
-                'required',
+            'images' => [ // Changed from 'image' to 'images' (array)
+            'required',
+            'array',
+            'min:3',
+            'max:5'
+            ],
+            'images.*' => [ // Validation for each image
                 'image',
                 'mimes:jpeg,png,jpg,gif,webp',
                 'max:2048'
@@ -72,7 +77,14 @@ class AddProductRequest extends FormRequest
             'image.max' => 'يجب ألا تتجاوز الصورة 2 ميجابايت',
             'category.required' => 'حقل الفئة مطلوب',
             'category.integer' => 'يجب اختيار فئة صحيحة',
-            'category.min' => 'يجب اختيار فئة صحيحة'
+            'category.min' => 'يجب اختيار فئة صحيحة',
+            'images.required' => 'حقل الصور مطلوب',
+            'images.array' => 'يجب رفع الصور بشكل صحيح',
+            'images.min' => 'يجب رفع 3 صور على الأقل',
+            'images.max' => 'يجب ألا تزيد الصور عن 5 صور',
+            'images.*.image' => 'يجب أن يكون الملف صورة',
+            'images.*.mimes' => 'يجب أن تكون الصورة من نوع: jpeg, png, jpg, gif, webp',
+            'images.*.max' => 'يجب ألا تتجاوز الصورة 2 ميجابايت'
         ];
     }
 }
