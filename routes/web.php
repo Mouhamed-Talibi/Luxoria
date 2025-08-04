@@ -4,6 +4,7 @@
     use App\Http\Controllers\AppController;
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\CategoryController;
+    use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\ProductController;
     use Illuminate\Support\Facades\Route;
 
@@ -79,8 +80,8 @@
         Route::get('/categories/{category}/restore', [CategoryController::class, 'restore'])
             ->name('restore_category');
         // create product route
-        Route::get('/products/add', [ProductController::class, 'create'])
-            ->name('add_product');
+        Route::get('/products/create', [ProductController::class, 'create'])
+            ->name('add_products');
         // store product
         Route::post('/products/store', [ProductController::class, 'store'])
             ->name('store_product');
@@ -99,4 +100,7 @@
         // restore product
         Route::get('/products/{product}/restore', [ProductController::class, 'restore'])
             ->name('restore_product');
+        // create parfum
+        Route::get('/parfums/create', [ParfumDetailController::class, 'create'])
+            ->name('parfums.create');
     });

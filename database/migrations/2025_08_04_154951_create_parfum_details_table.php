@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_images', function (Blueprint $table) {
+        Schema::create('parfum_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')
-                    ->constrained('products')
-                    ->onDelete('cascade');
-            $table->string('path');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->string('mark', 50)->nullable();
+            $table->integer('volume');
+            $table->enum('gender', ['male', 'female']);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('parfum_details');
     }
 };

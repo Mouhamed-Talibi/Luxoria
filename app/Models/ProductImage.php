@@ -9,8 +9,6 @@ class ProductImage extends Model
     protected $fillable = [
         'product_id',
         'path',
-        'order',
-        'is_primary'
     ];
 
     // relashionship with product

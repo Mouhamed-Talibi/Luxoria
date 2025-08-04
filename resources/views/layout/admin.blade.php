@@ -78,7 +78,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="productsDropdown">
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.add_product') }}">
+                                <a class="dropdown-item" href="{{ route('admin.add_products') }}">
                                     <i class="bi bi-person-plus me-2"></i> New Product
                                 </a>
                             </li>

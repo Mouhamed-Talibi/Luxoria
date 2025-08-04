@@ -15,16 +15,21 @@
         protected $fillable = [
             'name',
             'slug',
+            'description_title',
             'description',
             'price',
             'stock',
             'category_id',
-            'image'
         ];
 
         // relationship with category
         public function category() {
             return $this->belongsTo(Category::class);
+        }
+
+        // relashionship with parfumDetails
+        public function parfumDetails() {
+            return $this->hasOne(ParfumDetail::class);
         }
 
         // relashionship with product_images
