@@ -33,7 +33,7 @@
                     'required',
                     'string',
                     'max:500',
-                    'regex:/^[\p{Arabic}\p{L}0-9\s_\-?]+$/u',
+                    'regex:/^[\p{Arabic}\p{L}0-9\s_\-\.,،:;!؟?()«»@#\$%\*\+=\/&~\'\"]+$/u',
                 ],
                 'image' => [
                     'required',

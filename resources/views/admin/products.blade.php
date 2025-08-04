@@ -11,7 +11,7 @@
             <h1 class="h3 fw-bold mb-0" style="color: var(--deep-black);">
                 <i class="fa-solid fa-boxes-stacked me-2"></i>Products Management
             </h1>
-            <a href="{{ route('admin.add_product') }}" class="btn btn-primary">
+            <a href="{{ route('admin.add_products') }}" class="btn btn-primary">
                 <i class="fa-solid fa-plus me-2"></i>Add New Product
             </a>
         </div>

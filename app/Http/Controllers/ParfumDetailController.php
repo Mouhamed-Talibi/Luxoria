@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\ParfumDetail;
+use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ParfumDetailController extends Controller
 {
@@ -20,7 +25,8 @@ class ParfumDetailController extends Controller
      */
     public function create()
     {
-        return view('admin.parfums.create');
+        $categories = Category::all();
+        return view('admin.parfums.create', compact('categories'));
     }
 
     /**
@@ -30,17 +36,50 @@ class ParfumDetailController extends Controller
     {
         $validatedFields = $request->validate([
             'name' => 'required|string|max:255',
-            'title' => 'required|string',
+            'description_title' => 'required|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
+            'category_id' => "required|integer|exists:categories,id",
             'mark' => 'required|string',
             'volume' => 'required|string',
             'gender' => 'required|in:male,female',
             'description' => 'required|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        dd($validatedFields);
+        DB::transaction( function() use($validatedFields, $request) {
+            $product = Product::create([
+                'name' => $validatedFields['name'],
+                'slug' => Str::slug($validatedFields['name']),
+                'description_title' => $validatedFields['description_title'],
+                'description' => $validatedFields['description'],
+                'price' => $validatedFields['price'],
+                'stock' => $validatedFields['stock'],
+                'category_id' => $validatedFields['category_id'],
+            ]);
+
+            // save parfum details
+            ParfumDetail::create([
+                'product_id' => $product->id,
+                'mark' => $validatedFields['mark'],
+                'volume' => $validatedFields['volume'],
+                'gender' => $validatedFields['gender'],
+            ]);
+
+            // files uploads
+            if($request->hasFile('images')) {
+                foreach($request->file('images') as $image) {
+                    $path = $image->store('uploads/products/parfums', 'public');
+                    ProductImage::create([
+                        'product_id' => $product->id,
+                        'path' => $path
+                    ]);
+                }
+            }
+        });
+
+        return redirect()->route('admin.products')
+            ->with('success', 'Parfum Created Successfully');
     }
 
     /**

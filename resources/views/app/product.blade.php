@@ -90,7 +90,7 @@
 
                     <!-- Description -->
                     <div class="mb-4">
-                        <h3 class="h5 mb-2">الوصف</h3>
+                        <h3 class="h5 mb-3 mt-3">{{ $product->description_title}}</h3>
                         <p class="text-secondary">{{ $product->description }}</p>
                     </div>
 
@@ -109,6 +109,24 @@
                                 <div class="mb-2">
                                     <span class="text-muted">القسم:</span>
                                     <span>{{ $product->category->name }}</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    <span class="text-muted">الماركة:</span>
+                                    <span>{{ $product->parfumDetails->mark }}</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    <span class="text-muted">الحجم:</span>
+                                    <span>{{ $product->parfumDetails->volume }} ml</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    <span class="text-muted">الجنس:</span>
+                                    <span>{{ $product->parfumDetails->gender == 'male' ? 'الرجال' : 'النساء' }}</span>
                                 </div>
                             </div>
                         </div>

@@ -81,7 +81,7 @@
                         <div class="col-6 col-md-6 col-lg-3">
                             <div class="product h-100">
                                 <div class="product-image">
-                                    <img src="{{ Storage::url($product->image)}}" alt="{{ $product->name}}" class="img-fluid" loading="lazy">
+                                    <img src="{{ Storage::url($product->images->get(2)->path )}}" alt="{{ $product->name}}" class="img-fluid" loading="lazy">
                                 </div>
                                 <div class="product-details text-center p-3">
                                     <strong class="text-secondary d-block">{{ $product->category->name}}</strong>

@@ -103,4 +103,7 @@
         // create parfum
         Route::get('/parfums/create', [ParfumDetailController::class, 'create'])
             ->name('parfums.create');
+        // store parfum 
+        Route::post('parfums/store', [ParfumDetailController::class, 'store'])
+            ->name('parfums.store');
     });
