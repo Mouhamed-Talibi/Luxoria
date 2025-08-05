@@ -35,8 +35,8 @@
                             @forelse ($products as $product)
                             <tr>
                                 <td>
-                                    @if($product->image)
-                                        <img src="{{ Storage::url($product->image) }}" 
+                                    @if($product->images)
+                                        <img src="{{ Storage::url($product->images->get(2)->path) }}" 
                                             alt="{{ $product->name }}"
                                             class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
                                     @else

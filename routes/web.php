@@ -106,4 +106,7 @@
         // store parfum 
         Route::post('parfums/store', [ParfumDetailController::class, 'store'])
             ->name('parfums.store');
+        // manage parfums
+        Route::get('parfums/manage', [ParfumDetailController::class, 'index'])
+            ->name('parfums.manage');
     });

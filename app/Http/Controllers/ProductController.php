@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -19,9 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(6);
-        $trashedProducts = Product::onlyTrashed()->paginate(6);
-        return view('admin.products', compact(['products', 'trashedProducts']));
+        return view('admin.products_categories');
     }
 
     /**

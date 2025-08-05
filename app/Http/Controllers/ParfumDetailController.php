@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreParfumRequest;
 use App\Models\Category;
 use App\Models\ParfumDetail;
 use App\Models\Product;
@@ -17,7 +18,14 @@ class ParfumDetailController extends Controller
      */
     public function index()
     {
-        //
+        $parfums = Product::whereHas('parfumDetails')
+            ->with([
+                'parfumDetails',
+                'images',
+                'category'
+            ])
+            ->paginate(6);
+        return view('admin.parfums.index', compact('parfums'));
     }
 
     /**
@@ -32,20 +40,9 @@ class ParfumDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreParfumRequest $request)
     {
-        $validatedFields = $request->validate([
-            'name' => 'required|string|max:255',
-            'description_title' => 'required|string',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
-            'category_id' => "required|integer|exists:categories,id",
-            'mark' => 'required|string',
-            'volume' => 'required|string',
-            'gender' => 'required|in:male,female',
-            'description' => 'required|string',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        $validatedFields = $request->validated();
 
         DB::transaction( function() use($validatedFields, $request) {
             $product = Product::create([
