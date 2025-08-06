@@ -32,6 +32,11 @@
             return $this->hasOne(ParfumDetail::class);
         }
 
+        // relashionship with electronics
+        public function electronicsDetails() {
+            return $this->hasOne(Electronics::class);
+        }
+
         // relashionship with product_images
         public function images() {
             return $this->hasMany(ProductImage::class);

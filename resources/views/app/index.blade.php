@@ -135,6 +135,9 @@
                                 <h3 class="text-dark mb-0 fs-5 fw-semibold">{{ $category->name }}</h3>
                                 <a href="{{ route('app.show_category_products', $category)}}" class="stretched-link" aria-label="View {{ $category->name }}"></a>
                             </div>
+                            <div class="w-75 mx-auto">
+                                <p class="text-secondary ">{{ Str::limit($category->description, 80) }}</p>
+                            </div>
                         </div>
                     </div>
                 @endforeach
