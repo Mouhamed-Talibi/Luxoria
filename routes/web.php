@@ -4,6 +4,7 @@
     use App\Http\Controllers\AppController;
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\CategoryController;
+    use App\Http\Controllers\ElectronicsController;
     use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\ProductController;
     use Illuminate\Support\Facades\Route;
@@ -116,4 +117,8 @@
             // update parfum
             Route::put('parfums/{parfum}/update', [ParfumDetailController::class, 'update'])
                 ->name('update_parfum');
+        // Electronics routes
+            // create electronics
+            Route::get('eletronics/create', [ElectronicsController::class, 'create'])
+                ->name('electronics.create');
     });
