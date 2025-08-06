@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class ParfumDetailController extends Controller
@@ -90,17 +91,67 @@ class ParfumDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ParfumDetail $parfumDetail)
+    public function edit(ParfumDetail $parfum)
     {
-        //
+        $parfum = Product::with(['parfumDetails', 'images'])
+            ->findOrFail($parfum->id);
+        $categories = Category::all();
+        return view('admin.parfums.edit', compact(['parfum', 'categories']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ParfumDetail $parfumDetail)
+    public function update(StoreParfumRequest $request, ParfumDetail $parfum)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            // Get the related product (now using ->product instead of ->products)
+            $product = $parfum->product;    
+            
+            if (!$product) {
+                throw new \Exception("Related product not found for this parfum detail.");
+            }
+
+            // Update the product
+            $product->update([
+                'name' => $request->validated('name'),
+                'slug' => Str::slug($request->validated('name')),
+                'description_title' => $request->validated('description_title'),
+                'description' => $request->validated('description'),
+                'price' => $request->validated('price'),
+                'stock' => $request->validated('stock'),
+                'category_id' => $request->validated('category_id', $product->category_id),
+            ]);
+
+            // Update parfum details
+            $parfum->update([
+                'mark' => $request->validated('mark'),
+                'volume' => $request->validated('volume'),
+                'gender' => $request->validated('gender'),
+            ]);
+
+            // Handle image uploads if present
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $path = $image->store('products', 'public');
+                    $product->images()->create(['path' => $path]);
+                }
+            }
+
+            DB::commit();
+
+            return redirect()->route('admin.parfums.manage')
+                ->with('success', 'Parfum updated successfully');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Parfum update failed: ' . $e->getMessage());
+            
+            return back()->withInput()
+                ->with('error', 'Failed to update parfum: ' . $e->getMessage());
+        }
     }
 
     /**

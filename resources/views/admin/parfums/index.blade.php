@@ -21,7 +21,7 @@
                             <img src="/path/to/default-image.jpg" class="card-img-top" alt="No image available">
                         @endif
                         <div class="card-body text-center">
-                            <a href="" class="btn btn-outline-primary">
+                            <a href="{{ route('admin.edit_parfum', $parfum->id)}}" class="btn btn-outline-primary">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $parfum->id }}">

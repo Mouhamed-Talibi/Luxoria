@@ -100,13 +100,20 @@
         // restore product
         Route::get('/products/{product}/restore', [ProductController::class, 'restore'])
             ->name('restore_product');
-        // create parfum
-        Route::get('/parfums/create', [ParfumDetailController::class, 'create'])
-            ->name('parfums.create');
-        // store parfum 
-        Route::post('parfums/store', [ParfumDetailController::class, 'store'])
-            ->name('parfums.store');
-        // manage parfums
-        Route::get('parfums/manage', [ParfumDetailController::class, 'index'])
-            ->name('parfums.manage');
+        // Parfums routes
+            // create parfum
+            Route::get('/parfums/create', [ParfumDetailController::class, 'create'])
+                ->name('parfums.create');
+            // store parfum 
+            Route::post('parfums/store', [ParfumDetailController::class, 'store'])
+                ->name('parfums.store');
+            // manage parfums
+            Route::get('parfums/manage', [ParfumDetailController::class, 'index'])
+                ->name('parfums.manage');
+            // edit parfum
+            Route::get('parfums/{parfum}/edit', [ParfumDetailController::class, 'edit'])
+                ->name('edit_parfum');
+            // update parfum
+            Route::put('parfums/{parfum}/update', [ParfumDetailController::class, 'update'])
+                ->name('update_parfum');
     });
