@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title')
-    Home
+    الرئيسية
 @endsection
 
 @section('content')

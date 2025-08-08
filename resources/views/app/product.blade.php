@@ -107,26 +107,88 @@
                         <div class="row small">
                             <div class="col-6">
                                 <div class="mb-2">
-                                    <span class="text-muted">القسم:</span>
-                                    <span>{{ $product->category->name }}</span>
+                                    @if(!empty($product->category->name))
+                                        <span class="text-muted">القسم:</span>
+                                        <span>{{ $product->category->name }}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-2">
-                                    <span class="text-muted">الماركة:</span>
-                                    <span>{{ $product->parfumDetails->mark }}</span>
+                                    {{-- parfums details mark --}}
+                                    @if(!empty($product->parfumDetails->mark))
+                                        <span class="text-muted">الماركة:</span>
+                                        <span>{{ $product->parfumDetails->mark }}</span>
+                                    @endif
+                                    {{-- electronics details brand --}}
+                                    @if(!empty($product->electronicsDetails->brand))
+                                        <span class="text-muted">الماركة:</span>
+                                        <span>{{ $product->electronicsDetails->brand }}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-2">
-                                    <span class="text-muted">الحجم:</span>
-                                    <span>{{ $product->parfumDetails->volume }} ml</span>
+                                    @if(!empty($product->parfumDetails->volume))
+                                        <span class="text-muted">الحجم:</span>
+                                        <span>{{ $product->parfumDetails->volume }} ml</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-2">
-                                    <span class="text-muted">الجنس:</span>
-                                    <span>{{ $product->parfumDetails->gender == 'male' ? 'الرجال' : 'النساء' }}</span>
+                                    @if (!empty($product->parfumDetails->gender))
+                                        <span class="text-muted">الجنس:</span>
+                                        <span>{{ $product->parfumDetails->gender == 'male' ? 'الرجال' : 'النساء' }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    @if (!empty($product->electronicsDetails->ram))
+                                        <span class="text-muted">الرام:</span>
+                                        <span>{{ $product->electronicsDetails->ram }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    @if (!empty($product->electronicsDetails->storage))
+                                    <span class="text-muted">مساحة التخزين:</span>
+                                        <span>{{ $product->electronicsDetails->storage }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    @if (!empty($product->electronicsDetails->operating_system))
+                                    <span class="text-muted">نظام التشغيل:</span>
+                                        <span>{{ $product->electronicsDetails->operating_system }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    @if (!empty($product->electronicsDetails->screen_size))
+                                    <span class="text-muted">حجم الشاشة:</span>
+                                        <span>{{ $product->electronicsDetails->screen_size }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    @if (!empty($product->electronicsDetails->processor))
+                                    <span class="text-muted">المعالج:</span>
+                                        <span>{{ $product->electronicsDetails->processor }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    @if (!empty($product->electronicsDetails->weight))
+                                    <span class="text-muted">الوزن:</span>
+                                        <span>{{ $product->electronicsDetails->weight }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
