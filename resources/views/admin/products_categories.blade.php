@@ -24,12 +24,12 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="card p-3 border">
-                        <i class="fas fa-spray-can-sparkles text-center fs-1 mb-2"></i>
-                        <a href="{{ route('admin.parfums.create') }}" class="block group text-primary btn" style="text-decoration-line: underline">
+                        <i class="fa-solid fa-atom text-center fs-1 mb-2"></i>
+                        <a href="{{ route('admin.electronics.manage') }}" class="block group text-primary btn" style="text-decoration-line: underline">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="fs-4">
-                                        Books Management
+                                        Electronics Management
                                     </p>
                                 </div>
                             </div>

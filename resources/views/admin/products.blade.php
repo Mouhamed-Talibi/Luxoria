@@ -121,11 +121,11 @@
             
             <!-- Pagination -->
             @if($products->hasPages())
-            <div class="card-footer">
-                <div class="d-flex justify-content-center">
-                    {{ $products->links() }}
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center">
+                        {{ $products->links() }}
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
 

@@ -121,4 +121,16 @@
             // create electronics
             Route::get('eletronics/create', [ElectronicsController::class, 'create'])
                 ->name('electronics.create');
+            // store electronics 
+            Route::post('electronics/store', [ElectronicsController::class, 'store'])
+                ->name('electronics.store');
+            // manage electronics
+            Route::get('electronics/manage', [ElectronicsController::class, 'index'])
+                ->name('electronics.manage');
+            // edit product
+            Route::get('electronics/edit/{id}', [ElectronicsController::class, 'edit'])
+                ->name('electronics.edit');
+            // update product
+            Route::put('electronics/update/{id}', [ElectronicsController::class, 'update'])
+                ->name('electronics.update');
     });

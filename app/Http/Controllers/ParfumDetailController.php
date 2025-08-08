@@ -24,8 +24,7 @@ class ParfumDetailController extends Controller
                 'parfumDetails',
                 'images',
                 'category'
-            ])
-            ->paginate(6);
+            ])->paginate(6);
         return view('admin.parfums.index', compact('parfums'));
     }
 
