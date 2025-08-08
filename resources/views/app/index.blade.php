@@ -138,6 +138,9 @@
                             <div class="w-75 mx-auto">
                                 <p class="text-secondary ">{{ Str::limit($category->description, 80) }}</p>
                             </div>
+                            <div class="text-center text-primary mb-3">
+                                <small>{{ $category->products->count() }} منتوج</small>
+                            </div>
                         </div>
                     </div>
                 @endforeach
