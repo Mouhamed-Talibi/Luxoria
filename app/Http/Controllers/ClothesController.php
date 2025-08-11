@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Clothes;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class ClothesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.clothes.create', compact('categories'));
     }
 
     /**

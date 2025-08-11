@@ -4,6 +4,7 @@
     use App\Http\Controllers\AppController;
     use App\Http\Controllers\AuthController;
     use App\Http\Controllers\CategoryController;
+    use App\Http\Controllers\ClothesController;
     use App\Http\Controllers\ElectronicsController;
     use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\ProductController;
@@ -133,4 +134,8 @@
             // update product
             Route::put('electronics/update/{id}', [ElectronicsController::class, 'update'])
                 ->name('electronics.update');
+        // clothes routes
+            // create clothes
+            Route::get('clothes/create', [ClothesController::class, 'create'])
+                ->name('clothes.create');
     });
