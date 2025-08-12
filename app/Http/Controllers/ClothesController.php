@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClothesRequest;
 use App\Models\Category;
 use App\Models\Clothes;
 use Illuminate\Http\Request;
@@ -28,9 +29,10 @@ class ClothesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreClothesRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        dd($validatedData);
     }
 
     /**

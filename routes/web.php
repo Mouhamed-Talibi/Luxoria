@@ -138,4 +138,7 @@
             // create clothes
             Route::get('clothes/create', [ClothesController::class, 'create'])
                 ->name('clothes.create');
+            // store clothes
+            Route::post('clothes/store', [ClothesController::class, 'store'])
+                ->name('clothes.store');
     });

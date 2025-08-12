@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-10 col-md-6">
-                <form action="{{ route('admin.electronics.store') }}" class="shadow p-3 mt-4" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.clothes.store') }}" class="shadow p-3 mt-4" method="POST" enctype="multipart/form-data">
                     @csrf
                     <h2 class="text-center mb-3">New Clothes</h2>
                     {{-- form input --}}
@@ -112,9 +112,12 @@
                                         <i class="fa-solid fa-mars-and-venus fs-5 text-secondary"></i>
                                     </span>
                                     <select name="gender" id="" class="form-select">
-                                        <option value="" class="form-control border-start-1 @error('gender') is-invalid @enderror">Select Product Gender</option>
-                                        <option value="male" class="form-control border-start-1">Male</option>
-                                        <option value="femle" class="form-control border-start-1">Female</option>
+                                        <option value="" class="form-control border-start-1 @error('gender') is-invalid @enderror">Product For</option>
+                                        <option value="kids" class="form-control border-start-1">Kids</option>
+                                        <option value="girls" class="form-control border-start-1">Girls</option>
+                                        <option value="boys" class="form-control border-start-1">Boys</option>
+                                        <option value="men" class="form-control border-start-1">Men</option>
+                                        <option value="women" class="form-control border-start-1">Women</option>
                                         
                                     </select>
                                 </div>
