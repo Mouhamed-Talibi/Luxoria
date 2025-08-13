@@ -90,6 +90,7 @@ class ProductController extends Controller
             'category',
             'parfumDetails',
             'electronicsDetails',
+            'clothesDetails',
         ])->findOrFail($product->id);
         return view('app.product', compact('product'));
     }

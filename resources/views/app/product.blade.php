@@ -101,96 +101,169 @@
                             إضافة إلى السلة
                         </button>
                     </div>
-                    
+
                     <!-- Product Meta -->
                     <div class="product-meta border-top pt-3">
                         <div class="row small">
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if(!empty($product->category->name))
+
+                            {{-- ===== General Product Info ===== --}}
+                            @if(!empty($product->category->name))
+                                <div class="col-6">
+                                    <div class="mb-2">
                                         <span class="text-muted">القسم:</span>
                                         <span>{{ $product->category->name }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    {{-- parfums details mark --}}
-                                    @if(!empty($product->parfumDetails->mark))
+                            @endif
+
+                            {{-- ================= PARFUM DETAILS ================= --}}
+                            {{-- Brand --}}
+                            @if(!empty($product->parfumDetails->mark))
+                                <div class="col-6">
+                                    <div class="mb-2">
                                         <span class="text-muted">الماركة:</span>
                                         <span>{{ $product->parfumDetails->mark }}</span>
-                                    @endif
-                                    {{-- electronics details brand --}}
-                                    @if(!empty($product->electronicsDetails->brand))
-                                        <span class="text-muted">الماركة:</span>
-                                        <span>{{ $product->electronicsDetails->brand }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if(!empty($product->parfumDetails->volume))
+                            @endif
+
+                            {{-- Volume --}}
+                            @if(!empty($product->parfumDetails->volume))
+                                <div class="col-6">
+                                    <div class="mb-2">
                                         <span class="text-muted">الحجم:</span>
                                         <span>{{ $product->parfumDetails->volume }} ml</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if (!empty($product->parfumDetails->gender))
+                            @endif
+
+                            {{-- Gender --}}
+                            @if(!empty($product->parfumDetails->gender))
+                                <div class="col-6">
+                                    <div class="mb-2">
                                         <span class="text-muted">الجنس:</span>
                                         <span>{{ $product->parfumDetails->gender == 'male' ? 'الرجال' : 'النساء' }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if (!empty($product->electronicsDetails->ram))
+                            @endif
+
+                            {{-- ================= ELECTRONICS DETAILS ================= --}}
+                            {{-- Brand --}}
+                            @if(!empty($product->electronicsDetails->brand))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الماركة:</span>
+                                        <span>{{ $product->electronicsDetails->brand }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- RAM --}}
+                            @if(!empty($product->electronicsDetails->ram))
+                                <div class="col-6">
+                                    <div class="mb-2">
                                         <span class="text-muted">الرام:</span>
                                         <span>{{ $product->electronicsDetails->ram }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if (!empty($product->electronicsDetails->storage))
-                                    <span class="text-muted">مساحة التخزين:</span>
+                            @endif
+
+                            {{-- Storage --}}
+                            @if(!empty($product->electronicsDetails->storage))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">مساحة التخزين:</span>
                                         <span>{{ $product->electronicsDetails->storage }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if (!empty($product->electronicsDetails->operating_system))
-                                    <span class="text-muted">نظام التشغيل:</span>
+                            @endif
+
+                            {{-- Operating System --}}
+                            @if(!empty($product->electronicsDetails->operating_system))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">نظام التشغيل:</span>
                                         <span>{{ $product->electronicsDetails->operating_system }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if (!empty($product->electronicsDetails->screen_size))
-                                    <span class="text-muted">حجم الشاشة:</span>
+                            @endif
+
+                            {{-- Screen Size --}}
+                            @if(!empty($product->electronicsDetails->screen_size))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">حجم الشاشة:</span>
                                         <span>{{ $product->electronicsDetails->screen_size }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-2">
-                                    @if (!empty($product->electronicsDetails->processor))
-                                    <span class="text-muted">المعالج:</span>
+                            @endif
+
+                            {{-- Processor --}}
+                            @if(!empty($product->electronicsDetails->processor))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">المعالج:</span>
                                         <span>{{ $product->electronicsDetails->processor }}</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
+                            {{-- Weight --}}
+                            @if(!empty($product->electronicsDetails->weight))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الوزن:</span>
+                                        <span>{{ $product->electronicsDetails->weight }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- ================= CLOTHES DETAILS ================= --}}
+                            {{-- Brand --}}
+                            @if(!empty($product->clothesDetails->brand))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الماركة:</span>
+                                        <span>{{ $product->clothesDetails->brand }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Sizes --}}
+                            @if(!empty($product->clothesDetails->size))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الأحجام المتوفرة:</span>
+                                        <span>{{ $product->clothesDetails->size }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Age --}}
+                            @if(!empty($product->clothesDetails->age))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الفئة العمرية:</span>
+                                        <span>{{ $product->clothesDetails->age }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Age Group --}}
+                            @if(!empty($product->clothesDetails->age_group))
                             <div class="col-6">
                                 <div class="mb-2">
-                                    @if (!empty($product->electronicsDetails->weight))
-                                    <span class="text-muted">الوزن:</span>
-                                        <span>{{ $product->electronicsDetails->weight }}</span>
-                                    @endif
+                                        <span class="text-muted">الفئة:</span>
+                                        @switch($product->clothesDetails->age_group)
+                                            @case('boys') الشباب @break
+                                            @case('kids') الاطفال @break
+                                            @case('men') الرجال @break
+                                            @case('girls') الشابات @break
+                                            @case('women') النساء @break
+                                        @endswitch
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
