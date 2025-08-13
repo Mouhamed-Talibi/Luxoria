@@ -8,8 +8,10 @@
     {
         // fillables
         protected $fillable = [
+            'product_id',
             'gender',
             'age',
+            'age_group',
             'brand',
             'size',
         ];

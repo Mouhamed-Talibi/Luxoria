@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clothes', function (Blueprint $table) {
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->id();
-            $table->enum('gender', ['male', 'female']);
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->enum('age_group', ['kids', 'girls', 'boys', 'men', 'women']);
             $table->string('brand');
             $table->string('age');
             $table->string('size');

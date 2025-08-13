@@ -141,4 +141,13 @@
             // store clothes
             Route::post('clothes/store', [ClothesController::class, 'store'])
                 ->name('clothes.store');
+            // manage clothes
+            Route::get('clothes/manage', [ClothesController::class, 'index'])
+                ->name('clothes.manage');
+            // edir clothes
+            Route::get('clothes/edit/{id}', [ClothesController::class, 'edit'])
+                ->name('clothes.edit');
+            // update clothes
+            Route::put('clothes/update/{id}', [ClothesController::class, 'update'])
+                ->name('clothes.update');
     });

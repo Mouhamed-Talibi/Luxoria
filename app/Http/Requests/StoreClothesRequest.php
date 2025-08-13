@@ -70,13 +70,13 @@
                     'required',
                     'string',
                     'min:1',
-                    'regex:/^[\p{Arabic}A-Za-z0-9_-]+$/u'
+                    'regex:/^[\p{Arabic}A-Za-z0-9_\-\s()]+$/u'
                 ],
                 'size' => [
                     'required',
                     'string',
                     'min:1',
-                    'regex:/^[\p{Arabic}A-Za-z0-9\s-]+$/u'
+                    'regex:/^[\p{Arabic}A-Za-z0-9\s\-,]+$/u'
                 ],
                 'images.*' => [
                     'required',
