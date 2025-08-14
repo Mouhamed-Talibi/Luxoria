@@ -52,6 +52,21 @@
                         <p class="text-secondary text-center">Manage your Clothes products easily</p>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card p-3 border">
+                        <i class="fa-solid fa-heartbeat text-center fs-1 mb-2"></i>
+                        <a href="{{ route('admin.health_beauty.manage') }}" class="block group text-primary btn" style="text-decoration-line: underline">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="fs-4">
+                                        Health & Beauty Management
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <p class="text-secondary text-center">Manage your Clothes products easily</p>
+                    </div>
+                </div>
             </div>
         </div>
     @endsection

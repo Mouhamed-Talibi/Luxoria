@@ -6,6 +6,7 @@
     use App\Http\Controllers\CategoryController;
     use App\Http\Controllers\ClothesController;
     use App\Http\Controllers\ElectronicsController;
+    use App\Http\Controllers\HealthAndBeautyController;
     use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\ProductController;
     use Illuminate\Support\Facades\Route;
@@ -150,4 +151,17 @@
             // update clothes
             Route::put('clothes/update/{id}', [ClothesController::class, 'update'])
                 ->name('clothes.update');
+        // health and beauty
+            // create health and beauty
+            Route::get('health-beauty/create', [HealthAndBeautyController::class, 'create'])
+            ->name('health_beauty.create');
+            // store health and beauty
+            Route::post('health-beauty/store', [HealthAndBeautyController::class, 'store'])
+                ->name('health_beauty.store');
+            // manage health and beauty
+            Route::get('health-beauty/manage', [HealthAndBeautyController::class, 'index'])
+                ->name('health_beauty.manage');
+            // edit health and beauty
+            Route::get('health-beauty/edit/{id}', [HealthAndBeautyController::class, 'edit'])
+                ->name('health_beauty.edit');
     });

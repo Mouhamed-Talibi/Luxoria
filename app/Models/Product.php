@@ -42,6 +42,11 @@
             return $this->hasOne(Clothes::class);
         }
 
+        // relashionship with health and beauty 
+        public function health_beauty_Details() {
+            return $this->hasOne(HealthAndBeauty::class);
+        }
+
         // relashionship with product_images
         public function images() {
             return $this->hasMany(ProductImage::class);
