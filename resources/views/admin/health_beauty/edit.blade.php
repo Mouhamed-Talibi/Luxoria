@@ -117,6 +117,7 @@
                                         <option value="" class="form-control border-start-1 @error('gender') is-invalid @enderror">Product For</option>
                                         <option value="male" class="form-control border-start-1" @selected(optional($product->health_beauty_Details)->gender === 'male')>Male</option>
                                         <option value="female" class="form-control border-start-1" @selected(optional($product->health_beauty_Details)->gender === 'female')>Female</option>
+                                        <option value="both" class="form-control border-start-1" @selected(optional($product->health_beauty_Details)->gender === 'both')>Both</option>
                                     </select>
                                 </div>
                                 @error('gender')

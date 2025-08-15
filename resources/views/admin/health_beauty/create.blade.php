@@ -115,6 +115,7 @@
                                         <option value="" class="form-control border-start-1 @error('gender') is-invalid @enderror">Product For</option>
                                         <option value="male" class="form-control border-start-1">Male</option>
                                         <option value="female" class="form-control border-start-1">Female</option>
+                                        <option value="both" class="form-control border-start-1">Both</option>
                                     </select>
                                 </div>
                                 @error('gender')

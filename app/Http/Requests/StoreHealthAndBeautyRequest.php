@@ -58,7 +58,7 @@ class StoreHealthAndBeautyRequest extends FormRequest
             'gender' => [
                 'required',
                 'string',
-                'in:male,female'
+                'in:male,female,both'
             ],
             'brand' => [
                 'required',

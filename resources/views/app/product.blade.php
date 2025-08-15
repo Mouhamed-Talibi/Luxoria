@@ -264,6 +264,46 @@
                                     </div>
                                 </div>
                             @endif
+
+                            {{-- ================= HEALTH AND BEAUTY DETAILS ================= --}}
+                            {{-- brand --}}
+                            @if(!empty($product->health_beauty_Details->brand))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الماركة:</span>
+                                        <span>{{ $product->health_beauty_Details->brand }}</span>
+                                    </div>
+                                </div>
+                            @endif
+                            {{-- skin_type --}}
+                            @if(!empty($product->health_beauty_Details->skin_type))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">نوع البشرة:</span>
+                                        <span>{{ $product->health_beauty_Details->skin_type }}</span>
+                                    </div>
+                                </div>
+                            @endif
+                            {{-- has_fragrance --}}
+                            @if(!empty($product->health_beauty_Details->has_fragrance))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الرائحة :</span>
+                                        <span class="text-success">{{ $product->health_beauty_Details->has_fragrance }}</span>
+                                    </div>
+                                </div>
+                            @endif
+                            {{-- gender --}}
+                            @if(!empty($product->health_beauty_Details->gender))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">خاص ب :</span>
+                                        <span>{{ $product->health_beauty_Details->gender === "male" ? 'الرجال' : "" }}</span>
+                                        <span>{{ $product->health_beauty_Details->gender === "female" ? 'النساء' : "" }}</span>
+                                        <span>{{ $product->health_beauty_Details->gender === "both" ? 'الرجال و النساء' : "" }}</span>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
