@@ -164,4 +164,7 @@
             // edit health and beauty
             Route::get('health-beauty/edit/{id}', [HealthAndBeautyController::class, 'edit'])
                 ->name('health_beauty.edit');
+            // update health and beauty
+            Route::put('health-beauty/update/{id}', [HealthAndBeautyController::class, 'update'])
+                ->name('health_beauty.update');
     });

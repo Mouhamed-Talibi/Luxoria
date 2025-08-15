@@ -106,7 +106,7 @@ class ElectronicsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreElectronicsRequest $request, $id)
+    public function update(StoreElectronicsRequest $request, int $id)
     {
         try {
         // Find the product by its ID

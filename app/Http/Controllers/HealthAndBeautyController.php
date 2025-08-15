@@ -90,17 +90,50 @@ class HealthAndBeautyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(HealthAndBeauty $healthAndBeauty)
+    public function edit(int $id)
     {
-        //
+        $product = Product::with(['health_beauty_Details', 'images'])
+            ->findOrFail($id);
+        $categories = Category::all();
+        return view('admin.health_beauty.edit', compact(['product', 'categories']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, HealthAndBeauty $healthAndBeauty)
+    public function update(StoreHealthAndBeautyRequest $request, int $id)
     {
-        //
+        try {
+            // Find the product by its ID
+            $product = Product::findOrFail($id);
+            $validated = $request->validated();
+
+            // Update shared product fields
+            $product->update([
+                'name' => $validated['name'],
+                'slug' => Str::slug($validated['name']),
+                'description' => $validated['description'],
+                'description_title' => $validated['description_title'],
+                'stock' => $validated['stock'],
+                'price' => $validated['price'],
+                'category_id' => $validated['category_id'],
+            ]);
+
+            // Update health_beauty-specific fields
+            $health_beauty_product = HealthAndBeauty::where('product_id', $product->id)->firstOrFail();
+
+            $health_beauty_product->update([
+                'brand' => $validated['brand'],
+                'has_fragrance' => $validated['has_fragrance'],
+                'skin_type' => $validated['skin_type'],
+                'gender' => $validated['gender'],
+            ]);
+
+            return redirect()->route('admin.health_beauty.manage')
+                ->with('success', 'Product updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update product: ' . $e->getMessage());
+        }
     }
 
     /**
