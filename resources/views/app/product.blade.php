@@ -309,6 +309,37 @@
                 </div>
             </div>
         </div>
+
+        {{-- Related Products --}}
+        <div class="mt-5">
+            <h4 class="text-end mb-4 fw-bold">المنتجات ذات الصلة</h4>
+            <div class="row justify-content-center align-items-stretch g-4">
+                @foreach($relatedProducts as $product)
+                    <div class="col-6 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            {{-- Product Image --}}
+                            <div class="text-center p-3">
+                                <img src="{{ isset($product->images[1]) ? Storage::url($product->images[1]->path) : asset('images/default.png') }}" 
+                                    alt="{{ $product->name }}" 
+                                    class="img-fluid rounded" 
+                                    style="max-height: 200px; object-fit: cover;">
+                            </div>
+                            
+                            {{-- Product Details --}}
+                            <div class="card-body text-end">
+                                <h5 class="card-title fw-semibold">{{ $product->name }}</h5>
+                                <p class="text-muted small mb-3">{{ Str::limit($product->description, 30) }}</p>
+                                <a href="{{ route('app.show_product', $product->id) }}" 
+                                class="btn btn-outline-success btn-sm px-4">
+                                    المزيد
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         
         <!-- Add to Cart Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

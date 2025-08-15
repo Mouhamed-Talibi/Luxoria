@@ -93,7 +93,13 @@ class ProductController extends Controller
             'clothesDetails',
             'health_beauty_Details',
         ])->findOrFail($product->id);
-        return view('app.product', compact('product'));
+
+        // get related products based on category id
+        $categoryId = $product->category_id;
+        $relatedProducts = Product::where('category_id', $categoryId)
+            ->with('images')
+            ->paginate(4);
+        return view('app.product', compact(['product', 'relatedProducts']));
     }
 
     /**
