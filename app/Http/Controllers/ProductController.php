@@ -99,6 +99,8 @@ class ProductController extends Controller
         $relatedProducts = Product::where('category_id', $categoryId)
             ->with('images')
             ->paginate(4);
+
+        // return view
         return view('app.product', compact(['product', 'relatedProducts']));
     }
 

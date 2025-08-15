@@ -1,10 +1,17 @@
 <?php
 
-namespace App\Models;
+    namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Order extends Model
-{
-    //
-}
+    class Order extends Model
+    {
+        // soft deletes 
+        use SoftDeletes;
+
+        // fillables
+        protected $fillable = [
+
+        ];
+    }
