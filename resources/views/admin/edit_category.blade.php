@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-8 col-md-6">
-                    <form action="{{ route('admin.update_category', $category->id) }}" class="shadow p-3 mt-4" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.update_category', $category) }}" class="shadow p-3 mt-4" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

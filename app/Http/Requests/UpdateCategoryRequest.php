@@ -27,13 +27,13 @@ class UpdateCategoryRequest extends FormRequest
                     'required',
                     'string',
                     'max:50',
-                    'regex:/^[a-zA-Z\s]+$/',
+                    'regex:/^[\p{Arabic}a-zA-ZÀ-ÖØ-öø-ÿ\s\-,]+$/u',
                 ],
                 'description' => [
                     'required',
                     'string',
                     'max:500',
-                    'regex:/^[\p{Arabic}\p{L}0-9\s_\-?]+$/u',
+                    'regex:/^[\p{Arabic}\p{L}\p{N}\s,\.\_\-\?!]+$/u',
                 ],
                 'image' => [
                     'nullable',
