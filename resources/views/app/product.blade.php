@@ -102,6 +102,89 @@
                         </button>
                     </div>
 
+                    <!-- Add to Cart Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content py-5 pb-5">
+                                <i class="fa-solid fa-cart-arrow-down text-center fs-1 text-success"></i>
+                                <form action="{{ route('app.orders.create') }}" method="POST" class="p-4">
+                                    {{-- hidden inputs --}}
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="product_name" value="{{ $product->name }}">
+
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label text-secondary">الاسم الكامل</label>
+                                        <input type="text" name="client_name" id="" class="form-control" value="{{ Auth::user()->name }}" placeholder="اكتب اسمك الكامل">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="city" class="form-label text-secondary">اسم المدينة</label>
+                                        <select name="city" id="city" class="form-select">
+                                            <option value="">اختر مدينتك</option>
+                                            <option value="agadir">أكادير</option>
+                                            <option value="casablanca">الدار البيضاء</option>
+                                            <option value="rabat">الرباط</option>
+                                            <option value="marrakech">مراكش</option>
+                                            <option value="fes">فاس</option>
+                                            <option value="meknes">مكناس</option>
+                                            <option value="tangier">طنجة</option>
+                                            <option value="tetouan">تطوان</option>
+                                            <option value="oujda">وجدة</option>
+                                            <option value="safi">آسفي</option>
+                                            <option value="el_jadida">الجديدة</option>
+                                            <option value="berkane">بركان</option>
+                                            <option value="larache">العرائش</option>
+                                            <option value="kenitra">القنيطرة</option>
+                                            <option value="nador">الناظور</option>
+                                            <option value="khemisset">الخميسات</option>
+                                            <option value="errachidia">الراشيدية</option>
+                                            <option value="beni_mellal">بني ملال</option>
+                                            <option value="khouribga">خريبكة</option>
+                                            <option value="taza">تازة</option>
+                                            <option value="essaouira">الصويرة</option>
+                                            <option value="guelmim">كلميم</option>
+                                            <option value="laayoune">العيون</option>
+                                            <option value="dakhla">الداخلة</option>
+                                            <option value="settat">سطات</option>
+                                            <option value="taourirt">تاوريرت</option>
+                                            <option value="chefchaouen">شفشاون</option>
+                                            <option value="midelt">ميدلت</option>
+                                            <option value="ouarzazate">ورزازات</option>
+                                            <option value="taroudant">تارودانت</option>
+                                            <option value="tiznit">تيزنيت</option>
+                                            <option value="khenifra">خنيفرة</option>
+                                            <option value="al_hoceima">الحسيمة</option>
+                                            <option value="ouled_teima">أولاد تايمة</option>
+                                            <option value="sidi_slimane">سيدي سليمان</option>
+                                            <option value="sidi_bennour">سيدي بنور</option>
+                                            <option value="fquih_ben_salah">الفقيه بن صالح</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label text-secondary">العنوان الكامل</label>
+                                        <input type="text" name="client_address" id="" class="form-control" placeholder="ادخل عنوانك الكامل">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="client_phone" class="form-label text-secondary">رقم الهاتف</label>
+                                        <input 
+                                            type="tel" 
+                                            name="client_phone" 
+                                            id="client_phone" 
+                                            class="form-control" 
+                                            placeholder="ادخل رقم هاتفك"
+                                            pattern="^(\+212|0)([ \-]?\d){9}$" 
+                                            maxlength="13"
+                                            required
+                                        >
+                                        <small class="form-text text-muted">مثال: 0612345678 أو +212612345678</small>
+                                    </div>
+                                    <button class="btn btn-success mt-3 w-100">
+                                        تأكيد الطلب
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Product Meta -->
                     <div class="product-meta border-top pt-3">
                         <div class="row small">
@@ -339,46 +422,6 @@
                 @endforeach
             </div>
         </div>
-
-        
-        <!-- Add to Cart Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header border-0">
-                        <h5 class="modal-title" id="exampleModalLabel">إضافة {{ $product->name }} إلى السلة</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body py-4">
-                        <form action="" method="POST">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            
-                            <!-- Quantity Selector -->
-                            <div class="mb-4">
-                                <label for="quantity" class="form-label">الكمية</label>
-                                <div class="input-group" style="max-width: 150px;">
-                                    <button class="btn btn-outline-secondary" type="button" id="decrement">-</button>
-                                    <input type="number" 
-                                            class="form-control text-center" 
-                                            id="quantity" 
-                                            name="quantity" 
-                                            value="1" 
-                                            min="1" 
-                                            max="10">
-                                    <button class="btn btn-outline-secondary" type="button" id="increment">+</button>
-                                </div>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary w-100 py-2">
-                                <i class="fas fa-cart-plus me-2"></i>
-                                إضافة إلى السلة - {{ number_format($product->price, 2) }} درهم
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
 
@@ -405,6 +448,13 @@
     document.querySelectorAll('.carousel-inner img').forEach(img => {
         img.addEventListener('click', function() {
             this.classList.toggle('zoom-img');
+        });
+    });
+
+    $(document).ready(function() {
+        $('#city').select2({
+            placeholder: "ابحث عن مدينتك",
+            allowClear: true
         });
     });
 </script>

@@ -7,6 +7,7 @@
     use App\Http\Controllers\ClothesController;
     use App\Http\Controllers\ElectronicsController;
     use App\Http\Controllers\HealthAndBeautyController;
+    use App\Http\Controllers\OrderController;
     use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\ProductController;
     use Illuminate\Support\Facades\Route;
@@ -54,6 +55,9 @@
         // show products by category
         Route::get('categories/{category}', [CategoryController::class, 'show'])
             ->name('show_category_products');
+        // create order
+        Route::post('orders/create', [OrderController::class, 'store'])
+            ->name('orders.create');
     });
 
     // admin routes
