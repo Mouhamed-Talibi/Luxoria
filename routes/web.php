@@ -58,6 +58,9 @@
         // create order
         Route::post('orders/create', [OrderController::class, 'store'])
             ->name('orders.create');
+        // user orders
+        Route::get('orders/', [OrderController::class, 'index'])
+            ->name('my_orders');
     });
 
     // admin routes

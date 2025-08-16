@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -12,7 +16,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $userOrders = Order::where('id', Auth::id());
+        return view('app.orders.index', compact('userOrders'));
     }
 
     /**
@@ -26,9 +31,34 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        // Retrieve product
+        $product = Product::findOrFail($validated['product_id']);
+
+        // Check stock
+        if ($validated['quantity'] > $product->stock) {
+            return back()->with('error', "معذرة الكمية التي طلبتها غير متوفرة حاليا");
+        } else {
+            Order::create([
+                'product_id' => $product->id,
+                'client_id' => Auth::id(),
+                'client_name' => $validated['client_name'],
+                'client_address' => $validated['client_address'],
+                'city' => $validated['city'],
+                'quantity' => $validated['quantity'],
+                'client_phone' => $validated['client_phone'],
+                'total_price' => $product->price * $validated['quantity'],
+            ]);
+
+            // decrement quantity
+            $product->decrement('stock', $validated['quantity']);
+
+            return redirect()->route('app.my_orders')
+                ->with('success', 'لقد تم تأكيد طلبك بنجاح');
+            }
     }
 
     /**

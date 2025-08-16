@@ -108,17 +108,24 @@
                             <div class="modal-content py-5 pb-5">
                                 <i class="fa-solid fa-cart-arrow-down text-center fs-1 text-success"></i>
                                 <form action="{{ route('app.orders.create') }}" method="POST" class="p-4">
+                                    @csrf
+
                                     {{-- hidden inputs --}}
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="product_name" value="{{ $product->name }}">
 
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label text-secondary">الاسم الكامل</label>
-                                        <input type="text" name="client_name" id="" class="form-control" value="{{ Auth::user()->name }}" placeholder="اكتب اسمك الكامل">
+                                        <input type="text" name="client_name" id="" class="form-control @error('client_name') is-invalid @enderror" value="{{ Auth::user()->name }}" placeholder="اكتب اسمك الكامل">
+                                        @error('client_name')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="city" class="form-label text-secondary">اسم المدينة</label>
-                                        <select name="city" id="city" class="form-select">
+                                        <select name="city" id="city" class="form-select @error('city') is-invalid @enderror">
                                             <option value="">اختر مدينتك</option>
                                             <option value="agadir">أكادير</option>
                                             <option value="casablanca">الدار البيضاء</option>
@@ -158,10 +165,20 @@
                                             <option value="sidi_bennour">سيدي بنور</option>
                                             <option value="fquih_ben_salah">الفقيه بن صالح</option>
                                         </select>
+                                        @error('city')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label text-secondary">العنوان الكامل</label>
-                                        <input type="text" name="client_address" id="" class="form-control" placeholder="ادخل عنوانك الكامل">
+                                        <input type="text" name="client_address" id="" class="form-control @error('client_address') is-invalid @enderror" placeholder="ادخل عنوانك الكامل">
+                                        @error('client_address')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="client_phone" class="form-label text-secondary">رقم الهاتف</label>
@@ -169,13 +186,26 @@
                                             type="tel" 
                                             name="client_phone" 
                                             id="client_phone" 
-                                            class="form-control" 
+                                            class="form-control @error('client_phone') is-invalid @enderror" 
                                             placeholder="ادخل رقم هاتفك"
                                             pattern="^(\+212|0)([ \-]?\d){9}$" 
                                             maxlength="13"
-                                            required
                                         >
+                                        @error('client_phone')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                         <small class="form-text text-muted">مثال: 0612345678 أو +212612345678</small>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label text-secondary">الكمية</label>
+                                        <input type="number" name="quantity" id="" class="form-control @error('quantity') is-invalid @enderror" min="1" placeholder="ادخل الكمية الني تريدها">
+                                        @error('quantity')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <button class="btn btn-success mt-3 w-100">
                                         تأكيد الطلب
