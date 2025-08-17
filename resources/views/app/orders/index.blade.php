@@ -45,7 +45,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-outline-danger rounded-pill" 
+                                    <button class="btn text-danger" 
                                             data-bs-toggle="modal" 
                                             data-bs-target="#cancelModal{{ $order->id }}">
                                         <i class="fa-solid fa-ban"></i> الغاء الطلب

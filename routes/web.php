@@ -64,6 +64,9 @@
         // cancel order
         Route::delete('orders/{order}/cancel', [OrderController::class, 'destroy'])
             ->name('orders.cancel');
+        // find product
+        Route::post('find-product', [AppController::class, 'findProduct'])
+            ->name('find_product');
     });
 
     // admin routes

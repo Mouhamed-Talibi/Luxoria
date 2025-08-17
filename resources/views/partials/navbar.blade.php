@@ -36,9 +36,16 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <form class="d-flex mt-2 mt-lg-0">
+                            <form action="{{ route('app.find_product')}}" method="POST" class="d-flex mt-2 mt-lg-0">
+                                @csrf 
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="ابحث عن منتجك">
+                                    <input 
+                                        type="text" 
+                                        name="search_text" 
+                                        class="form-control" 
+                                        placeholder="ابحث عن منتجك" 
+                                        required
+                                    >
                                     <button class="btn text-primary" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>

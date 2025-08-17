@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Http\Requests\FindProductRequest;
     use App\Models\Category;
     use App\Models\Product;
     use Illuminate\Http\Request;
@@ -41,5 +42,18 @@
             Session::put('locale', $locale);
 
             return Redirect::back();
+        }
+
+        //  find product method 
+        public function findProduct(FindProductRequest $request) {
+            $validated = $request->validated();
+            $product = Product::where('name', 'like', '%'. $validated['search_text'] . '%')
+                ->orWhere('slug', 'like', '%' . $validated['search_text'] . '%')
+                ->orWhere('description', 'like', '%' . $validated['search_text'] . '%')
+                ->get();
+            if(empty($product)) {
+                return Redirect::back()->with('error', 'لم يتم العثور على منتجات تطابق بحثك.');
+            }
+            return view('app.find_product', compact('product'));
         }
     }
