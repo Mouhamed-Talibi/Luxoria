@@ -59,55 +59,153 @@
             <!-- Cards for small/medium screens -->
             <div class="col-12 d-lg-none">
                 <div class="row g-3">
-                    <!-- Example card in Arabic -->
-                    <div class="col-12">
-                        <div class="card shadow-sm border-1 rounded-3">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3 text-primary fw-bold">
-                                    <i class="bi bi-person-circle me-2"></i> محمد العلوي
-                                </h5>
+                    @foreach ($userOrders as $order)
+                        <!-- Enhanced card in Arabic -->
+                        <div class="col-12">
+                            <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                                <!-- Card header with gradient background -->
+                                <div class="card-header bg-gradient-primary text-white py-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0 fw-bold">
+                                            <i class="bi bi-person-badge-fill me-2"></i> {{ $order->client_name }}
+                                        </h5>
+                                        <span class="badge bg-white text-primary rounded-pill fs-6">
+                                            <i class="bi bi-receipt me-1"></i> #{{ $order->id }}
+                                        </span>
+                                    </div>
+                                </div>
                                 
-                                <p class="mb-2">
-                                    <i class="bi bi-box-seam text-secondary me-2"></i>
-                                    <strong>المنتج:</strong> آيفون 15
-                                </p>
-                                
-                                <p class="mb-2">
-                                    <i class="bi bi-geo-alt text-danger me-2"></i>
-                                    <strong>العنوان:</strong> شارع محمد الخامس، الدار البيضاء
-                                </p>
-                                
-                                <p class="mb-2">
-                                    <i class="bi bi-telephone text-success me-2"></i>
-                                    <strong>الهاتف:</strong> +212600000000
-                                </p>
-                                
-                                <p class="mb-2">
-                                    <i class="bi bi-building text-info me-2"></i>
-                                    <strong>المدينة:</strong> الدار البيضاء
-                                </p>
-                                
-                                <p class="mb-2">
-                                    <i class="bi bi-list-ol text-warning me-2"></i>
-                                    <strong>الكمية:</strong> 2
-                                </p>
-                                
-                                <p class="mb-2">
-                                    <i class="bi bi-cash-coin text-success me-2"></i>
-                                    <strong>المجموع:</strong> 2000 درهم
-                                </p>
-                                
-                                <p class="mb-0">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <strong>الحالة:</strong>
-                                    <span class="badge bg-success">تم التوصيل</span>
-                                </p>
+                                <div class="card-body">
+                                    <!-- Product row with icon -->
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-circle bg-primary bg-opacity-10 text-primary me-3">
+                                            <i class="bi bi-phone fs-5"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-muted small">المنتج</h6>
+                                            <p class="mb-0 fw-bold">{{ $order->product_name }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Address row with icon -->
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-circle bg-danger bg-opacity-10 text-danger me-3">
+                                            <i class="bi bi-pin-map-fill fs-5"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-muted small">العنوان</h6>
+                                            <p class="mb-0 fw-bold">{{ $order->client_address }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Contact info row -->
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="icon-circle bg-success bg-opacity-10 text-success me-2">
+                                                    <i class="bi bi-telephone-fill fs-5"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0 text-muted small">الهاتف</h6>
+                                                    <p class="mb-0 fw-bold">{{ $order->client_phone }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="icon-circle bg-info bg-opacity-10 text-info me-2">
+                                                    <i class="bi bi-building fs-5"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0 text-muted small">المدينة</h6>
+                                                    <p class="mb-0 fw-bold">{{ $order->city }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Order details row -->
+                                    <div class="row">
+                                        <div class="col-4 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="icon-circle bg-warning bg-opacity-10 text-warning me-2">
+                                                    <i class="bi bi-box-seam fs-5"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0 text-muted small">الكمية</h6>
+                                                    <p class="mb-0 fw-bold">{{ $order->quantity }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-8 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="icon-circle bg-success bg-opacity-10 text-success me-2">
+                                                    <i class="bi bi-currency-exchange fs-5"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0 text-muted small">المجموع</h6>
+                                                    <p class="mb-0 fw-bold">{{ $order->total_price }} درهم</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Status row with action buttons -->
+                                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                                        <div class="d-flex align-items-center">
+                                            <div class="icon-circle bg-success bg-opacity-10 text-success me-2">
+                                                <i class="bi bi-check-circle-fill fs-5"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 text-muted small">الحالة</h6>
+                                                @if ($order->status === "processing")
+                                                    <span class="badge bg-warning rounded-pill px-3 py-1">
+                                                        قيد المعالجة <i class="bi bi-check2 ms-1"></i>
+                                                    </span>
+                                                @endif
+                                                @if ($order->status === "delivered")
+                                                    <span class="badge bg-success rounded-pill px-3 py-1">
+                                                        تم التوصيل <i class="bi bi-check2 ms-1"></i>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary rounded-pill me-2">
+                                                <i class="bi bi-eye-fill me-1"></i> عرض
+                                            </button>
+                                            <button class="btn btn-sm btn-primary rounded-pill">
+                                                <i class="bi bi-whatsapp me-1"></i> واتساب
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
         </div>
     </div>
 @endsection
+
+<style>
+    .icon-circle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+    }
+    
+    .rounded-4 {
+        border-radius: 1rem !important;
+    }
+</style>
