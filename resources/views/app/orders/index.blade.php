@@ -67,7 +67,7 @@
                                 <div class="card-header bg-gradient-primary text-white py-3">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <h5 class="card-title mb-0 fw-bold">
-                                            <i class="bi bi-person-badge-fill me-2"></i> {{ $order->client_name }}
+                                            <i class="bi bi-person-badge-fill me-2"></i>
                                         </h5>
                                         <span class="badge bg-white text-primary rounded-pill fs-6">
                                             <i class="bi bi-receipt me-1"></i> #{{ $order->id }}
@@ -149,7 +149,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
                                     <!-- Status row with action buttons -->
                                     <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
                                         <div class="d-flex align-items-center">
@@ -171,12 +170,53 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <button class="btn btn-sm btn-outline-primary rounded-pill me-2">
-                                                <i class="bi bi-eye-fill me-1"></i> عرض
+                                            <button class="btn btn-sm btn-outline-danger rounded-pill" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#cancelModal{{ $order->id }}">
+                                                <i class="fa-solid fa-ban"></i> الغاء الطلب
                                             </button>
-                                            <button class="btn btn-sm btn-primary rounded-pill">
-                                                <i class="bi bi-whatsapp me-1"></i> واتساب
-                                            </button>
+
+                                            {{-- cancel order --}}
+                                            <div class="modal fade" id="cancelModal{{ $order->id }}" tabindex="-1" 
+                                                aria-labelledby="cancelModalLabel{{ $order->id }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content border-0 rounded-4 overflow-hidden">
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header bg-light-danger border-0 py-4">
+                                                            <div class="text-center w-100">
+                                                                <div class="icon-circle bg-danger bg-opacity-10 text-danger mx-auto mb-3">
+                                                                    <i class="fa-solid fa-ban"></i>
+                                                                </div>
+                                                                <h3 class="modal-title text-danger fw-bold" id="cancelModalLabel{{ $order->id }}">
+                                                                    تأكيد إلغاء الطلب
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Modal Body -->
+                                                        <div class="modal-body py-4 text-center">
+                                                            <p class="fs-5 mb-4">
+                                                                هل أنت متأكد من رغبتك في إلغاء هذا الطلب؟
+                                                                <br>
+                                                                <span class="text-muted small">هذا الإجراء لا يمكن التراجع عنه</span>
+                                                            </p>
+                                                            
+                                                            <div class="d-flex gap-2 justify-content-end">
+                                                                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">
+                                                                    <i class="bi bi-arrow-return-left me-1"></i> تراجع
+                                                                </button>
+                                                                <form action="{{ route('app.orders.cancel', $order) }}" method="POST" class="d-inline">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger rounded-pill px-3">
+                                                                        <i class="bi bi-trash3-fill me-1"></i> تأكيد الإلغاء
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

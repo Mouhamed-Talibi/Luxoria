@@ -16,7 +16,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $userOrders = Order::where('client_id', Auth::id())->get();
+        $userOrders = Order::where('client_id', Auth::id())
+            ->where('status', 'processing')
+            ->get();
         return view('app.orders.index', compact('userOrders'));
     }
 
@@ -101,6 +103,10 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        Order::where('id', $order->id)
+            ->update([
+                'status' => 'cancelled',
+            ]);
+        return back()->with('success', 'تم إلغاء الطلب بنجاح');
     }
 }

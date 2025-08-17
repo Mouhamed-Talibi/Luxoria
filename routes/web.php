@@ -61,6 +61,9 @@
         // user orders
         Route::get('orders/', [OrderController::class, 'index'])
             ->name('my_orders');
+        // cancel order
+        Route::delete('orders/{order}/cancel', [OrderController::class, 'destroy'])
+            ->name('orders.cancel');
     });
 
     // admin routes
