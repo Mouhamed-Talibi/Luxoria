@@ -22,6 +22,7 @@
                             <th>الكمية</th>
                             <th>الثمن الاجمالي</th>
                             <th>حالة الطلب</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +44,54 @@
                                         <span class="badge bg-danger">تم الإلغاء</span>
                                     @endif
                                 </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger rounded-pill" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#cancelModal{{ $order->id }}">
+                                        <i class="fa-solid fa-ban"></i> الغاء الطلب
+                                    </button>
+                                    {{-- cancel order --}}
+                                    <div class="modal fade" id="cancelModal{{ $order->id }}" tabindex="-1" 
+                                        aria-labelledby="cancelModalLabel{{ $order->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content border-0 rounded-4 overflow-hidden">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header bg-light-danger border-0 py-4">
+                                                    <div class="text-center w-100">
+                                                        <div class="icon-circle bg-danger bg-opacity-10 text-danger mx-auto mb-3">
+                                                            <i class="fa-solid fa-ban"></i>
+                                                        </div>
+                                                        <h3 class="modal-title text-danger fw-bold" id="cancelModalLabel{{ $order->id }}">
+                                                            تأكيد إلغاء الطلب
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Modal Body -->
+                                                <div class="modal-body py-4 text-center">
+                                                    <p class="fs-5 mb-4">
+                                                        هل أنت متأكد من رغبتك في إلغاء هذا الطلب؟
+                                                        <br>
+                                                        <span class="text-muted small">هذا الإجراء لا يمكن التراجع عنه</span>
+                                                    </p>
+                                                    
+                                                    <div class="d-flex gap-2 justify-content-end">
+                                                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">
+                                                            <i class="bi bi-arrow-return-left me-1"></i> تراجع
+                                                        </button>
+                                                        <form action="{{ route('app.orders.cancel', $order) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger rounded-pill px-3">
+                                                                <i class="bi bi-trash3-fill me-1"></i> تأكيد الإلغاء
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -59,7 +108,7 @@
             <!-- Cards for small/medium screens -->
             <div class="col-12 d-lg-none">
                 <div class="row g-3">
-                    @foreach ($userOrders as $order)
+                    @forelse ($userOrders as $order)
                         <!-- Enhanced card in Arabic -->
                         <div class="col-12">
                             <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
@@ -222,7 +271,18 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty 
+                        <div class="d-flex flex-column align-items-center justify-content-center border border-1 rounded-4 p-5 my-5 bg-light shadow-sm">
+                            <i class="fa-solid fa-box-open fs-1 text-warning mb-3"></i>
+                            <h3 class="fw-bold text-center text-dark mb-2">
+                                لا توجد لديك أي طلبات حالياً
+                            </h3>
+                            <p class="text-center text-muted mb-0">
+                                يمكنك تصفح منتجاتنا وإضافة طلبك الأول الآن!
+                            </p>
+                            <a href="" class="btn btn-outline-primary mt-3">تصفخ الان</a>
+                        </div>
+                    @endforelse
                 </div>
             </div>
 

@@ -56,7 +56,7 @@
                                 <a href="{{ route('app.my_orders')}}" class="btn position-relative p-2">
                                     <i class="fas fa-shopping-cart fs-5"></i>
                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" style="font-size: 0.6rem; padding: 0.25em 0.4em;">
-                                        {{ Auth::user()->orders->count() ?? 0}}
+                                        {{ Auth::user()->orders()->where('status', 'processing')->count() ?? 0}}
                                     </span>
                                 </a>
                                 
