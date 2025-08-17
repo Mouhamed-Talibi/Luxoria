@@ -16,7 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $userOrders = Order::where('id', Auth::id());
+        $userOrders = Order::where('client_id', Auth::id())->get();
         return view('app.orders.index', compact('userOrders'));
     }
 
@@ -38,27 +38,38 @@ class OrderController extends Controller
         // Retrieve product
         $product = Product::findOrFail($validated['product_id']);
 
-        // Check stock
-        if ($validated['quantity'] > $product->stock) {
-            return back()->with('error', "معذرة الكمية التي طلبتها غير متوفرة حاليا");
+        // get user orders
+        $userOrders = Order::where('client_id', Auth::id())
+            ->where('status', 'processing')
+            ->count();
+        // check the number of processing orders
+        if($userOrders >= 3) {
+            return back()
+                ->with('warning', 'معذرة لايمكنك تجاوز 3 طلبات حتى تتوصل بطلباتك الحالية');
         } else {
-            Order::create([
-                'product_id' => $product->id,
-                'client_id' => Auth::id(),
-                'client_name' => $validated['client_name'],
-                'client_address' => $validated['client_address'],
-                'city' => $validated['city'],
-                'quantity' => $validated['quantity'],
-                'client_phone' => $validated['client_phone'],
-                'total_price' => $product->price * $validated['quantity'],
-            ]);
+            // Check stock
+            if ($validated['quantity'] > $product->stock) {
+                return back()->with('error', "معذرة الكمية التي طلبتها غير متوفرة حاليا");
+            } else {
+                Order::create([
+                    'product_id' => $product->id,
+                    'product_name' => $product->name,
+                    'client_id' => Auth::id(),
+                    'client_name' => $validated['client_name'],
+                    'client_address' => $validated['client_address'],
+                    'city' => $validated['city'],
+                    'quantity' => $validated['quantity'],
+                    'client_phone' => $validated['client_phone'],
+                    'total_price' => $product->price * $validated['quantity'],
+                ]);
 
-            // decrement quantity
-            $product->decrement('stock', $validated['quantity']);
+                // decrement quantity
+                $product->decrement('stock', $validated['quantity']);
 
-            return redirect()->route('app.my_orders')
-                ->with('success', 'لقد تم تأكيد طلبك بنجاح');
-            }
+                return redirect()->route('app.my_orders')
+                    ->with('success', 'لقد تم تأكيد طلبك بنجاح');
+                }
+        }
     }
 
     /**

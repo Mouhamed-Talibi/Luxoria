@@ -23,7 +23,7 @@
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 mb-3 mb-lg-0">
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">الرئيسية</a>
+                            <a class="nav-link active" href="{{ route('app.home')}}">الرئيسية</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -53,10 +53,10 @@
                         @auth
                             <div class="d-flex align-items-center gap-3">
                                 <!-- Cart Icon -->
-                                <a href="#" class="btn position-relative p-2">
+                                <a href="{{ route('app.my_orders')}}" class="btn position-relative p-2">
                                     <i class="fas fa-shopping-cart fs-5"></i>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary" style="font-size: 0.6rem; padding: 0.25em 0.4em;">
-                                        0
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" style="font-size: 0.6rem; padding: 0.25em 0.4em;">
+                                        {{ Auth::user()->orders->count() ?? 0}}
                                     </span>
                                 </a>
                                 
