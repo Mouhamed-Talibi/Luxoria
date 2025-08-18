@@ -47,13 +47,13 @@
         //  find product method 
         public function findProduct(FindProductRequest $request) {
             $validated = $request->validated();
-            $product = Product::where('name', 'like', '%'. $validated['search_text'] . '%')
+            $products = Product::where('name', 'like', '%'. $validated['search_text'] . '%')
                 ->orWhere('slug', 'like', '%' . $validated['search_text'] . '%')
-                ->orWhere('description', 'like', '%' . $validated['search_text'] . '%')
+                ->with(['category', 'images'])
                 ->get();
-            if(empty($product)) {
-                return Redirect::back()->with('error', 'لم يتم العثور على منتجات تطابق بحثك.');
+            if($products->isEmpty()) {
+                return Redirect::back()->with('warning', '  .لم يتم العثور على منتجات تطابق بحثك. المرجو اعادة المحاولة');
             }
-            return view('app.find_product', compact('product'));
+            return view('app.find_product', compact('products'));
         }
     }

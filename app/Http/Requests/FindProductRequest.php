@@ -31,4 +31,15 @@ class FindProductRequest extends FormRequest
             ],
         ];
     }
+
+    // messages 
+    public function messages(): array
+    {
+        return [
+            'search_text.required' => 'حقل البحث مطلوب.',
+            'search_text.string'   => 'يجب أن يكون البحث نصاً صحيحاً.',
+            'search_text.min'      => 'يجب أن يحتوي البحث على 3 أحرف على الأقل.',
+            'search_text.regex'    => 'يحتوي البحث على رموز غير مسموح بها، استخدم الحروف والأرقام فقط.',
+        ];
+    }
 }

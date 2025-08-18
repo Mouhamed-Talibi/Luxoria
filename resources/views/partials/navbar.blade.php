@@ -42,11 +42,19 @@
                                     <input 
                                         type="text" 
                                         name="search_text" 
-                                        class="form-control" 
+                                        class="form-control @error('search_text') is-invalid @enderror" 
                                         placeholder="ابحث عن منتجك" 
+                                        value="{{ old('search_text') }}"
                                         required
                                     >
-                                    <button class="btn text-primary" type="submit">
+                                    @error('search_text')
+                                        <div class="invalid-feedback d-block">
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        </div>
+                                    @enderror
+                                    <button type="submit" class="btn text-primary" >
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>

@@ -67,6 +67,9 @@
         // find product
         Route::post('find-product', [AppController::class, 'findProduct'])
             ->name('find_product');
+        // search result
+        Route::get('find-product', [AppController::class, 'findProduct'])
+            ->name('find_product');
     });
 
     // admin routes
