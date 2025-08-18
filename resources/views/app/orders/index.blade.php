@@ -7,9 +7,13 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <h1 class="text-center dispaly-2 fw-bold mb-5">
-                طلباتي
-            </h1>
+            <div class="text-center mb-3">
+                <i class="fas fa-cog fa-spin text-info fs-1 mb-3"></i>
+                <h1 class="dispaly-2 fw-bold">
+                    طلباتي
+                </h1>
+                <hr class="w-25 mx-auto">
+            </div>
             <div class="col-12 d-none d-lg-block">
                 <table class="table table-striped table-bordered">
                     <thead class="table-dark">
