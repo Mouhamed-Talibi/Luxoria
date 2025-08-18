@@ -127,3 +127,160 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* Dropdown enhancements */
+.dropdown-hover:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    min-width: 280px;
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-top: 0.5rem;
+}
+
+.dropdown-item {
+    transition: all 0.2s ease;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+}
+
+.hover-bg-primary-soft:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.dropdown-toggle .transition-all {
+    transition: all 0.2s ease;
+}
+
+.dropdown-toggle[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Icon sizing */
+.fs-5 {
+    font-size: 1.25rem;
+}
+
+/* Better spacing */
+.py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.px-4 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* Navigation link styling */
+.nav-link {
+    transition: all 0.3s ease;
+    margin-bottom: 0.25rem;
+}
+
+.nav-link:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+.nav-link.active {
+    position: relative;
+}
+
+/* Active indicator */
+.active-indicator {
+    width: 6px;
+    height: 24px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-link.active .active-indicator {
+    opacity: 1;
+}
+
+/* Soft blue background for active state */
+.bg-primary-soft {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.65rem;
+    padding: 0.35em 0.65em;
+    font-weight: 500;
+}
+
+/* Transition effects */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Icon sizing */
+.fs-5 {
+    font-size: 1.25rem;
+}
+
+/* Products dropdown specific styles */
+.dropdown-hover:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    min-width: 280px;
+    border: 1px solid rgba(0,0,0,0.08);
+    margin-top: 0.5rem;
+}
+
+/* Dropdown items */
+.dropdown-item {
+    transition: all 0.2s ease;
+}
+
+.hover-bg-primary-soft:hover {
+    background-color: rgba(13, 110, 253, 0.08);
+    color: #0d6efd;
+}
+
+/* Active state */
+.nav-link[aria-expanded="true"] {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.nav-link[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Icons */
+.bi-box-seam {
+    color: inherit;
+}
+
+/* Badges */
+.badge.bg-primary-soft {
+    background-color: rgba(13, 110, 253, 0.1);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Active indicator */
+.active-indicator {
+    width: 6px;
+    height: 24px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link.active .active-indicator,
+.nav-link[aria-expanded="true"] .active-indicator {
+    opacity: 1;
+}

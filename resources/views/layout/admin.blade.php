@@ -51,44 +51,88 @@
                 </div>
                 <ul class="nav flex-column px-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('admin.dashboard') }}">
-                            <i class="bi bi-speedometer2"></i> Dashboard
+                        <a class="nav-link d-flex align-items-center py-3 px-4 rounded-3 transition-all 
+                                {{ request()->routeIs('admin.dashboard') ? 'active bg-primary-soft text-dark fw-semibold' : 'text-light' }}" 
+                                href="{{ route('admin.dashboard') }}">
+                            <i class="bi bi-speedometer2 fs-5 me-3"></i> <!-- Larger icon -->
+                            <span class="flex-grow-1">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Categories 
+                    <li class="nav-item dropdown dropdown-hover">  <!-- Added dropdown-hover class -->
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" 
+                        href="#" 
+                        id="categoriesDropdown" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                            <i class="bi bi-tags fs-5 me-2"></i> <!-- Updated icon to bi-tags -->
+                            <span class="flex-grow-1">Categories</span>
+                            <i class="bi bi-chevron-down ms-auto transition-all"></i> <!-- Added arrow icon -->
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-2 overflow-hidden" 
+                            aria-labelledby="categoriesDropdown">
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.add_category') }}">
-                                    <i class="bi bi-person-plus me-2"></i> New Category 
+                                <a class="dropdown-item d-flex align-items-center py-3 px-4 hover-bg-primary-soft transition-all" 
+                                href="{{ route('admin.add_category') }}">
+                                    <i class="bi bi-plus-circle-fill text-primary me-3 fs-5"></i> <!-- Filled icon -->
+                                    <div>
+                                        <span class="d-block fw-semibold">New Category</span> <!-- Bold text -->
+                                        <small class="text-muted">Add a new product category</small> <!-- Description -->
+                                    </div>
                                 </a>
                             </li>
+                            <li><hr class="dropdown-divider my-1"></li> <!-- Better divider -->
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.categories')}}">
-                                    <i class="bi bi-list-ul me-2"></i> Catgeories List
+                                <a class="dropdown-item d-flex align-items-center py-3 px-4 hover-bg-primary-soft transition-all" 
+                                href="{{ route('admin.categories')}}">
+                                    <i class="bi bi-card-checklist text-primary me-3 fs-5"></i> <!-- Updated icon -->
+                                    <div>
+                                        <span class="d-block fw-semibold">Categories List</span>
+                                        <small class="text-muted">View all categories</small>
+                                    </div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-people"></i> Products
+                    <li class="nav-item dropdown dropdown-hover">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center px-4 py-3 rounded-3" 
+                        href="#" 
+                        id="productsDropdown" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                            <i class="bi bi-box-seam fs-5 me-3"></i> <!-- More appropriate product icon -->
+                            <span class="flex-grow-1">Products</span>
+                            <i class="bi bi-chevron-down ms-auto transition-all"></i> <!-- Animated chevron -->
+                            <span class="active-indicator bg-primary rounded-pill ms-2"></span> <!-- Active state indicator -->
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 p-2" 
+                            aria-labelledby="productsDropdown">
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.add_products') }}">
-                                    <i class="bi bi-person-plus me-2"></i> New Product
+                                <a class="dropdown-item d-flex align-items-center px-3 py-2 rounded-2 mb-1 hover-bg-primary-soft transition-all" 
+                                href="{{ route('admin.add_products') }}">
+                                    <i class="bi bi-plus-circle-fill text-primary me-3"></i> <!-- Filled icon -->
+                                    <div>
+                                        <span class="d-block fw-semibold">New Product</span>
+                                        <small class="text-muted">Add new inventory item</small> <!-- Help text -->
+                                    </div>
+                                    <i class="bi bi-arrow-right-short text-muted ms-auto"></i> <!-- Right arrow -->
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.products') }}">
-                                    <i class="bi bi-list-ul me-2"></i> Products List
+                                <a class="dropdown-item d-flex align-items-center px-3 py-2 rounded-2 hover-bg-primary-soft transition-all" 
+                                href="{{ route('admin.products') }}">
+                                    <i class="bi bi-card-checklist text-primary me-3"></i> <!-- Better list icon -->
+                                    <div>
+                                        <span class="d-block fw-semibold">Product List</span>
+                                        <small class="text-muted">Manage all products</small>
+                                    </div>
+                                    <span class="badge bg-primary-soft text-primary ms-auto">{{ \App\Models\Product::count() }}</span> <!-- Item count -->
                                 </a>
                             </li>
                         </ul>
                     </li>
+
                 </ul>
             </aside>
 
