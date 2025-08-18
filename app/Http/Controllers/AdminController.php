@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddCategoryRequest;
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,7 +19,54 @@ class AdminController extends Controller
      * Display dashboard
      */
     public function dashboard() {
-        return view('admin.dashborad');
+        // get total Users, Orders, Products
+        $totalUsers = User::where('role', '!=','admin')->count();
+        $totalOrders = Order::where('status', '=','processing')->count();
+        $totalProducts = Product::count();
+
+        // users, orders, products growth
+        $usersGrowth = $ordersGrowth = $productsGrowth = 0;
+
+        // users growth
+        $thisWeekUsers = User::where('role', '!=', 'admin')
+            ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->count();
+
+        $lastWeekUsers = User::where('role', '!=', 'admin')
+            ->whereBetween('created_at', [Carbon::now()->subWeek()->startOfWeek(), Carbon::now()->subWeek()->endOfWeek()])
+            ->count();
+
+        if($lastWeekUsers > 0) {
+            $usersGrowth = (($thisWeekUsers - $lastWeekUsers) / $lastWeekUsers) * 100;
+        }
+
+        // Orders growth
+        $thisWeekOrders = Order::where('status', '=', 'processing')
+            ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->count();
+
+        $lastWeekOrders = Order::where('status', '=','processing')
+            ->whereBetween('created_at', [Carbon::now()->subWeek()->startOfWeek(), Carbon::now()->subWeek()->endOfWeek()])
+            ->count();
+
+        if ($lastWeekOrders > 0) {
+            $ordersGrowth = (($thisWeekOrders - $lastWeekOrders) / $lastWeekOrders) * 100;
+        }
+
+        // products growth
+        $thisWeekProducts = Product::where('deleted_at', '!=', null)
+            ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->count();
+
+        $lastWeekProducts = Product::where('deleted_at', '!=', null)
+            ->whereBetween('created_at', [Carbon::now()->subWeek()->startOfWeek(), Carbon::now()->subWeek()->endOfWeek()])
+            ->count();
+
+        if($lastWeekProducts > 0 ) {
+            $productsGrowth = (($thisWeekProducts - $lastWeekProducts) / $lastWeekProducts) * 100;
+        }
+
+        return view('admin.dashborad', compact(['totalUsers', 'usersGrowth', 'totalOrders', 'ordersGrowth', 'totalProducts', 'productsGrowth']));
     }
 
     /**
