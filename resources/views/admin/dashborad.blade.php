@@ -106,5 +106,77 @@
                     </div>
                 </div>
             </div>
+            {{-- Last Registered Users --}}
+            <div class="row justify-content-between align-items-center mt-4">
+                <div class="col-12">
+                    <h3>
+                        <i class="fa-solid fa-users text-info"></i>
+                        Last Registered Users
+                    </h3 classs="mb-3">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <th>#</th>
+                            <th>User Name</th>
+                            <th>User Email</th>
+                            <th>Total Orders</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($lastRegisteredUsers as $user)
+                                <tr>
+                                    <td>
+                                        {{ $user->id }}
+                                    </td>
+                                    <td>
+                                        {{ $user->name }}
+                                    </td>
+                                    <td>
+                                        {{ $user->email }}
+                                    </td>
+                                    <td>
+                                        {{ $user->orders->count()}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="mt-4 mb-3">
+                    <i class="fa-solid fa-sliders text-info"></i>
+                    Quick Actions
+                </h3>
+                <div class="col-12 col-lg-3 col-md-3">
+                    <div class="action border border-left-secondary p-3 rounded-4 text-center">
+                        <i class="fa-solid fa-plus fs-2"></i>
+                        <h2>
+                            <a href="{{ route('admin.add_products')}}" class="btn">Create Product</a>
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-3">
+                    <div class="action border border-left-secondary p-3 rounded-4 text-center">
+                        <i class="fas fa-users-cog fs-2"></i>
+                        <h2>
+                            <a href="{{ route('admin.users.index')}}" class="btn">Manage Users</a>
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-3">
+                    <div class="action border border-left-secondary p-3 rounded-4 text-center">
+                        <i class="fa-solid fa-layer-group fs-2"></i>
+                        <h2>
+                            <a href="{{ route('admin.add_category')}}" class="btn">New Category</a>
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-3">
+                    <div class="action border border-left-secondary p-3 rounded-4 text-center">
+                        <i class="fa-solid fa-cart-flatbed fs-2"></i>
+                        <h2>
+                            <a href="{{ route('admin.add_products')}}" class="btn">Manage Orders</a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </div>
     @endsection

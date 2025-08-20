@@ -66,7 +66,19 @@ class AdminController extends Controller
             $productsGrowth = (($thisWeekProducts - $lastWeekProducts) / $lastWeekProducts) * 100;
         }
 
-        return view('admin.dashborad', compact(['totalUsers', 'usersGrowth', 'totalOrders', 'ordersGrowth', 'totalProducts', 'productsGrowth']));
+        // last registered users
+        $lastRegisteredUsers = User::where('role', '!=', 'admin')
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $recentOrders = Order::where('status', '=', 'processing')
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $revenueGrowth = 0;
+        return view('admin.dashborad', compact(['totalUsers', 'usersGrowth', 'totalOrders', 'ordersGrowth', 'totalProducts', 'productsGrowth', 'lastRegisteredUsers', 'revenueGrowth', 'recentOrders']));
     }
 
     /**

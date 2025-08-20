@@ -10,6 +10,8 @@
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\ProductController;
+    use App\Http\Controllers\UserController;
+    use App\Models\User;
     use Illuminate\Support\Facades\Route;
 
     // home route
@@ -183,4 +185,8 @@
             // update health and beauty
             Route::put('health-beauty/update/{id}', [HealthAndBeautyController::class, 'update'])
                 ->name('health_beauty.update');
+        // Users management
+            // users index
+            Route::get('users', [UserController::class, 'index'])
+                ->name('users.index');
     });
