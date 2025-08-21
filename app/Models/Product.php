@@ -51,4 +51,9 @@
         public function images() {
             return $this->hasMany(ProductImage::class);
         }
+
+        // relashionship with orders
+        public function orders() {
+            return $this->hasMany(Order::class);
+        }
     }

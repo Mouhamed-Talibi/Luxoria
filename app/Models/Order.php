@@ -27,4 +27,9 @@
         public function client() {
             return $this->belongsTo(User::class);
         }
+
+        // relashion ship with products
+        public function product() {
+            return $this->belongsTo(Product::class);
+        }
     }

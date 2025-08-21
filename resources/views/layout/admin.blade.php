@@ -28,6 +28,9 @@
     {{-- css link --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
+    {{-- style stack --}}
+    @stack('styles')
 </head>
 <body>
     {{-- loader --}}
@@ -59,7 +62,7 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown dropdown-hover">  <!-- Added dropdown-hover class -->
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" 
+                        <a class="nav-link dropdown-toggle d-flex align-items-center px-4 py-3 rounded-3" 
                         href="#" 
                         id="categoriesDropdown" 
                         role="button" 
