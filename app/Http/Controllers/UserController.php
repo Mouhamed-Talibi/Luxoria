@@ -39,7 +39,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::with('orders')
+            ->findOrFail($id);
+        return view('admin.users.user', compact('user'));
     }
 
     /**

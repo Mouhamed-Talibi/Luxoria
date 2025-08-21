@@ -189,4 +189,7 @@
             // users index
             Route::get('users', [UserController::class, 'index'])
                 ->name('users.index');
+            // user details
+            Route::get('users/{user}', [UserController::class, 'show'])
+                ->name('users.user');
     });
