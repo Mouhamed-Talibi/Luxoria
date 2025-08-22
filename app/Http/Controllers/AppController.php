@@ -14,7 +14,9 @@
     {
         // home method
         public function home() {
-            return view('home');
+            $categories = Category::orderBy('name', 'asc')
+                ->get();
+            return view('home', compact('categories'));
         }
 
         // index method

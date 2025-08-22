@@ -21,7 +21,7 @@
                             تسوق أحدث الموديلات والعطور والاكسسوارات والإلكترونيات بأسعار تنافسية. جودة عالية، شحن سريع، وضمان استرداد الأموال.
                         </p>
                         <div class="d-flex gap-3 justify-content-start">
-                            <a href="#" class="btn btn-dark px-4 py-3 rounded-1 fw-bold">
+                            <a href="#categories" class="btn btn-dark px-4 py-3 rounded-1 fw-bold">
                                 ابدأ التسوق الآن <i class="fas fa-arrow-left ms-2"></i>
                             </a>
                         </div>
@@ -111,7 +111,7 @@
     </div>
 
     {{-- categories --}}
-    <div class="categories py-5 pb-5">
+    <div class="categories py-5 pb-5" id="categories">
         <div class="main-title text-center">
             <i class="fa-solid fa-layer-group fs-2 text-info"></i>
             <h1 class="display-4 fw-bold mt-2">أصناف المنتجات</h1>
