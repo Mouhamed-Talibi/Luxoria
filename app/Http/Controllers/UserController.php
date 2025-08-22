@@ -65,6 +65,16 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if($user->role === "user") {
+            $user->delete();
+            return redirect()
+                ->route('admin.users.index')
+                ->with('success', 'User deleted successfully.');
+        } else {
+            return redirect()
+                ->route('admin.users.index')
+                ->with('error', 'Cannot delete admin users.');
+        }
     }
 }

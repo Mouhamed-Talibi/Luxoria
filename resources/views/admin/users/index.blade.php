@@ -225,12 +225,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Users Management</h1>
-        <div>
-            <a href="#" class="btn btn-primary">
-                <i class="fas fa-plus btn-icon me-2"></i>
-                <span class="btn-text">Add User</span>
-            </a>
-        </div>
     </div>
 
     <div class="card shadow mb-4">
@@ -302,10 +296,7 @@
                                             <i class="fas fa-eye me-1"></i>
                                             <span class="d-none d-md-inline">View</span>
                                         </a>
-                                        <a href="#" class="text-primary me-3 action-btn" title="Edit User">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="#" class="text-danger action-btn" title="Delete User" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user->id }}">
+                                        <a href="{{ route('admin.users.delete', $user)}}" class="text-danger action-btn" title="Delete User" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user->id }}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
@@ -351,7 +342,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form action="#" method="POST">
+                <form action="{{ route('admin.users.delete', $user->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">

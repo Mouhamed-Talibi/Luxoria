@@ -192,4 +192,7 @@
             // user details
             Route::get('users/{user}', [UserController::class, 'show'])
                 ->name('users.user');
+            // delete user
+            Route::delete('users/{user}/delete', [UserController::class, 'destroy'])
+                ->name('users.delete');
     });
