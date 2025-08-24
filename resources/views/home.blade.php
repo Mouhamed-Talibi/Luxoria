@@ -359,7 +359,9 @@
                             <p class="text-muted">رأيك يهمنا! شاركنا تجربتك مع منتجاتنا وخدماتنا</p>
                         </div>
                         
-                        <form class="animate-on-scroll">
+                        <form action="" method="POST" class="animate-on-scroll">
+                            @csrf
+
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="name" class="form-label">الاسم الكامل</label>
