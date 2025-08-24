@@ -101,6 +101,111 @@
     .price { font-weight: 700; font-size: 1.2rem; color: var(--accent-color); margin-bottom: 1rem; }
 
     .randomProducts { background-color: #1a3046; }
+
+    /* Testimonials Section */
+    .testimonials {
+        padding: 5rem 0;
+        background-color: var(--secondary-color);
+    }
+    
+    .testimonial-img {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        height: 100%;
+    }
+    
+    .testimonial-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .testimonial-form {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: var(--card-shadow);
+        height: 100%;
+    }
+    
+    .testimonial-form .form-control {
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        transition: var(--transition);
+    }
+    
+    .testimonial-form .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+    
+    .testimonial-form textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+    
+    .rating-input {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        direction: ltr;
+    }
+    
+    .rating-input input {
+        display: none;
+    }
+    
+    .rating-input label {
+        cursor: pointer;
+        font-size: 2rem;
+        color: #ddd;
+        transition: var(--transition);
+        margin: 0 0.1rem;
+    }
+    
+    .rating-input input:checked ~ label,
+    .rating-input label:hover,
+    .rating-input label:hover ~ label {
+        color: #ffc107;
+    }
+    
+    .rating-input input:checked + label {
+        color: #ffc107;
+    }
+    
+    .btn-submit {
+        background: var(--primary-color);
+        color: white;
+        padding: 0.50rem 1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: var(--transition);
+        border: 2px solid var(--primary-color);
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .btn-submit:hover {
+        background: transparent;
+        color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .testimonial-img {
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .testimonial-form {
+            padding: 1.5rem;
+        }
+    }
 </style>
 @endpush
 
@@ -233,6 +338,66 @@
                         </div>
                     </div><!-- End Course Item -->
                 @endforeach
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials py-5 animate-on-scroll">
+        <div class="container">
+            <div class="row justify-content-center align-items-stretch">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="testimonial-img animate-on-scroll">
+                        <img src="{{ asset('assets/satisfied-customer.jpg')}}" alt="تجربة العملاء" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="testimonial-form animate-on-scroll">
+                        <div class="text-center mb-5">
+                            <i class="fas fa-comments fs-2 text-info mb-3"></i>
+                            <h2 class="fw-bold">شاركنا تجربتك</h2>
+                            <p class="text-muted">رأيك يهمنا! شاركنا تجربتك مع منتجاتنا وخدماتنا</p>
+                        </div>
+                        
+                        <form class="animate-on-scroll">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">الاسم الكامل</label>
+                                    <input type="text" class="form-control" id="name" placeholder="أدخل اسمك الكامل" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                                    <input type="email" class="form-control" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label d-block text-center">التقييم</label>
+                                <div class="rating-input">
+                                    <input type="radio" id="star5" name="rating" value="5">
+                                    <label for="star5">★</label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4">★</label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3">★</label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2">★</label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1">★</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="message" class="form-label">التعليق</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="أخبرنا عن تجربتك مع منتجاتنا..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">
+                                إرسال التقييم <i class="fas fa-paper-plane ms-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
