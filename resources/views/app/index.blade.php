@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="col-12 text-end mt-4" data-aos="fade-left">
+                    <div class="col-12 text-start mt-4" data-aos="fade-left">
                         <a href="#" class="btn btn-dark px-2 py-2 rounded-1 d-inline-flex align-items-center">
                             <span class="ms-2">عرض الكل</span>
                             <i class="fas fa-arrow-left ms-2"></i>

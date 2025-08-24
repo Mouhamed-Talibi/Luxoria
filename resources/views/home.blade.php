@@ -6,46 +6,101 @@
 
 @push('styles')
 <style>
-    /* Animation classes */
+    :root {
+        --background-color: #ffffff;
+        --default-color: #314862;
+        --heading-color: #13447f;
+        --accent-color: #065cc2;
+        --surface-color: #ffffff;
+        --contrast-color: #ffffff;
+        --primary-color: #4361ee;
+        --secondary-color: #f8f9fa;
+        --accent-color: #3a0ca3;
+        --text-color: #2b2d42;
+        --light-text: #6c757d;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --hover-shadow: 0 15px 35px rgba(67, 97, 238, 0.15);
+        --transition: all 0.3s ease;
+    }
+
     .animate-on-scroll {
         opacity: 0;
         transform: translateY(50px);
         transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    
-    .animate-on-scroll.animated {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    /* Hero image animation */
+    .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+
     .hero-image-wrapper {
         transform: perspective(1000px) rotateY(-5deg);
         transition: transform 1s ease;
     }
-    
-    .hero-image-wrapper.animated {
-        transform: perspective(1000px) rotateY(0deg);
-    }
-    
-    /* Service items animation */
-    .service {
-        transition: transform 0.5s ease;
-    }
-    
-    .service.animated {
-        transform: translateY(-10px);
-    }
-    
-    /* Category cards animation */
+    .hero-image-wrapper.animated { transform: perspective(1000px) rotateY(0deg); }
+
+    .service { transition: transform 0.5s ease; }
+    .service.animated { transform: translateY(-10px); }
+
     .category {
         transition: transform 0.5s ease, box-shadow 0.5s ease;
     }
-    
     .category.animated {
         transform: translateY(-10px);
         box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
     }
+
+    /* courses */
+    .course-card {
+        background: white;
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: var(--card-shadow);
+        height: 100%;
+    }
+    .course-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
+    .course-image { position: relative; overflow: hidden; }
+    .course-image img {
+        background-color: #4a6886;
+        width: 100%; height: 220px;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+    .course-card:hover .course-image img { transform: scale(1.05); }
+
+    .course-badge {
+        position: absolute; top: 15px; right: 15px;
+        background: var(--default-color); color: white;
+        padding: 5px 12px; border-radius: 50px;
+        font-size: 0.8rem; font-weight: 500;
+    }
+    .course-content { padding: 1.5rem; }
+    .course-title {
+        font-weight: 700; font-size: 1.4rem;
+        margin-bottom: 0.8rem; color: var(--text-color);
+    }
+    .course-description { color: var(--light-text); margin-bottom: 1.5rem; line-height: 1.6; }
+    .course-meta { display: flex; justify-content: center; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .meta-item { display: flex; align-items: center; color: var(--light-text); }
+    .meta-item i { margin-right: 5px; color: var(--primary-color); }
+
+    .btn-enroll {
+        background: var(--primary-color); color: white;
+        padding: 5px 5px; border-radius: 50px;
+        font-weight: 500; transition: var(--transition);
+        display: inline-flex; align-items: center; justify-content: center;
+        text-decoration: none; border: 2px solid var(--primary-color);
+    }
+    .btn-enroll:hover {
+        background: transparent; color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+    .btn-enroll i { margin-left: 8px; transition: var(--transition); }
+    .btn-enroll:hover i { transform: translateX(4px); }
+
+    .rating { color: #ffc107; margin-bottom: 0.8rem; }
+    .price { font-weight: 700; font-size: 1.2rem; color: var(--accent-color); margin-bottom: 1rem; }
+
+    .randomProducts { background-color: #1a3046; }
 </style>
 @endpush
 
@@ -58,15 +113,13 @@
                     <div class="hero-text text-end animate-on-scroll">
                         <h6 class="text-primary mb-3 fw-bold" style="letter-spacing: 1px;">أحدث صيحات التسوق</h6>
                         <h1 class="display-4 fw-bold mb-4" style="line-height: 1.3; color: #2c3e50;">
-                            <span class="typing-animation">
-                                اكتشف عالمًا من الأناقة والابتكار
-                            </span>
+                            <span class="typing-animation">اكتشف عالمًا من الأناقة والابتكار</span>
                         </h1>
                         <p class="lead text-muted mb-4" style="line-height: 1.8">
                             تسوق أحدث الموديلات والعطور والاكسسوارات والإلكترونيات بأسعار تنافسية. جودة عالية، شحن سريع، وضمان استرداد الأموال.
                         </p>
                         <div class="d-flex gap-3 justify-content-start">
-                            <a href="{{ route('auth.login')}}" class="btn btn-dark px-4 py-3 rounded-1 fw-bold">
+                            <a href="#" class="btn btn-dark px-4 py-3 rounded-1 fw-bold" data-bs-toggle="modal" data-bs-target="#loginRequiredModal">
                                 ابدأ التسوق الآن <i class="fas fa-arrow-left ms-2"></i>
                             </a>
                         </div>
@@ -84,37 +137,37 @@
         </div>
     </div>
 
-        <!-- Services Section -->
-        <div class="services mt-5 bg-dark">
-            <div class="container">
-                <div class="row justify-content-center align-items-center g-3">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="service p-3 animate-on-scroll">
-                            <i class="fas fa-truck fs-3 text-info" aria-hidden="true"></i>
-                            <h5 class="service-title d-inline-block ms-2">شحن سريع</h5>
-                            <p class="service-description mt-2">استمتع بشحن سريع وآمن لجميع طلباتك.</p>
-                        </div>
+    <!-- Services Section -->
+    <div class="services mt-5 bg-dark">
+        <div class="container">
+            <div class="row justify-content-center align-items-center g-3">
+                <div class="col-md-6 col-lg-4">
+                    <div class="service p-3 animate-on-scroll">
+                        <i class="fas fa-truck fs-3 text-info"></i>
+                        <h5 class="service-title d-inline-block ms-2">شحن سريع</h5>
+                        <p class="service-description mt-2">استمتع بشحن سريع وآمن لجميع طلباتك.</p>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="service p-3 animate-on-scroll">
-                            <i class="fas fa-bolt fs-3 text-info" aria-hidden="true"></i>
-                            <h5 class="service-title d-inline-block ms-2">توصيل سريع</h5>
-                            <p class="service-description mt-2">احصل على طلباتك بأسرع وقت ممكن مع خدمة التوصيل السريع لدينا.</p>
-                        </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service p-3 animate-on-scroll">
+                        <i class="fas fa-bolt fs-3 text-info"></i>
+                        <h5 class="service-title d-inline-block ms-2">توصيل سريع</h5>
+                        <p class="service-description mt-2">احصل على طلباتك بأسرع وقت ممكن مع خدمة التوصيل السريع لدينا.</p>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="service p-3 animate-on-scroll">
-                            <i class="fa-solid fa-dollar-sign fs-3 text-info" aria-hidden="true"></i>
-                            <h5 class="service-title d-inline-block ms-2">الدفع عند الاستلام</h5>
-                            <p class="service-description mt-2">ادفع عند استلام طلبك بكل سهولة وأمان.</p>
-                        </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service p-3 animate-on-scroll">
+                        <i class="fa-solid fa-dollar-sign fs-3 text-info"></i>
+                        <h5 class="service-title d-inline-block ms-2">الدفع عند الاستلام</h5>
+                        <p class="service-description mt-2">ادفع عند استلام طلبك بكل سهولة وأمان.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <!-- Categories -->
     <div class="container">
-        {{-- categories --}}
         <div class="categories py-5 pb-5">
             <div class="main-title text-center animate-on-scroll">
                 <i class="fa-solid fa-layer-group fs-2 text-info"></i>
@@ -123,21 +176,15 @@
             </div>
             <div>
                 <div class="row justify-content-center align-items-center g-3 mt-5">
-                    {{-- display categories --}}
                     @foreach ($categories as $category)
                         <div class="col-6 col-md-6 col-lg-4 mb-4">
                             <div class="category card h-100 border-0 shadow-sm overflow-hidden animate-on-scroll">
                                 <div class="category-image overflow-hidden">
-                                    <img 
-                                        src="{{ Storage::url($category->image)}}" 
-                                        alt="{{ $category->name }}"
-                                        class="img-fluid w-100 h-auto object-fit-cover"
-                                        loading="lazy"
-                                    >
+                                    <img src="{{ Storage::url($category->image)}}" alt="{{ $category->name }}" class="img-fluid w-100 h-auto object-fit-cover" loading="lazy">
                                 </div>
                                 <div class="category-text text-center p-4">
                                     <h3 class="text-dark mb-0 fs-5 fw-semibold">{{ $category->name }}</h3>
-                                    <a href="{{ route('auth.login')}}" class="stretched-link" aria-label="View {{ $category->name }}"></a>
+                                    <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#loginRequiredModal" aria-label="View {{ $category->name }}"></a>
                                 </div>
                                 <div class="w-75 mx-auto">
                                     <p class="text-secondary ">{{ Str::limit($category->description, 80) }}</p>
@@ -151,45 +198,80 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>   
+
+    <!-- Random Products -->
+    <div class="randomProducts text-light animate-on-scroll">
+        <div class="container-fluid py-4 pb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-center mt-3 mb-4 animate-on-scroll">
+                <i class="fa fa-box-open fs-2 text-info"></i>
+                <h1 class="display-4 fw-bold mt-2">بعض منتجاتنا</h1>
+                <p class="text-secondary">اكتشف منتجاتنا المتنوعة</p> 
+            </div>
+            <div class="row g-4 justify-content-center mt-4 animate-on-scroll">
+                @foreach ($randomProducts as $product)
+                    <div class="col-12 col-lg-3 col-md-3 mb-4 text-center animate-on-scroll" data-aos="fade-up" data-aos-delay="100">
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="{{ Storage::url($product->images->first()->path)}}" alt="{{ $product->name}}" class="img-fluid">
+                                <div class="course-badge">{{ $product->category->name }}</div>
+                            </div>
+                            <div class="course-content">
+                                <h3 class="course-title text-dark-25">{{ $product->name }}</h3>
+                                <div class="course-meta">
+                                    <div class="meta-item">
+                                        <i class="fa fa-dollar-sign"></i>
+                                        <span>{{ $product->price }} درهم</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a href="#" class="btn-enroll" data-bs-toggle="modal" data-bs-target="#loginRequiredModal">
+                                        اطلب الان <i class="fas fa-arrow-left me-3"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End Course Item -->
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg rounded-3 p-4">
+            <div class="modal-body text-center">
+                <p class="fs-5 text-dark fw-semibold mb-3">يجب تسجيل الدخول أولاً حتى تتمكن من استخدام هذه الميزة</p>
+                <i class="fas fa-lock fa-3x text-primary mb-3"></i>
+                <p class="text-muted">يرجى تسجيل الدخول إلى حسابك للمتابعة.</p>
+            </div>
+            <div class="modal-footer border-0 d-flex justify-content-center">
+                <a href="{{ route('auth.login') }}" class="btn btn-primary px-4">تسجيل الدخول</a>
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">إلغاء</button>
+            </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize Bootstrap components
         const scrollElements = document.querySelectorAll('.animate-on-scroll');
-        
-        // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
-                    // Stop observing after animation
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        // Observe all elements with animate-on-scroll class
-        scrollElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Add staggered animation delay to category cards
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        scrollElements.forEach(element => { observer.observe(element); });
         const categoryCards = document.querySelectorAll('.category');
-        categoryCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.1}s`;
-        });
-        
-        // Add staggered animation delay to service items
+        categoryCards.forEach((card, index) => { card.style.transitionDelay = `${index * 0.1}s`; });
         const serviceItems = document.querySelectorAll('.service');
-        serviceItems.forEach((item, index) => {
-            item.style.transitionDelay = `${index * 0.2}s`;
-        });
+        serviceItems.forEach((item, index) => { item.style.transitionDelay = `${index * 0.2}s`; });
     });
 </script>
 @endpush

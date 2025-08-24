@@ -16,7 +16,16 @@
         public function home() {
             $categories = Category::orderBy('name', 'asc')
                 ->get();
-            return view('home', compact('categories'));
+            $ids = Product::pluck('id')->random(min(8, Product::count()));
+            $randomProducts = Product::with([
+                    'parfumDetails',
+                    'clothesDetails',
+                    'electronicsDetails',
+                    'health_beauty_Details',
+                    'category',
+                    'images'
+                ])->whereIn('id', $ids)->get();
+            return view('home', compact(['categories', 'randomProducts']));
         }
 
         // index method
