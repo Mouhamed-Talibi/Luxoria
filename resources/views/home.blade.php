@@ -240,7 +240,7 @@
     <!-- Modal -->
     <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow-lg rounded-3 p-4">
+            <div class="modal-content shadow-lg rounded-5 p-4">
             <div class="modal-body text-center">
                 <p class="fs-5 text-dark fw-semibold mb-3">يجب تسجيل الدخول أولاً حتى تتمكن من استخدام هذه الميزة</p>
                 <i class="fas fa-lock fa-3x text-primary mb-3"></i>
