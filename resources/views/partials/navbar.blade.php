@@ -30,8 +30,8 @@
                                 حولنا
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end text-end">
-                                <li><a class="dropdown-item" href="#">من نحن</a></li>
-                                <li><a class="dropdown-item" href="#">الخدمات</a></li>
+                                <li><a class="dropdown-item" href="{{ route('app.about_us')}}">من نحن</a></li>
+                                <li><a class="dropdown-item" href="{{ route('app.home')}}#services">الخدمات</a></li>
                                 <li><a class="dropdown-item" href="#">اتصل بنا</a></li>
                             </ul>
                         </li>

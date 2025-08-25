@@ -8,10 +8,7 @@
                     <img src="{{ asset('assets/luxoria-1.png') }}" alt="شعار لكسوريا" style="height: 120px; width:120px;" class="mb-3">
                     <p class="text-secondary">لكسوريا - وجهتك الأولى للمنتجات الفاخرة وتجربة تسوق استثنائية.</p>
                     <div class="social-icons mt-4 d-flex justify-content-center justify-content-md-start gap-3">
-                        <a href="#" class=""><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class=""><i class="fab fa-twitter"></i></a>
                         <a href="#" class=""><i class="fab fa-instagram"></i></a>
-                        <a href="#" class=""><i class="fab fa-pinterest"></i></a>
                         <a href="#" class=""><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -22,10 +19,8 @@
                 <h5 class="text-uppercase mb-4 text-md-end text-center">روابط سريعة</h5>
                 <ul class="list-unstyled text-md-end text-center">
                     <li class="mb-2"><a href="#" class="text-decoration-none">الرئيسية</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none">المتجر</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none">الوافدون الجدد</a></li>
+                    <li class="mb-2"><a href="#" class="text-decoration-none">المنتجات</a></li>
                     <li class="mb-2"><a href="#" class="text-decoration-none">الأكثر مبيعاً</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none">عروض خاصة</a></li>
                 </ul>
             </div>
 
@@ -33,10 +28,7 @@
             <div class="customer-service col-6 col-md-6 col-lg-2">
                 <h5 class="text-uppercase mb-4 text-md-end text-center">خدمة العملاء</h5>
                 <ul class="list-unstyled text-md-end text-center">
-                    <li class="mb-2"><a href="#" class="text-decoration-none">حسابي</a></li>
                     <li class="mb-2"><a href="#" class="text-decoration-none">تتبع الطلب</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none">قائمة الرغبات</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none">الإرجاع والاستبدال</a></li>
                     <li class="mb-2"><a href="#" class="text-decoration-none">الأسئلة الشائعة</a></li>
                 </ul>
             </div>

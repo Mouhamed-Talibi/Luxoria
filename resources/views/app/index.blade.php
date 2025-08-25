@@ -25,7 +25,6 @@
         /* Testimonials Section */
         .testimonials {
             padding: 5rem 0;
-            background-color: var(--secondary-color);
         }
         
         .testimonial-img {
@@ -126,6 +125,17 @@
                 padding: 1.5rem;
             }
         }
+
+        /* values section */
+        .values .card {
+            transition: var(--transition);
+        }
+
+        .values .card:hover {
+            box-shadow: var(--hover-shadow);
+            border: 2px solid #065cc2;
+            transform: translateY(-7px);
+        }
     </style>
 @endpush
 
@@ -165,7 +175,7 @@
     </div>
 
     <!-- Services Section -->
-    <div class="services mt-5">
+    <div class="services mt-5" id="services" data-aos="fade-up">
         <div class="container">
             <div class="row justify-content-center align-items-center g-3">
                 <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="100">
@@ -234,6 +244,56 @@
             </div>
         </div>
     </div>
+
+    <!-- Values Section -->
+    <section class="values py-5 bg-light">
+        <div class="container py-4">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold mb-4">قيمنا الأساسية</h2>
+                    <p class="lead text-muted">الأساس الذي تقوم عليه رؤيتنا وخدمتنا في لوكسوريا</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-medal text-primary fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">الجودة</h4>
+                            <p class="text-muted">نحرص على تقديم منتجات عالية الجودة من أفضل الموردين العالميين والمحليين.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-shield-alt text-primary fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">الثقة</h4>
+                            <p class="text-muted">نضمن لأعضائنا تجربة تسوق آمنة وشفافية كاملة في المعاملات.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-headset text-primary fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">الدعم</h4>
+                            <p class="text-muted">فريق دعم عملائنا متاح على مدار الساعة لمساعدتك في كل استفسار.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     {{-- categories --}}
     <div class="categories py-5 pb-5" id="categories" data-aos="fade-up">

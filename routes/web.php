@@ -19,6 +19,9 @@
     Route::get('/', [AppController::class, 'home'])
         ->name('app.app');
 
+    // login redirect route
+    Route::get('/login', [AuthController::class, 'LoginForm'])->name('login');
+
     // auth routes
     Route::prefix('auth')->name('auth.')->group(function() {
         // login form route
@@ -45,7 +48,7 @@
     });
 
     // app routes
-    Route::middleware(['verified', 'auth'])->prefix('app')->name('app.')->group(function(){
+    Route::middleware(['verified', 'auth'])->prefix('luxoria')->name('app.')->group(function(){
         // home route
         Route::get('/home', [AppController::class, 'index'])
             ->name('home');
@@ -73,6 +76,9 @@
         // search result
         Route::get('find-product', [AppController::class, 'findProduct'])
             ->name('find_product');
+        // about us route
+        Route::get('about-us', [AppController::class, 'aboutUs'])
+            ->name('about_us');
     });
 
     // admin routes

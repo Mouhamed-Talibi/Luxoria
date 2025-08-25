@@ -28,16 +28,32 @@
         transform: translateY(50px);
         transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+
+    .animate-on-scroll.animated { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 
     .hero-image-wrapper {
         transform: perspective(1000px) rotateY(-5deg);
         transition: transform 1s ease;
     }
-    .hero-image-wrapper.animated { transform: perspective(1000px) rotateY(0deg); }
 
-    .service { transition: transform 0.5s ease; }
-    .service.animated { transform: translateY(-10px); }
+    .hero-image-wrapper.animated { 
+        transform: perspective(1000px) rotateY(0deg); 
+    }
+
+    .service { 
+        transition: transform 0.5s ease; 
+    }
+
+    .service.animated { 
+        transform: translateY(-10px); 
+    }
+
+    .categories {
+        background-color: #fff;
+    }
 
     .category {
         transition: transform 0.5s ease, box-shadow 0.5s ease;
@@ -57,15 +73,27 @@
         box-shadow: var(--card-shadow);
         height: 100%;
     }
-    .course-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
-    .course-image { position: relative; overflow: hidden; }
+
+    .course-card:hover { 
+        transform: translateY(-5px); 
+        box-shadow: var(--hover-shadow); 
+    }
+
+    .course-image { 
+        position: relative; 
+        overflow: hidden; 
+    }
+
     .course-image img {
         background-color: #4a6886;
         width: 100%; height: 220px;
         object-fit: cover;
         transition: var(--transition);
     }
-    .course-card:hover .course-image img { transform: scale(1.05); }
+
+    .course-card:hover .course-image img { 
+        transform: scale(1.05); 
+    }
 
     .course-badge {
         position: absolute; top: 15px; right: 15px;
@@ -73,15 +101,40 @@
         padding: 5px 12px; border-radius: 50px;
         font-size: 0.8rem; font-weight: 500;
     }
-    .course-content { padding: 1.5rem; }
-    .course-title {
-        font-weight: 700; font-size: 1.4rem;
-        margin-bottom: 0.8rem; color: var(--text-color);
+    .course-content { 
+        padding: 1.5rem; 
     }
-    .course-description { color: var(--light-text); margin-bottom: 1.5rem; line-height: 1.6; }
-    .course-meta { display: flex; justify-content: center; margin-bottom: 1.5rem; font-size: 0.9rem; }
-    .meta-item { display: flex; align-items: center; color: var(--light-text); }
-    .meta-item i { margin-right: 5px; color: var(--primary-color); }
+
+    .course-title {
+        font-weight: 700; 
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem; 
+        color: var(--text-color);
+    }
+
+    .course-description { 
+        color: var(--light-text); 
+        margin-bottom: 1.5rem; 
+        line-height: 1.6; 
+    }
+
+    .course-meta { 
+        display: flex; 
+        justify-content: center; 
+        margin-bottom: 1.5rem; 
+        font-size: 0.9rem; 
+    }
+
+    .meta-item { 
+        display: flex; 
+        align-items: center; 
+        color: var(--light-text); 
+    }
+
+    .meta-item i { 
+        margin-right: 5px; 
+        color: var(--primary-color); 
+    }
 
     .btn-enroll {
         background: var(--primary-color); color: white;
@@ -94,117 +147,40 @@
         background: transparent; color: var(--primary-color);
         transform: translateY(-2px);
     }
-    .btn-enroll i { margin-left: 8px; transition: var(--transition); }
-    .btn-enroll:hover i { transform: translateX(4px); }
+    .btn-enroll i { 
+        margin-left: 8px; 
+        transition: var(--transition); 
+    }
 
-    .rating { color: #ffc107; margin-bottom: 0.8rem; }
-    .price { font-weight: 700; font-size: 1.2rem; color: var(--accent-color); margin-bottom: 1rem; }
+    .btn-enroll:hover i { 
+        transform: translateX(4px); 
+    }
 
-    .randomProducts { background-color: #1a3046; }
+    .rating { 
+        color: #ffc107; 
+        margin-bottom: 0.8rem; 
+    }
 
-    /* Testimonials Section */
-    .testimonials {
-        padding: 5rem 0;
-        background-color: var(--secondary-color);
+    .price { 
+        font-weight: 700; 
+        font-size: 1.2rem; 
+        color: var(--accent-color); 
+        margin-bottom: 1rem; 
     }
-    
-    .testimonial-img {
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: var(--card-shadow);
-        height: 100%;
+
+    .randomProducts { 
+        background-color: #1a3046; 
     }
-    
-    .testimonial-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .testimonial-form {
-        background: white;
-        padding: 2.5rem;
-        border-radius: 16px;
-        box-shadow: var(--card-shadow);
-        height: 100%;
-    }
-    
-    .testimonial-form .form-control {
-        padding: 0.75rem 1rem;
-        border-radius: 10px;
-        border: 1px solid #e2e8f0;
+
+    /* values section */
+    .values .card {
         transition: var(--transition);
     }
-    
-    .testimonial-form .form-control:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
-    }
-    
-    .testimonial-form textarea.form-control {
-        min-height: 120px;
-        resize: vertical;
-    }
-    
-    .rating-input {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-        direction: ltr;
-    }
-    
-    .rating-input input {
-        display: none;
-    }
-    
-    .rating-input label {
-        cursor: pointer;
-        font-size: 2rem;
-        color: #ddd;
-        transition: var(--transition);
-        margin: 0 0.1rem;
-    }
-    
-    .rating-input input:checked ~ label,
-    .rating-input label:hover,
-    .rating-input label:hover ~ label {
-        color: #ffc107;
-    }
-    
-    .rating-input input:checked + label {
-        color: #ffc107;
-    }
-    
-    .btn-submit {
-        background: var(--primary-color);
-        color: white;
-        padding: 0.50rem 1rem;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: var(--transition);
-        border: 2px solid var(--primary-color);
-        width: 100%;
-        margin-top: 1rem;
-    }
-    
-    .btn-submit:hover {
-        background: transparent;
-        color: var(--primary-color);
-        transform: translateY(-2px);
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-        .testimonial-img {
-            height: 400px;
-            margin-bottom: 2rem;
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .testimonial-form {
-            padding: 1.5rem;
-        }
+
+    .values .card:hover {
+        box-shadow: var(--hover-shadow);
+        border: 2px solid #065cc2;
+        transform: translateY(-7px);
     }
 </style>
 @endpush
@@ -303,7 +279,57 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>  
+    
+    <!-- Values Section -->
+    <section class="values py-5 bg-light animate-on-scroll">
+        <div class="container py-4">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto animate-on-scroll" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold mb-4">قيمنا الأساسية</h2>
+                    <p class="lead text-muted">الأساس الذي تقوم عليه رؤيتنا وخدمتنا في لوكسوريا</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4 animate-on-scroll" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-medal text-primary fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">الجودة</h4>
+                            <p class="text-muted">نحرص على تقديم منتجات عالية الجودة من أفضل الموردين العالميين والمحليين.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 animate-on-scroll" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-shield-alt text-primary fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">الثقة</h4>
+                            <p class="text-muted">نضمن لأعضائنا تجربة تسوق آمنة وشفافية كاملة في المعاملات.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 animate-on-scroll" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-headset text-primary fs-2"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">الدعم</h4>
+                            <p class="text-muted">فريق دعم عملائنا متاح على مدار الساعة لمساعدتك في كل استفسار.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Random Products -->
     <div class="randomProducts text-light animate-on-scroll">
@@ -344,76 +370,7 @@
 
     <!-- Testimonials Section -->
     <div class="testimonials py-5 animate-on-scroll">
-        <div class="container">
-            <div class="row justify-content-center align-items-stretch">
-                <div class="col-lg-5 mb-4 mb-lg-0">
-                    <div class="testimonial-img animate-on-scroll">
-                        <img src="{{ asset('assets/satisfied-customer.jpg')}}" alt="تجربة العملاء" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="testimonial-form animate-on-scroll">
-                        <div class="text-center mb-5">
-                            <i class="fas fa-comments fs-2 text-info mb-3"></i>
-                            <h2 class="fw-bold">شاركنا تجربتك</h2>
-                            <p class="text-muted">رأيك يهمنا! شاركنا تجربتك مع منتجاتنا وخدماتنا</p>
-                        </div>
-                        
-                        <form action="{{ route('testimonials.store')}}" method="POST" class="animate-on-scroll">
-                            @csrf
-
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="full_name" class="form-label">الاسم الكامل</label>
-                                    <input type="text" class="form-control border-start-1 @error('full_name') is-invalid @enderror" id="full_name" name="full_name" value="{{ old('full_name', Auth::user()->name ?? '') }}" placeholder="أدخل اسمك الكامل">
-                                    @error('full_name')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">البريد الإلكتروني</label>
-                                    <input type="email" class="form-control border-start-1 @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email', Auth::user()->email ?? '') }}" placeholder="أدخل بريدك الإلكتروني">
-                                    @error('email')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="form-label d-block text-center border-start-1 @error('rating') is-invalid @enderror">التقييم</label>
-                                <div class="rating-input">
-                                    <input type="radio" id="star5" name="rating" value="5">
-                                    <label for="star5">★</label>
-                                    <input type="radio" id="star4" name="rating" value="4">
-                                    <label for="star4">★</label>
-                                    <input type="radio" id="star3" name="rating" value="3">
-                                    <label for="star3">★</label>
-                                    <input type="radio" id="star2" name="rating" value="2">
-                                    <label for="star2">★</label>
-                                    <input type="radio" id="star1" name="rating" value="1">
-                                    <label for="star1">★</label>
-                                </div>
-                                @error('rating')
-                                    <p class="text-danger text-center">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="comment" class="form-label">التعليق</label>
-                                <textarea class="form-control border-start-1 @error('comment') is-invalid @enderror" id="comment" {{ old('comment') }} name="comment" rows="4" placeholder="أخبرنا عن تجربتك مع منتجاتنا..."></textarea>
-                                @error('comment')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            
-                            <button type="submit" class="btn-submit">
-                                إرسال التقييم <i class="fas fa-paper-plane ms-2"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     <!-- Modal -->

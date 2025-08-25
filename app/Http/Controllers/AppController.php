@@ -67,4 +67,9 @@
             }
             return view('app.find_product', compact('products'));
         }
+
+        // about us method
+        public function aboutUs() {
+            return view('app.about');
+        }
     }
