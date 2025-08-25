@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white pt-5 pb-4" dir="rtl">
+<footer class="bg-dark text-white pb-4" dir="rtl">
     <div class="container">
         <div class="row gy-4 align-items-start justify-content-between">
 

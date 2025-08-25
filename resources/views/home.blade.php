@@ -182,6 +182,168 @@
         border: 2px solid #065cc2;
         transform: translateY(-7px);
     }
+
+    /* Enhanced Testimonials Section */
+    .testimonials-section {
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .testimonials-section::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 0;
+    }
+    
+    .testimonials-section::after {
+        content: '';
+        position: absolute;
+        bottom: -50px;
+        left: -50px;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 0;
+    }
+    
+    .testimonials-heading {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 3rem;
+    }
+    
+    .testimonials-heading i {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #8f94fb 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+    
+    .testimonials-heading h1 {
+        font-weight: 700;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+    }
+    
+    .testimonials-heading p {
+        color: #6c757d;
+        font-size: 1.1rem;
+    }
+    
+    .testimonial-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: var(--card-shadow);
+        height: 100%;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+    
+    .testimonial-content {
+        padding: 2rem;
+        position: relative;
+    }
+    
+    .quote-icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 3rem;
+        opacity: 0.1;
+        color: var(--primary-color);
+    }
+    
+    .user-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin: 0 auto 1rem;
+        display: block;
+    }
+    
+    .user-content h5 {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+    }
+    
+    .user-content p {
+        line-height: 1.8;
+        color: #555;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-ratings {
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-ratings i {
+        color: #ffc107;
+        text-shadow: 0 2px 5px rgba(255, 193, 7, 0.3);
+    }
+    
+    .testimonial-nav {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    
+    .testimonial-nav-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ddd;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-nav-btn.active {
+        background: var(--primary-color);
+        transform: scale(1.3);
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .testimonial-card {
+            margin-bottom: 2rem;
+        }
+        
+        .testimonials-heading h1 {
+            font-size: 2rem;
+        }
+    }
 </style>
 @endpush
 
@@ -368,10 +530,47 @@
         </div>
     </div>
 
-    <!-- Testimonials Section -->
-    <div class="testimonials py-5 animate-on-scroll">
-        
-    </div>
+    <!-- Enhanced Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-heading text-center animate-on-scroll">
+                <i class="fas fa-comments"></i>
+                <h1 class="display-5 fw-bold mb-3">ماذا قالوا عنا</h1>
+                <p class="text-secondary fs-5">اكتشف آراء عملائنا حول منتجاتنا وخدماتنا</p>
+            </div>
+            
+            <div class="row justify-content-center mt-5">
+                @foreach ($testimonials as $testimonial)
+                    <div class="col-md-6 col-lg-4 mb-4 animate-on-scroll">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <i class="fas fa-quote-left quote-icon"></i>
+                                <div class="user-content text-center">
+                                    <h5 class="fw-bold mb-1">{{ $testimonial->full_name }}</h5>
+                                    <p class="mb-3">{{ $testimonial->comment }}</p>
+                                    <div class="testimonial-ratings">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $testimonial->rating)
+                                                <i class="fas fa-star"></i>
+                                            @else
+                                                <i class="far fa-star"></i>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            
+            <div class="testimonial-nav">
+                <div class="testimonial-nav-btn active"></div>
+                <div class="testimonial-nav-btn"></div>
+                <div class="testimonial-nav-btn"></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Modal -->
     <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
@@ -408,6 +607,16 @@
         categoryCards.forEach((card, index) => { card.style.transitionDelay = `${index * 0.1}s`; });
         const serviceItems = document.querySelectorAll('.service');
         serviceItems.forEach((item, index) => { item.style.transitionDelay = `${index * 0.2}s`; });
+        
+        // Testimonial navigation functionality
+        const testimonialNavBtns = document.querySelectorAll('.testimonial-nav-btn');
+        testimonialNavBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                testimonialNavBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // You can add carousel functionality here if needed
+            });
+        });
     });
 </script>
 @endpush

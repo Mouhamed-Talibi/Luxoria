@@ -50,7 +50,7 @@
         @include('partials.navbar')
 
         {{-- main content --}}
-        <main class="py-5 pb-5">
+        <main class="py-5">
             @yield('content')
         </main>
 

@@ -5,6 +5,7 @@
     use App\Http\Requests\FindProductRequest;
     use App\Models\Category;
     use App\Models\Product;
+    use App\Models\Testimonial;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Redirect;
@@ -25,7 +26,11 @@
                     'category',
                     'images'
                 ])->whereIn('id', $ids)->get();
-            return view('home', compact(['categories', 'randomProducts']));
+            $testimonials = Testimonial::where('status', 'accepted')
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+            return view('home', compact(['categories', 'randomProducts', 'testimonials']));
         }
 
         // index method
