@@ -4,6 +4,131 @@
     الصفحة الرئيسية
 @endsection
 
+@push('styles')
+    <style>
+        :root {
+            --background-color: #ffffff;
+            --default-color: #314862;
+            --heading-color: #13447f;
+            --accent-color: #065cc2;
+            --surface-color: #ffffff;
+            --contrast-color: #ffffff;
+            --primary-color: #4361ee;
+            --secondary-color: #f8f9fa;
+            --accent-color: #3a0ca3;
+            --text-color: #2b2d42;
+            --light-text: #6c757d;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 35px rgba(67, 97, 238, 0.15);
+            --transition: all 0.3s ease;
+        }
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--secondary-color);
+        }
+        
+        .testimonial-img {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            height: 100%;
+        }
+        
+        .testimonial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-form {
+            /* background: white; */
+            padding: 2.5rem;
+            border-radius: 16px;
+            /* box-shadow: var(--card-shadow); */
+            height: 100%;
+        }
+        
+        .testimonial-form .form-control {
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+        }
+        
+        .testimonial-form .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        }
+        
+        .testimonial-form textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .rating-input {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            direction: ltr;
+        }
+        
+        .rating-input input {
+            display: none;
+        }
+        
+        .rating-input label {
+            cursor: pointer;
+            font-size: 2rem;
+            color: #ddd;
+            transition: var(--transition);
+            margin: 0 0.1rem;
+        }
+        
+        .rating-input input:checked ~ label,
+        .rating-input label:hover,
+        .rating-input label:hover ~ label {
+            color: #ffc107;
+        }
+        
+        .rating-input input:checked + label {
+            color: #ffc107;
+        }
+        
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.50rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .btn-submit:hover {
+            background: transparent;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .testimonial-img {
+                height: 400px;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .testimonial-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="container">
         <!-- Hero Section -->
@@ -144,6 +269,80 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials py-5 animate-on-scroll">
+        <div class="container">
+            <div class="row justify-content-center align-items-stretch">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="testimonial-img animate-on-scroll">
+                        <img src="{{ asset('assets/satisfied-customer.jpg')}}" alt="تجربة العملاء" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="testimonial-form animate-on-scroll">
+                        <div class="text-center mb-5">
+                            <i class="fas fa-comments fs-2 text-info mb-3"></i>
+                            <h2 class="fw-bold">شاركنا تجربتك</h2>
+                            <p class="text-muted">رأيك يهمنا! شاركنا تجربتك مع منتجاتنا وخدماتنا</p>
+                        </div>
+                        
+                        <form action="{{ route('testimonials.store')}}" method="POST" class="animate-on-scroll">
+                            @csrf
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="full_name" class="form-label">الاسم الكامل</label>
+                                    <input type="text" class="form-control border-start-1 @error('full_name') is-invalid @enderror" id="full_name" name="full_name" value="{{ old('full_name', Auth::user()->name ?? '') }}" placeholder="أدخل اسمك الكامل">
+                                    @error('full_name')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                                    <input type="email" class="form-control border-start-1 @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email', Auth::user()->email ?? '') }}" placeholder="أدخل بريدك الإلكتروني">
+                                    @error('email')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label d-block text-center border-start-1 @error('rating') is-invalid @enderror">التقييم</label>
+                                <div class="rating-input">
+                                    <input type="radio" id="star5" name="rating" value="5">
+                                    <label for="star5">★</label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4">★</label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3">★</label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2">★</label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1">★</label>
+                                </div>
+                                @error('rating')
+                                    <p class="text-danger text-center">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="comment" class="form-label">التعليق</label>
+                                <textarea class="form-control border-start-1 @error('comment') is-invalid @enderror" id="comment" {{ old('comment') }} name="comment" rows="4" placeholder="أخبرنا عن تجربتك مع منتجاتنا..."></textarea>
+                                @error('comment')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">
+                                إرسال التقييم <i class="fas fa-paper-plane ms-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

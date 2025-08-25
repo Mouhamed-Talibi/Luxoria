@@ -372,7 +372,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">البريد الإلكتروني</label>
-                                    <input type="email" class="form-control border-start-1 @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email', Auth::user()->name ?? '') }}" placeholder="أدخل بريدك الإلكتروني">
+                                    <input type="email" class="form-control border-start-1 @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email', Auth::user()->email ?? '') }}" placeholder="أدخل بريدك الإلكتروني">
                                     @error('email')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
