@@ -228,6 +228,11 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star-half-alt"></i>
                                     </div>
+                                    {{-- discount display --}}
+                                    @if ($product->old_price > $product->price)
+                                        <span class="badge bg-success mb-2">خصم {{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
+                                    @endif
+                                    {{-- price --}}
                                     <p class="price mt-2">{{ number_format($product->price, 2) }} درهم</p>
                                 </div>
                                 <a href="{{ route('app.show_product', $product->id) }}" class="stretched-link" aria-label="عرض تفاصيل المنتج"></a>

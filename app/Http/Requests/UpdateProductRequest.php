@@ -33,6 +33,12 @@ class UpdateProductRequest extends FormRequest
                 'min:0.01',
                 'regex:/^\d+(\.\d{1,2})?$/'
             ],
+            'old_price' => [
+                'nullable',
+                'numeric',
+                'min:0.01',
+                'regex:/^\d+(\.\d{1,2})?$/'
+            ],
             'stock' => [
                 'required',
                 'integer',

@@ -74,7 +74,7 @@
                                     <div class="text-danger mt-2 small">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            
                             <!-- price -->
                             <div class="mb-4">
                                 <div class="input-group">
@@ -82,9 +82,23 @@
                                         <i class="fa-solid fa-money-check-dollar fs-5 text-secondary"></i>
                                     </span>
                                     <input type="number" name="price" class="form-control border-start-1 @error('price') is-invalid @enderror" 
-                                        placeholder="Enter price" value="{{ old('price', $product->stock) }}">
+                                        placeholder="Enter price" value="{{ old('price', $product->price) }}">
                                 </div>
                                 @error('price')
+                                    <div class="text-danger mt-2 small">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- old_price -->
+                            <div class="mb-4">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0">
+                                        <i class="fa-solid fa-money-check-dollar fs-5 text-secondary"></i>
+                                    </span>
+                                    <input type="number" name="old_price" class="form-control border-start-1 @error('old_price') is-invalid @enderror" 
+                                        placeholder="Enter old_price" value="{{ old('old_price', $product->old_price) }}">
+                                </div>
+                                @error('old_price')
                                     <div class="text-danger mt-2 small">{{ $message }}</div>
                                 @enderror
                             </div>

@@ -511,6 +511,10 @@
                             </div>
                             <div class="course-content">
                                 <h3 class="course-title text-dark-25">{{ $product->name }}</h3>
+                                {{-- discount display --}}
+                                @if ($product->old_price > $product->price)
+                                    <span class="badge bg-success mb-2">خصم {{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
+                                @endif
                                 <div class="course-meta">
                                     <div class="meta-item">
                                         <i class="fa fa-dollar-sign"></i>

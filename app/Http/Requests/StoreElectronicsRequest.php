@@ -55,6 +55,12 @@ class StoreElectronicsRequest extends FormRequest
                 'min:1',
                 'regex:/^[0-9]+(\.[0-9]{1,2})?$/'
             ],
+            'old_price' => [
+                'nullable',
+                'numeric',
+                'min:1',
+                'regex:/^[0-9]+(\.[0-9]{1,2})?$/'
+            ],
             'category_id' => [
                 'required',
                 'integer',

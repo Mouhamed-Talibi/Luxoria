@@ -140,6 +140,7 @@ class ProductController extends Controller
                 'slug' => Str::slug($validatedData['name']),
                 'description' => $validatedData['description'],
                 'price' => $validatedData['price'],
+                'old_price' => $validatedData['old_price'] ?? null,
                 'stock' => $validatedData['stock'],
                 'category_id' => $validatedData['category'],
                 'image' => $validatedData['image'] ?? $product->image,

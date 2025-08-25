@@ -50,6 +50,7 @@ class ClothesController extends Controller
                 'description_title' => $validatedFields['description_title'],
                 'description' => $validatedFields['description'],
                 'price' => $validatedFields['price'],
+                'old_price' => $validatedFields['old_price'],
                 'stock' => $validatedFields['stock'],
                 'category_id' => $validatedFields['category_id'],
             ]);
@@ -116,6 +117,7 @@ class ClothesController extends Controller
                 'description_title' => $validated['description_title'],
                 'stock' => $validated['stock'],
                 'price' => $validated['price'],
+                'old_price' => $validated['old_price'],
                 'category_id' => $validated['category_id'],
             ]);
 

@@ -51,6 +51,7 @@ class ParfumDetailController extends Controller
                 'description_title' => $validatedFields['description_title'],
                 'description' => $validatedFields['description'],
                 'price' => $validatedFields['price'],
+                'old_price' => $validatedFields['old_price'],
                 'stock' => $validatedFields['stock'],
                 'category_id' => $validatedFields['category_id'],
             ]);
@@ -120,6 +121,7 @@ class ParfumDetailController extends Controller
                 'description_title' => $request->validated('description_title'),
                 'description' => $request->validated('description'),
                 'price' => $request->validated('price'),
+                'old_price' => $request->validated('old_price'),
                 'stock' => $request->validated('stock'),
                 'category_id' => $request->validated('category_id', $product->category_id),
             ]);

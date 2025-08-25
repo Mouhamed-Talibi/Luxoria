@@ -26,6 +26,7 @@ class StoreParfumRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description_title' => 'required|string',
             'price' => 'required|numeric',
+            'old_price' => 'nullable|numeric',
             'stock' => 'required|integer',
             'category_id' => "required|integer|exists:categories,id",
             'mark' => 'required|string',

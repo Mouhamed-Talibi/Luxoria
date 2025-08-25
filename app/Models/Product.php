@@ -18,6 +18,7 @@
             'description_title',
             'description',
             'price',
+            'old_price',
             'stock',
             'category_id',
         ];

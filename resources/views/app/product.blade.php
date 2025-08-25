@@ -69,10 +69,17 @@
                     
                     <!-- Product Name -->
                     <h1 class="h2 mb-3">{{ $product->name }}</h1>
-                    
-                    <!-- Price -->
+
+                    <!-- Price Section -->
                     <div class="d-flex align-items-center mb-3">
-                        <span class="h6 me-2">{{ number_format($product->price, 2) }} درهم</span>
+                        @if($product->old_price > $product->price)
+                            <del class="text-danger h6 me-2 mb-0">
+                                {{ number_format($product->old_price, 2) }} درهم
+                            </del>
+                        @endif
+                        <span class="h5 text-success mb-0 me-2">
+                            {{ number_format($product->price, 2) }} درهم
+                        </span>
                     </div>
                     
                     <!-- Rating (if available) -->

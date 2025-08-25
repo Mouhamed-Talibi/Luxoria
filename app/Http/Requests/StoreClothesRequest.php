@@ -50,6 +50,11 @@
                     'numeric',
                     'regex:/^\d+(\.\d{1,2})?$/'
                 ],
+                'old_price' => [
+                    'nullable',
+                    'numeric',
+                    'regex:/^\d+(\.\d{1,2})?$/'
+                ],
                 'category_id' => [
                     'required',
                     'integer',
