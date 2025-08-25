@@ -202,6 +202,16 @@
             // delete user
             Route::delete('users/{user}/delete', [UserController::class, 'destroy'])
                 ->name('users.delete');
+        // testimonials management
+            // index route
+            Route::get('testimonials', [TestimonialController::class, 'index'])
+                ->name('testimonials.index');
+            // accept testimonial
+            Route::patch('testimonials/{testimonial}/accept', [TestimonialController::class, 'accept'])
+                ->name('testimonials.accept');
+            // delete testimonial
+            Route::delete('testimonials/{testimonial}/delete', [TestimonialController::class, 'destroy'
+                ])->name('testimonials.delete');
     });
 
     // testimonials store

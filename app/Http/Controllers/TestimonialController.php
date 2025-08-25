@@ -13,7 +13,16 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+        $testimonials = Testimonial::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.testimonials.index', compact('testimonials'));
+    }
+
+    // accept testimonal 
+    public function accept(Testimonial $testimonial) {
+        $testimonial->status = 'accepted';
+        $testimonial->save();
+        return redirect()->route('admin.testimonials.index')
+            ->with('success', 'تم قبول التقييم بنجاح.');
     }
 
     /**
@@ -71,6 +80,8 @@ class TestimonialController extends Controller
      */
     public function destroy(Testimonial $testimonial)
     {
-        //
+        $testimonial->delete();
+        return redirect()->route('admin.testimonials.index')
+            ->with('success', 'تم حذف التقييم بنجاح.');
     }
 }

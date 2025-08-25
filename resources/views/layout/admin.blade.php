@@ -143,6 +143,14 @@
                             <span class="flex-grow-1">Users</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center py-3 px-4 rounded-3 transition-all 
+                                {{ request()->routeIs('admin.testimonials.index') ? 'active bg-primary-soft text-dark fw-semibold' : 'text-light' }}" 
+                                href="{{ route('admin.testimonials.index') }}">
+                            <i class="bi bi-speedometer2 fs-5 me-3"></i> <!-- Larger icon -->
+                            <span class="flex-grow-1">Testimonials</span>
+                        </a>
+                    </li>
                 </ul>
             </aside>
 
