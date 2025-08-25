@@ -359,22 +359,28 @@
                             <p class="text-muted">رأيك يهمنا! شاركنا تجربتك مع منتجاتنا وخدماتنا</p>
                         </div>
                         
-                        <form action="" method="POST" class="animate-on-scroll">
+                        <form action="{{ route('testimonials.store')}}" method="POST" class="animate-on-scroll">
                             @csrf
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="name" class="form-label">الاسم الكامل</label>
-                                    <input type="text" class="form-control" id="name" placeholder="أدخل اسمك الكامل" required>
+                                    <label for="full_name" class="form-label">الاسم الكامل</label>
+                                    <input type="text" class="form-control border-start-1 @error('full_name') is-invalid @enderror" id="full_name" name="full_name" value="{{ old('full_name', Auth::user()->name ?? '') }}" placeholder="أدخل اسمك الكامل">
+                                    @error('full_name')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">البريد الإلكتروني</label>
-                                    <input type="email" class="form-control" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+                                    <input type="email" class="form-control border-start-1 @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email', Auth::user()->name ?? '') }}" placeholder="أدخل بريدك الإلكتروني">
+                                    @error('email')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             
                             <div class="mb-4">
-                                <label class="form-label d-block text-center">التقييم</label>
+                                <label class="form-label d-block text-center border-start-1 @error('rating') is-invalid @enderror">التقييم</label>
                                 <div class="rating-input">
                                     <input type="radio" id="star5" name="rating" value="5">
                                     <label for="star5">★</label>
@@ -387,11 +393,17 @@
                                     <input type="radio" id="star1" name="rating" value="1">
                                     <label for="star1">★</label>
                                 </div>
+                                @error('rating')
+                                    <p class="text-danger text-center">{{ $message }}</p>
+                                @enderror
                             </div>
                             
                             <div class="mb-3">
-                                <label for="message" class="form-label">التعليق</label>
-                                <textarea class="form-control" id="message" rows="4" placeholder="أخبرنا عن تجربتك مع منتجاتنا..." required></textarea>
+                                <label for="comment" class="form-label">التعليق</label>
+                                <textarea class="form-control border-start-1 @error('comment') is-invalid @enderror" id="comment" {{ old('comment') }} name="comment" rows="4" placeholder="أخبرنا عن تجربتك مع منتجاتنا..."></textarea>
+                                @error('comment')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                             
                             <button type="submit" class="btn-submit">

@@ -10,6 +10,7 @@
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\ProductController;
+    use App\Http\Controllers\TestimonialController;
     use App\Http\Controllers\UserController;
     use App\Models\User;
     use Illuminate\Support\Facades\Route;
@@ -196,3 +197,7 @@
             Route::delete('users/{user}/delete', [UserController::class, 'destroy'])
                 ->name('users.delete');
     });
+
+    // testimonials store
+    Route::post('testimonials/store', [TestimonialController::class, 'store'])
+        ->name('testimonials.store');
