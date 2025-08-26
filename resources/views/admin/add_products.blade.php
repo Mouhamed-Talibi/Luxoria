@@ -67,6 +67,21 @@
                         <p class="text-secondary text-center">Add a new fragrance to your collection</p>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card p-3 border">
+                        <i class="fa-solid fa-bag-shopping text-center fs-1 mb-2"></i>
+                        <a href="{{ route('admin.bags.create') }}" class="block group text-primary btn" style="text-decoration-line: underline">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="fs-4">
+                                        New Bags
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <p class="text-secondary text-center">Add a new fragrance to your collection</p>
+                    </div>
+                </div>
             </div>
         </div>
     @endsection

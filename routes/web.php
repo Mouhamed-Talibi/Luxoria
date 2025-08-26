@@ -3,6 +3,7 @@
     use App\Http\Controllers\AdminController;
     use App\Http\Controllers\AppController;
     use App\Http\Controllers\AuthController;
+    use App\Http\Controllers\BagController;
     use App\Http\Controllers\CategoryController;
     use App\Http\Controllers\ClothesController;
     use App\Http\Controllers\ElectronicsController;
@@ -192,6 +193,13 @@
             // update health and beauty
             Route::put('health-beauty/update/{id}', [HealthAndBeautyController::class, 'update'])
                 ->name('health_beauty.update');
+        // bags routes
+            // create bags
+            Route::get('bags/create', [BagController::class, 'create'])
+                ->name('bags.create');
+            // store bags
+            Route::post('bags/store', [BagController::class, 'store'])
+                ->name('bags.store');
         // Users management
             // users index
             Route::get('users', [UserController::class, 'index'])

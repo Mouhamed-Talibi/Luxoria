@@ -57,4 +57,9 @@
         public function orders() {
             return $this->hasMany(Order::class);
         }
+
+        // relashionship with bags
+        public function bagsdetails() {
+            return $this->hasOne(Bag::class);
+        }
     }
