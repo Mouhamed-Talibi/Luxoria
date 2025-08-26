@@ -1,0 +1,40 @@
+databases:
+  - name: luxoria
+    databaseName: luxoria
+    user: luxoria_user
+    plan: free
+
+services:
+  - type: web
+    name: your-shop
+    env: php
+    plan: free
+    buildCommand: "./render-build.sh"
+    startCommand: "php artisan serve --host=0.0.0.0 --port=8000"
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        fromSecret: APP_KEY
+      - key: DB_HOST
+        fromDatabase:
+          name: luxoria-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: luxoria-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: luxoria-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: luxoria-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: luxoria-db
+          property: password
