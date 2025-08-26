@@ -18,7 +18,13 @@ class BagController extends Controller
      */
     public function index()
     {
-        //
+        $bagsProducts = Product::whereHas('bagsDetails')
+            ->with([
+                'bagsDetails',
+                'images',
+                'category',
+            ])->paginate(6);
+        return view('admin.bags.index', compact('bagsProducts'));
     }
 
     /**

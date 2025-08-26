@@ -200,6 +200,12 @@
             // store bags
             Route::post('bags/store', [BagController::class, 'store'])
                 ->name('bags.store');
+            // manage bags
+            Route::get('bags/manage', [BagController::class, 'index'])
+                ->name('bags.manage');
+            // edit bag
+            Route::get('bags/{bag}/edit', [BagController::class, 'edit'])
+                ->name('bags.edit');
         // Users management
             // users index
             Route::get('users', [UserController::class, 'index'])

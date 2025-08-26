@@ -1,7 +1,7 @@
 @extends('layout.admin')
 
     @section('title')
-        Add Product
+        Products Categories Management
     @endsection
 
     @section('content')
@@ -65,6 +65,21 @@
                             </div>
                         </a>
                         <p class="text-secondary text-center">Manage your Clothes products easily</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card p-3 border">
+                        <i class="fa-solid fa-briefcase text-center fs-1 mb-2"></i>
+                        <a href="{{ route('admin.bags.manage') }}" class="block group text-primary btn" style="text-decoration-line: underline">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="fs-4">
+                                        Bags Management
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <p class="text-secondary text-center">Manage your Bags products easily</p>
                     </div>
                 </div>
             </div>
