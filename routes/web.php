@@ -233,6 +233,9 @@
             // index orders
             Route::get('orders', [AdminController::class, 'orders'])
                 ->name('orders.index');
+            // update order status
+            Route::put('orders/{order}/update-status', [AdminController::class, 'updateOrderStatus'])
+                ->name('orders.update_status');
     });
 
     // testimonials store

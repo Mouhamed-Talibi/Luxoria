@@ -98,6 +98,15 @@ class AdminController extends Controller
         return view('admin.orders.index', compact('orders'));
     }
 
+    // update order status
+    public function updateOrderStatus(string $id) {
+        $order = Order::findOrFail($id);
+        $order->status = 'delivered';
+        $order->save();
+        return to_route('admin.orders.index')
+            ->with('success', 'Order status updated to delivered.');
+    }
+
 
     /**
      * store category

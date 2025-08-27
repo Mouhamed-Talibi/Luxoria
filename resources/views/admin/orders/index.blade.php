@@ -82,21 +82,30 @@
                                 <td>{{ $order->quantity ?? 1 }}</td>
                                 <td>
                                     @php
+                                        $status = ucfirst($order->status);
                                         if($order->status === "processing") {
-                                            $status = 'Processing';
                                             $statusClass = 'bg-warning';
-                                        } elseif($order->status == "completed") {
-                                            $status = 'delivered';
+                                        } elseif($order->status === "delivered") {
                                             $statusClass = 'bg-success';
-                                        } else {
-                                            $status = 'Cancelled';
+                                        } elseif($order->status === "cancelled") {
                                             $statusClass = 'bg-danger';
+                                        } else {
+                                            $statusClass = 'bg-info'; // default for any other status
                                         }
                                     @endphp
                                     <span class="badge {{ $statusClass }} status-badge">{{ $status }}</span>
                                 </td>
                                 <td>
                                     <div class="d-flex">
+                                        @if($order->status !== 'delivered' && $order->status !== 'cancelled')
+                                        <button type="button" class="btn btn-sm btn-outline-success action-btn me-2" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#deliverModal-{{ $order->id }}" 
+                                                title="Mark as Delivered">
+                                            <i class="fas fa-truck"></i>
+                                        </button>
+                                        @endif
+                                        
                                         <button type="button" class="btn btn-sm btn-outline-danger action-btn" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#deleteModal-{{ $order->id }}" 
@@ -140,7 +149,7 @@
                 <i class="fas fa-exclamation-circle text-danger" style="font-size: 3rem;"></i>
                 <h4 class="mt-3">Are you sure?</h4>
                 <p class="mt-3">
-                    You are about to delete <span class="fw-bold">"{{ $product->name }}"</span>. This action cannot be undone.
+                    You are about to delete this order ? This action cannot be undone.
                 </p>
             </div>
             <div class="modal-footer justify-content-center">
@@ -156,6 +165,44 @@
         </div>
     </div>
 </div>
+@endforeach
+
+<!-- Deliver Confirmation Modals -->
+@foreach ($orders as $order)
+@if($order->status !== 'delivered' && $order->status !== 'cancelled')
+<div class="modal fade" id="deliverModal-{{ $order->id }}" tabindex="-1" aria-labelledby="deliverModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deliverModalLabel">Confirm Delivery</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <i class="fas fa-truck text-success" style="font-size: 3rem;"></i>
+                <h4 class="mt-3">Mark Order as Delivered?</h4>
+                <p class="mt-3">
+                    Are you sure you want to mark order #{{ $order->id }} as delivered?
+                </p>
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle me-2"></i>
+                    This action will update the order status to "delivered" and notify the customer.
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{{ route('admin.orders.update_status', $order->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="status" value="delivered">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-check me-1"></i> Confirm Delivery
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endforeach
 @endsection
 
