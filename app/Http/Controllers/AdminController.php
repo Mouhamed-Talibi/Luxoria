@@ -88,6 +88,17 @@ class AdminController extends Controller
         return view('admin.add_category');
     }
 
+    // orders list
+    public function orders()
+    {
+        $orders = Order::with(['product.images'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view('admin.orders.index', compact('orders'));
+    }
+
+
     /**
      * store category
      */

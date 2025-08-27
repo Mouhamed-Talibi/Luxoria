@@ -229,6 +229,10 @@
             // delete testimonial
             Route::delete('testimonials/{testimonial}/delete', [TestimonialController::class, 'destroy'
                 ])->name('testimonials.delete');
+        // orders management
+            // index orders
+            Route::get('orders', [AdminController::class, 'orders'])
+                ->name('orders.index');
     });
 
     // testimonials store
