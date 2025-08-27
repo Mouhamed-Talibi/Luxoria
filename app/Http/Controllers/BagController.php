@@ -91,17 +91,55 @@ class BagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bag $bag)
+    public function edit(string $bag)
     {
-        //
+        $bagProduct = Product::whereHas('bagsDetails')
+            ->with([
+                'bagsDetails',
+                'images',
+                'category',
+            ])->where('id', $bag)->first();
+        $categories = Category::all();
+        return view('admin.bags.edit', compact('bagProduct', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bag $bag)
+    public function update(StoreBagsRequest $request, string $id)
     {
-        //
+        try {
+            // Find the product by its ID
+            $product = Product::findOrFail($id);
+            $validated = $request->validated();
+
+            // Update shared product fields
+            $product->update([
+                'name' => $validated['name'],
+                'slug' => Str::slug($validated['name']) ?? $product->slug,
+                'description' => $validated['description'],
+                'description_title' => $validated['description_title'],
+                'stock' => $validated['stock'],
+                'price' => $validated['price'],
+                'old_price' => $validated['old_price'],
+                'category_id' => $validated['category_id'],
+            ]);
+
+            // Update bags fields
+            $bag = Bag::where('product_id', $product->id)->firstOrFail();
+
+            $bag->update([
+                'size' => $validated['size'],
+                'brand' => $validated['brand'],
+                'external_material' => $validated['external_material'],
+                'weight' => $validated['weight'],
+            ]);
+
+            return redirect()->route('admin.bags.manage')
+                ->with('success', 'Product updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update product: ' . $e->getMessage());
+        }
     }
 
     /**

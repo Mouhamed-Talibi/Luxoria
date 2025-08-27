@@ -204,8 +204,11 @@
             Route::get('bags/manage', [BagController::class, 'index'])
                 ->name('bags.manage');
             // edit bag
-            Route::get('bags/{bag}/edit', [BagController::class, 'edit'])
+            Route::get('bags/edit/{bag}', [BagController::class, 'edit'])
                 ->name('bags.edit');
+            // update bag
+            Route::put('bags/update/{id}', [BagController::class, 'update'])
+                ->name('bags.update');
         // Users management
             // users index
             Route::get('users', [UserController::class, 'index'])

@@ -82,7 +82,7 @@
                                 </td>
                                 <td>{{ $product->category->name ?? 'Uncategorized' }}</td>
                                 <td>${{ number_format($product->price, 2) }}</td>
-                                <td>{{ $product->stock ?? 'N/A' }}</td>
+                                <td>{{ $product->stock }}</td>
                                 <td>
                                     @php
                                         $status = 'Available';
@@ -101,7 +101,7 @@
                                 </td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('admin.bags.edit', $product)}}" class="btn btn-sm btn-outline-primary action-btn me-2" title="Edit">
+                                        <a href="{{ route('admin.bags.edit', $product->id)}}" class="btn btn-sm btn-outline-primary action-btn me-2" title="Edit">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                         <button type="button" class="btn btn-sm btn-outline-danger action-btn" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $product->id }}" title="Delete">
@@ -162,7 +162,6 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Enhanced search functionality
