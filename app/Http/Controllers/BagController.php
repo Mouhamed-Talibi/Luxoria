@@ -116,7 +116,7 @@ class BagController extends Controller
             // Update shared product fields
             $product->update([
                 'name' => $validated['name'],
-                'slug' => Str::slug($validated['name']) ?? $product->slug,
+                'slug' => Str::slug($validated['name']),
                 'description' => $validated['description'],
                 'description_title' => $validated['description_title'],
                 'stock' => $validated['stock'],

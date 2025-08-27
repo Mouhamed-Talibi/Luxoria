@@ -161,59 +161,118 @@
 @endforeach
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Enhanced search functionality
         const searchInput = document.getElementById('searchInput');
         const rows = document.querySelectorAll('#productsTable tbody tr');
+        const filterOptions = document.querySelectorAll('.filter-option');
+        const noResultsMessage = document.createElement('div');
         
+        // Create a no results message element
+        noResultsMessage.className = 'alert alert-info text-center mt-3';
+        noResultsMessage.style.display = 'none';
+        noResultsMessage.innerHTML = '<i class="fas fa-search me-2"></i> No products found matching your search criteria';
+        document.querySelector('.table-responsive').appendChild(noResultsMessage);
+        
+        let currentFilter = 'all';
+        
+        // Enhanced search functionality
         if (searchInput) {
             searchInput.addEventListener('keyup', function() {
-                const searchText = this.value.toLowerCase();
+                const searchText = this.value.toLowerCase().trim();
+                let hasVisibleRows = false;
                 
                 rows.forEach(row => {
+                    // Skip if row doesn't match current filter
+                    if (currentFilter !== 'all' && row.getAttribute('data-status') !== currentFilter) {
+                        row.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Search across all relevant fields
                     const productName = row.querySelector('td:first-child .fw-bold').textContent.toLowerCase();
                     const category = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                    const price = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                    const stock = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
                     const status = row.querySelector('.status-badge').textContent.toLowerCase();
                     
-                    if (productName.includes(searchText) || category.includes(searchText) || status.includes(searchText)) {
+                    // Check if any field matches the search text
+                    const isMatch = productName.includes(searchText) || 
+                                    category.includes(searchText) || 
+                                    price.includes(searchText) || 
+                                    stock.includes(searchText) || 
+                                    status.includes(searchText);
+                    
+                    if (isMatch || searchText === '') {
                         row.style.display = '';
+                        hasVisibleRows = true;
                     } else {
                         row.style.display = 'none';
                     }
                 });
+                
+                // Show/hide no results message
+                noResultsMessage.style.display = hasVisibleRows || searchText === '' ? 'none' : 'block';
             });
         }
         
         // Filter functionality
-        const filterOptions = document.querySelectorAll('.filter-option');
-        
         filterOptions.forEach(option => {
             option.addEventListener('click', function(e) {
                 e.preventDefault();
                 const filter = this.getAttribute('data-filter');
+                currentFilter = filter;
+                
+                // Remove active class from all options
+                filterOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                const searchText = searchInput ? searchInput.value.toLowerCase().trim() : '';
+                let hasVisibleRows = false;
                 
                 rows.forEach(row => {
                     const status = row.getAttribute('data-status');
                     
-                    if (filter === 'all') {
+                    // Check if row matches both filter and search criteria
+                    const matchesFilter = filter === 'all' || status === filter;
+                    
+                    // If there's search text, also check if row matches search
+                    let matchesSearch = true;
+                    if (searchText !== '') {
+                        const productName = row.querySelector('td:first-child .fw-bold').textContent.toLowerCase();
+                        const category = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                        const price = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                        const stock = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                        const statusText = row.querySelector('.status-badge').textContent.toLowerCase();
+                        
+                        matchesSearch = productName.includes(searchText) || 
+                                        category.includes(searchText) || 
+                                        price.includes(searchText) || 
+                                        stock.includes(searchText) || 
+                                        statusText.includes(searchText);
+                    }
+                    
+                    if (matchesFilter && matchesSearch) {
                         row.style.display = '';
-                    } else if (filter === 'in-stock' && status === 'in-stock') {
-                        row.style.display = '';
-                    } else if (filter === 'low-stock' && status === 'low-stock') {
-                        row.style.display = '';
-                    } else if (filter === 'out-of-stock' && status === 'out-of-stock') {
-                        row.style.display = '';
+                        hasVisibleRows = true;
                     } else {
                         row.style.display = 'none';
                     }
                 });
+                
+                // Show/hide no results message
+                noResultsMessage.style.display = hasVisibleRows ? 'none' : 'block';
             });
         });
+        
+        // Initialize with 'all' filter active
+        document.querySelector('.filter-option[data-filter="all"]').classList.add('active');
     });
 </script>
-@endsection
+@endpush
 
 <style>
     :root {
@@ -373,5 +432,16 @@
         .table th, .table td {
             padding: 0.5rem 0.7rem;
         }
+    }
+
+    /* Add active state for filter options */
+    .filter-option.active {
+        background-color: #4e73df;
+        color: white;
+    }
+    
+    /* Ensure consistent row display */
+    #productsTable tbody tr {
+        display: table-row;
     }
 </style>
