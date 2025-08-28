@@ -6,6 +6,7 @@ use App\Http\Requests\AddCategoryRequest;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
@@ -102,6 +103,12 @@ class AdminController extends Controller
     public function updateOrderStatus(string $id) {
         $order = Order::findOrFail($id);
         $order->status = 'delivered';
+        Payment::create([
+            'order_id' => $order->id,
+            'client_name' => $order->client_name,
+            'product_id' => $order->product_id,
+            'order_price' => $order->total_price,
+        ]);
         $order->save();
         return to_route('admin.orders.index')
             ->with('success', 'Order status updated to delivered.');

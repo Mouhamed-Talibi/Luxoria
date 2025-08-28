@@ -92,6 +92,7 @@ class ProductController extends Controller
             'electronicsDetails',
             'clothesDetails',
             'health_beauty_Details',
+            'bagsDetails',
         ])->findOrFail($product->id);
 
         // get related products based on category id

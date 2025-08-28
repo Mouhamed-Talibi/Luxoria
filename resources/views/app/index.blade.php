@@ -221,16 +221,9 @@
                                 <div class="product-details text-center p-3">
                                     <strong class="text-secondary d-block">{{ $product->category->name}}</strong>
                                     <h3 class="mt-2 h5">{{ $product->name }}</h3>
-                                    <div class="rating text-warning my-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
                                     {{-- discount display --}}
                                     @if ($product->old_price > $product->price)
-                                        <span class="badge bg-success mb-2">خصم {{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
+                                        <span class="badge bg-info text-dark mb-2">خصم {{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
                                     @endif
                                     {{-- price --}}
                                     <p class="price mt-2">{{ number_format($product->price, 2) }} درهم</p>

@@ -81,19 +81,6 @@
                             {{ number_format($product->price, 2) }} درهم
                         </span>
                     </div>
-                    
-                    <!-- Rating (if available) -->
-                    <div class="mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="rating-stars text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Description -->
                     <div class="mb-4">
@@ -421,6 +408,44 @@
                                         <span>{{ $product->health_beauty_Details->gender === "male" ? 'الرجال' : "" }}</span>
                                         <span>{{ $product->health_beauty_Details->gender === "female" ? 'النساء' : "" }}</span>
                                         <span>{{ $product->health_beauty_Details->gender === "both" ? 'الرجال و النساء' : "" }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- ================= Bags DETAILS ================= --}}
+                            {{-- brand --}}
+                            @if(!empty($product->bagsDetails->brand))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الماركة :</span>
+                                        <span>{{ $product->bagsDetails->brand }}</span>
+                                    </div>
+                                </div>
+                            @endif
+                            {{-- size --}}
+                            @if(!empty($product->bagsDetails->size))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">السعة :</span>
+                                        <span>{{ $product->bagsDetails->size }}</span>
+                                    </div>
+                                </div>
+                            @endif
+                            {{-- weight --}}
+                            @if(!empty($product->bagsDetails->weight))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">الوزن :</span>
+                                        <span>{{ $product->bagsDetails->weight }}</span>
+                                    </div>
+                                </div>
+                            @endif
+                            {{-- external material --}}
+                            @if(!empty($product->bagsDetails->external_material))
+                                <div class="col-6">
+                                    <div class="mb-2">
+                                        <span class="text-muted">المادة الخارجية :</span>
+                                        <span>{{ $product->bagsDetails->external_material }}</span>
                                     </div>
                                 </div>
                             @endif
