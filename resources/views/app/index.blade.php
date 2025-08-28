@@ -212,23 +212,23 @@
             </div>
             <div class="products mt-5">
                 <div class="row justify-content-center g-3 g-md-4">
-                    @foreach($bestSellingProducts as $product)
+                    @foreach($bestSellingProducts as $item)
                         <div class="col-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                             <div class="product h-100">
                                 <div class="product-image">
-                                    <img src="{{ Storage::url($product->images->get(2)->path )}}" alt="{{ $product->name}}" class="img-fluid" loading="lazy">
+                                    <img src="{{ Storage::url($item->product->images->get(2)->path )}}" alt="{{ $item->product->name}}" class="img-fluid" loading="lazy">
                                 </div>
                                 <div class="product-details text-center p-3">
-                                    <strong class="text-secondary d-block">{{ $product->category->name}}</strong>
-                                    <h3 class="mt-2 h5">{{ $product->name }}</h3>
+                                    <strong class="text-secondary d-block">{{ $item->product->category->name}}</strong>
+                                    <h3 class="mt-2 h5">{{ $item->product->name }}</h3>
                                     {{-- discount display --}}
-                                    @if ($product->old_price > $product->price)
-                                        <span class="badge bg-info text-dark mb-2">خصم {{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
+                                    @if ($item->product->old_price > $item->product->price)
+                                        <span class="badge bg-info text-dark mb-2">خصم {{ round((($item->product->old_price - $item->product->price) / $item->product->old_price) * 100) }}%</span>
                                     @endif
                                     {{-- price --}}
-                                    <p class="price mt-2">{{ number_format($product->price, 2) }} درهم</p>
+                                    <p class="price mt-2">{{ number_format($item->product->price, 2) }} درهم</p>
                                 </div>
-                                <a href="{{ route('app.show_product', $product->id) }}" class="stretched-link" aria-label="عرض تفاصيل المنتج"></a>
+                                <a href="{{ route('app.show_product', $item->product->id) }}" class="stretched-link" aria-label="عرض تفاصيل المنتج"></a>
                             </div>
                         </div>
                     @endforeach

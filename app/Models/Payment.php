@@ -16,4 +16,9 @@
             'client_name',
             'order_price',
         ];
+
+        // relashionship with products
+        public function product() {
+            return $this->belongsTo(Product::class);
+        }
     }

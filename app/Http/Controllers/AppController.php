@@ -4,10 +4,12 @@
 
     use App\Http\Requests\FindProductRequest;
     use App\Models\Category;
+    use App\Models\Payment;
     use App\Models\Product;
     use App\Models\Testimonial;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\App;
+    use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Redirect;
     use Illuminate\Support\Facades\Session;
 
@@ -35,9 +37,12 @@
 
         // index method
         public function index() {
-            $bestSellingProducts = Product::with('category')
-                ->orderBy('name', 'asc')
-                ->limit(8)->get();
+            $bestSellingProducts = Payment::select('product_id', DB::raw('COUNT(*) as total_sales'))
+                ->groupBy('product_id')
+                ->orderByDesc('total_sales')
+                ->with('product')
+                ->take(9)
+                ->get();
             $categories = Category::orderBy('name', 'asc')
                 ->get();
             // return view with data
