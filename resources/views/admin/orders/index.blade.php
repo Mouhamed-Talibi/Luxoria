@@ -15,8 +15,8 @@
         <div class="card empty-state">
             <div class="card-body">
                 <i class="fas fa-tshirt"></i>
-                <h3 class="h5 mb-3">No Orders Products Found</h3>
-                <p class="mb-4">Get started by adding your first Orders product to the inventory.</p>
+                <h3 class="h5 mb-3">No Orders Found</h3>
+                <p class="mb-4">There are no orders in the system yet.</p>
             </div>
         </div>
     @else
@@ -24,29 +24,48 @@
             <div class="card-header d-flex align-items-center justify-content-between py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Orders List</h6>
                 <div class="header-actions d-flex align-items-center">
+                    <!-- Status Filter Buttons -->
                     <div class="btn-group me-3" role="group" aria-label="Order status filter">
-                        <button type="button" class="btn btn-outline-primary filter-option active" data-filter="all">
-                            All Orders
+                        <button type="button" class="btn btn-sm btn-outline-primary filter-option active" data-filter="all">
+                            <i class="fas fa-list me-1"></i> All
                         </button>
-                        <button type="button" class="btn btn-outline-warning filter-option" data-filter="processing">
-                            Processing
+                        <button type="button" class="btn btn-sm btn-outline-warning filter-option" data-filter="processing">
+                            <i class="fas fa-cog me-1"></i> Processing
                         </button>
-                        <button type="button" class="btn btn-outline-success filter-option" data-filter="delivered">
-                            Delivered
+                        <button type="button" class="btn btn-sm btn-outline-success filter-option" data-filter="delivered">
+                            <i class="fas fa-truck me-1"></i> Delivered
                         </button>
-                        <button type="button" class="btn btn-outline-danger filter-option" data-filter="cancelled">
-                            Cancelled
+                        <button type="button" class="btn btn-sm btn-outline-danger filter-option" data-filter="cancelled">
+                            <i class="fas fa-times-circle me-1"></i> Cancelled
                         </button>
                     </div>
+                    
+                    <!-- Search Box -->
                     <div class="search-box me-3">
                         <i class="fas fa-search"></i>
                         <input type="text" class="form-control" placeholder="Search orders..." id="searchInput">
                     </div>
+                    
+                    <!-- Quick Actions Dropdown -->
+                    <div class="dropdown quick-actions-dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="quickActionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bolt me-1"></i> Quick Actions
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quickActionsDropdown">
+                            <li>
+                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteCancelledModal">
+                                    <i class="fas fa-trash me-2"></i> Delete Cancelled Orders
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover" id="productsTable">
+                    <table class="table table-hover" id="ordersTable">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -68,7 +87,9 @@
                                                     class="product-img me-3" 
                                                     alt="{{ $order->product->name }}">
                                         @else
-                                            <img src="/path/to/default-image.jpg" class="product-img me-3" alt="No image">
+                                            <div class="product-img-placeholder me-3">
+                                                <i class="fas fa-image"></i>
+                                            </div>
                                         @endif
                                         <div>
                                             <div class="fw-bold">{{ $order->product->name ?? 'Unknown Product' }}</div>
@@ -77,8 +98,8 @@
                                     </div>
                                 </td>
                                 <td>{{ $order->product->category->name ?? 'Uncategorized' }}</td>
-                                <td>{{ $order->client_name ?? 'Unknwon' }}</td>
-                                <td>${{ number_format($order->product->price, 2) }}</td>
+                                <td>{{ $order->client_name ?? 'Unknown' }}</td>
+                                <td>${{ number_format($order->product->price ?? 0, 2) }}</td>
                                 <td>{{ $order->quantity ?? 1 }}</td>
                                 <td>
                                     @php
@@ -90,7 +111,7 @@
                                         } elseif($order->status === "cancelled") {
                                             $statusClass = 'bg-danger';
                                         } else {
-                                            $statusClass = 'bg-info'; // default for any other status
+                                            $statusClass = 'bg-info';
                                         }
                                     @endphp
                                     <span class="badge {{ $statusClass }} status-badge">{{ $status }}</span>
@@ -98,7 +119,7 @@
                                 <td>
                                     <div class="d-flex">
                                         @if($order->status !== 'delivered' && $order->status !== 'cancelled')
-                                        <button type="button" class="btn btn-sm btn-outline-success action-btn me-2" 
+                                        <button type="button" class="btn btn-sm btn-outline-success action-btn me-1" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#deliverModal-{{ $order->id }}" 
                                                 title="Mark as Delivered">
@@ -136,9 +157,56 @@
     @endif
 </div>
 
+<!-- Delete Cancelled Orders Modal -->
+<div class="modal fade" id="deleteCancelledModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+        <div class="text-center p-4">
+            <h2>Confirm Deleting Cancelled Orders</h2>
+            <hr class="w-50 mx-auto">
+        </div>
+
+        <div class="text-center mt-3 p-3">
+            <i class="fas fa-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
+            <p class="mt-3">
+                You are about to delete all orders with the status "cancelled". This action cannot be undone.
+            </p>
+            <div class="alert alert-info mt-3">
+                <i class="fas fa-info-circle me-2"></i>
+                Please confirm that you want to proceed with this action.
+            </div>
+        </div>
+
+        <div class="text-center mt-3 mb-4 p-3">
+            <div class="d-flex justify-content-center">
+                <!-- Cancel button -->
+                <button type="button" 
+                        class="text-success border-0 me-3 fw-bold" 
+                        data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <!-- Confirm button -->
+                <form action="{{ route('admin.orders.delete_cancelled')}}" 
+                    method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" 
+                            class="btn btn-danger btn-sm px-4 py-2">
+                        <i class="fas fa-trash me-1"></i> Confirm Deletion
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
 <!-- Delete Confirmation Modals -->
-@foreach ($orders as $product)
-<div class="modal fade" id="deleteModal-{{ $product->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+@foreach ($orders as $order)
+<div class="modal fade" id="deleteModal-{{ $order->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -149,12 +217,12 @@
                 <i class="fas fa-exclamation-circle text-danger" style="font-size: 3rem;"></i>
                 <h4 class="mt-3">Are you sure?</h4>
                 <p class="mt-3">
-                    You are about to delete this order ? This action cannot be undone.
+                    You are about to delete order #{{ $order->id }}. This action cannot be undone.
                 </p>
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form action="{{ route('admin.destroy_product', $product->id) }}" method="POST">
+                <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">
@@ -185,7 +253,7 @@
                 </p>
                 <div class="alert alert-info mt-3">
                     <i class="fas fa-info-circle me-2"></i>
-                    This action will update the order status to "delivered" and notify the customer.
+                    This action will update the order status to "delivered".
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
@@ -210,7 +278,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');
-        const rows = document.querySelectorAll('#productsTable tbody tr');
+        const rows = document.querySelectorAll('#ordersTable tbody tr');
         const filterOptions = document.querySelectorAll('.filter-option');
         const noResultsMessage = document.createElement('div');
         
@@ -303,6 +371,17 @@
         --warning-color: #f6c23e;
         --info-color: #36b9cc;
         --light-bg: #f8f9fc;
+    }
+
+    .product-img-placeholder {
+        width: 60px;
+        height: 60px;
+        background-color: #f8f9fc;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #b7b9cc;
     }
     
     body {
@@ -463,5 +542,139 @@
     /* Ensure consistent row display */
     #productsTable tbody tr {
         display: table-row;
+    }
+
+    /* Enhanced Card Header Styles */
+    .card-header {
+        background: linear-gradient(135deg, #f8f9fc 0%, #fff 100%);
+        border-bottom: 1px solid #e3e6f0;
+        padding: 1rem 1.35rem;
+    }
+    
+    /* Button Group Enhancement */
+    .btn-group .btn-sm {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+        border-radius: 0.35rem;
+        margin-right: 0.25rem;
+    }
+    
+    .btn-group .btn-sm:last-child {
+        margin-right: 0;
+    }
+    
+    /* Search Box Enhancement */
+    .search-box {
+        position: relative;
+        min-width: 250px;
+    }
+    
+    .search-box input {
+        padding-left: 2.5rem;
+        border-radius: 20px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+    
+    .search-box i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #b7b9cc;
+        font-size: 0.9rem;
+    }
+    
+    /* Quick Actions Dropdown */
+    .quick-actions-dropdown .btn {
+        height: 38px;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+        border-radius: 0.35rem;
+    }
+    
+    .dropdown-menu {
+        border-radius: 0.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        border: 1px solid #e3e6f0;
+    }
+    
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #f8f9fc;
+    }
+    
+    .dropdown-item.text-danger:hover {
+        background-color: #f8d7da;
+    }
+    
+    /* Active Filter State */
+    .filter-option.active {
+        background-color: #4e73df;
+        color: white !important;
+        border-color: #4e73df;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .card-header {
+            flex-direction: column;
+            align-items: flex-start !important;
+        }
+        
+        .header-actions {
+            margin-top: 1rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .btn-group {
+            margin-bottom: 0.5rem;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .btn-group .btn-sm {
+            margin-bottom: 0.25rem;
+            flex: 1;
+            min-width: 80px;
+        }
+        
+        .search-box {
+            min-width: auto;
+            flex: 2;
+            margin-right: 0.5rem !important;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-actions-dropdown {
+            flex: 1;
+            min-width: 140px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .header-actions {
+            flex-direction: column;
+        }
+        
+        .search-box {
+            width: 100%;
+            margin-right: 0 !important;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-actions-dropdown {
+            width: 100%;
+        }
+        
+        .quick-actions-dropdown .btn {
+            width: 100%;
+        }
     }
 </style>

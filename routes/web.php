@@ -236,6 +236,12 @@
             // update order status
             Route::put('orders/{order}/update-status', [AdminController::class, 'updateOrderStatus'])
                 ->name('orders.update_status');
+            // delete cancelled orders
+            Route::delete('orders/delete-cancelled', [AdminController::class, 'deleteCancelledOrders'])
+                ->name('orders.delete_cancelled');
+            // destroy order
+            Route::delete('orders/{order}/delete', [OrderController::class, 'destroy'])
+                ->name('orders.destroy');
     });
 
     // testimonials store

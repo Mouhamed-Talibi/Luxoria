@@ -107,6 +107,21 @@ class AdminController extends Controller
             ->with('success', 'Order status updated to delivered.');
     }
 
+    // delete cancelled orders
+    public function deleteCancelledOrders()
+    {
+        try {
+            $deletedCount = Order::where('status', 'cancelled')->delete();
+            
+            return redirect()
+                ->route('admin.orders.index')
+                ->with('success', "Successfully deleted $deletedCount cancelled orders.");
+        } catch (\Exception $e) {
+            return back()
+                ->with('error', "Failed to delete cancelled orders: " . $e->getMessage());
+        }
+    }
+
 
     /**
      * store category
