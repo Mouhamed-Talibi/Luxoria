@@ -10,6 +10,7 @@
     use App\Http\Controllers\HealthAndBeautyController;
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\ParfumDetailController;
+    use App\Http\Controllers\PaymentController;
     use App\Http\Controllers\ProductController;
     use App\Http\Controllers\TestimonialController;
     use App\Http\Controllers\UserController;
@@ -242,6 +243,10 @@
             // destroy order
             Route::delete('orders/{order}/delete', [OrderController::class, 'destroy'])
                 ->name('orders.destroy');
+        // payments routes
+            // index route
+            route::get('payments', [PaymentController::class, 'index'])
+                ->name('payments.index');
     });
 
     // testimonials store
