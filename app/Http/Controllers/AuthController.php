@@ -29,6 +29,12 @@
                 return back()->with('error', 'لم يتم العثور على حساب بهذا البريد الإلكتروني');
             }
 
+            // if email not verified
+            if($user->email_verified_at === null) {
+                return back()
+                    ->with('error', 'المرجو تاكيد حسابك الالكنروني.');
+            }
+
             // compare data
             if(Auth::attempt($credentials)) {
                 if($user->role === "admin") {

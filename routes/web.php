@@ -252,3 +252,9 @@
     // testimonials store
     Route::post('testimonials/store', [TestimonialController::class, 'store'])
         ->name('testimonials.store');
+
+    // testing email
+        Route::get('/test-mail', function () {
+        Mail::to('picksouk.contact@gmail.com')->send(new App\Mail\TestMail());
+        return 'Test email sent!';
+    });

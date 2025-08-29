@@ -2,78 +2,283 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تأكيد البريد الإلكتروني</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد البريد الإلكتروني - بيكسوق</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             background-color: #f8f9fa;
-            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Tajawal', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             color: #333;
             direction: rtl;
-        }
-        .email-container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-        h1 {
-            font-size: 28px;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 16px;
             line-height: 1.6;
-            color: #555555;
+            padding: 20px 0;
         }
-        .highlight {
-            color: #007bff;
-            font-weight: bold;
-            font-size: 17px;
+        
+        .email-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
         }
-        .btn {
+        
+        .email-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6580 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
             display: inline-block;
-            margin-top: 25px;
-            padding: 12px 30px;
-            background-color: #007bff;
-            color: #ffffff;
+        }
+        
+        .logo-accent {
+            color: #8db596;
+        }
+        
+        .email-title {
+            font-size: 26px;
+            margin: 10px 0;
+            font-weight: 700;
+        }
+        
+        .email-body {
+            padding: 40px;
+        }
+        
+        .welcome-text {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .message-box {
+            background-color: #f8f9fa;
+            border-right: 4px solid #8db596;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            background: #f4f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .user-icon {
+            background: #8db596;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            color: white;
+            font-size: 22px;
+        }
+        
+        .user-details {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .user-email {
+            color: #007bff;
+            font-weight: 500;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin: 35px 0;
+        }
+        
+        .confirm-btn {
+            display: inline-block;
+            padding: 16px 45px;
+            background: linear-gradient(to left, #8db596, #6ba46b);
+            color: white;
             text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(139, 181, 150, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .confirm-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(139, 181, 150, 0.6);
+        }
+        
+        .link-alternative {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .copy-link {
+            display: inline-block;
+            background: #f1f8ff;
+            padding: 10px 20px;
             border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .footer {
-            margin-top: 30px;
+            color: #007bff;
+            text-decoration: none;
+            font-family: monospace;
             font-size: 13px;
-            color: #999999;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+        
+        .email-footer {
+            background-color: #f8f9fa;
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            margin: 15px 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            margin: 0 8px;
+            width: 40px;
+            height: 40px;
+            background: #e9ecef;
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #8db596;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .warning-note {
+            background: #fff4f4;
+            border: 1px solid #ffdfdf;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #dc3545;
+        }
+        
+        .highlight {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 650px) {
+            .email-wrapper {
+                border-radius: 0;
+            }
+            
+            .email-body {
+                padding: 25px;
+            }
+            
+            .email-header {
+                padding: 25px 15px;
+            }
+            
+            .confirm-btn {
+                padding: 14px 35px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="email-container">
-        <h1>مرحباً، {{ $name }}</h1>
-
-        <p>مرحباً بك في <strong style="color: #007bff;">لكسوريا</strong> 👋</p>
-
-        <p>يرجى الضغط على الزر أدناه لتأكيد بريدك الإلكتروني وتفعيل حسابك.</p>
-
-        <p class="highlight">{{ $email }}</p>
-
-        <a href="{{ $link }}" class="btn">تأكيد حسابي</a>
-
-        <div class="footer">
-            إذا لم تقم بالتسجيل في هذا الحساب، يمكنك تجاهل هذه الرسالة بأمان.<br>
-            &copy; {{ date('Y') }} لكسوريا. جميع الحقوق محفوظة.
+    <div class="email-wrapper">
+        <div class="email-header">
+            <div class="logo">بيك<span class="logo-accent">سوق</span></div>
+            <h1 class="email-title">تأكيد البريد الإلكتروني</h1>
+            <p>نحن سعداء بانضمامك إلى منصتنا</p>
+        </div>
+        
+        <div class="email-body">
+            <p class="welcome-text">مرحباً <span class="highlight">{{ $name }}</span>،</p>
+            
+            <p>شكراً لتسجيلك في <span class="highlight">بيكسوق</span>! نحن متحمسون لوجودك معنا.</p>
+            
+            <div class="user-info">
+                <div class="user-icon">
+                    <i>👤</i>
+                </div>
+                <div class="user-details">
+                    <div class="user-name">{{ $name }}</div>
+                    <div class="user-email">{{ $email }}</div>
+                </div>
+            </div>
+            
+            <div class="message-box">
+                <p>لبدء استخدام حسابك، يرجى تأكيد عنوان بريدك الإلكتروني بالنقر على الزر أدناه:</p>
+            </div>
+            
+            <div class="btn-container">
+                <a href="{{ $link }}" class="confirm-btn">تأكيد بريدي الإلكتروني</a>
+            </div>
+            
+            <div class="link-alternative">
+                <p>إذا كان الزر لا يعمل، يمكنك نسخ الرابط أدناه ولصقه في متصفحك:</p>
+                <a href="{{ $link }}" class="copy-link">{{ $link }}</a>
+            </div>
+            
+            <div class="warning-note">
+                <p>⏳ ينتهي رابط التأكيد خلال 24 ساعة لأسباب أمنية.</p>
+                <p>إذا لم تقم بإنشاء هذا الحساب، يمكنك تجاهل هذه الرسالة.</p>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>إذا كنت بحاجة إلى مساعدة، لا تتردد في التواصل معنا على <a href="mailto:picksouck.contact@gmail.com" style="color: #007bff;">picksouck.contact@gmail.com</a></p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">t</a>
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">ig</a>
+            </div>
+            
+            <p>© {{ date('Y') }} لكسوريا. جميع الحقوق محفوظة.</p>
+            <p>هذه رسالة تلقائية، يرجى عدم الرد عليها.</p>
         </div>
     </div>
 </body>
