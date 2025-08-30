@@ -50,7 +50,7 @@
     });
 
     // app routes
-    Route::middleware(['verified', 'auth'])->prefix('luxoria')->name('app.')->group(function(){
+    Route::middleware(['verified', 'auth'])->prefix('picksouk')->name('app.')->group(function(){
         // home route
         Route::get('/home', [AppController::class, 'index'])
             ->name('home');
@@ -81,6 +81,9 @@
         // about us route
         Route::get('about-us', [AppController::class, 'aboutUs'])
             ->name('about_us');
+        // contact us route
+        Route::get('contact-us', [AppController::class, 'contactUs'])
+            ->name('contact_us');
     });
 
     // admin routes

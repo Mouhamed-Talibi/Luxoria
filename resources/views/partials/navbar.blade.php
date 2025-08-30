@@ -14,7 +14,7 @@
             <!-- Offcanvas Menu -->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title">لكسوريا</h5>
+                    <h5 class="offcanvas-title">بيكسوق</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
                 
@@ -29,10 +29,21 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                 حولنا
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end text-end">
-                                <li><a class="dropdown-item" href="{{ route('app.about_us')}}">من نحن</a></li>
-                                <li><a class="dropdown-item" href="{{ route('app.home')}}#services">الخدمات</a></li>
-                                <li><a class="dropdown-item" href="#">اتصل بنا</a></li>
+                            <ul class="dropdown-menu dropdown-menu-end text-end shadow border-0">
+                                <li><a class="dropdown-item d-flex justify-content-end align-items-center py-3" href="{{ route('app.about_us')}}">
+                                    <span>من نحن</span>
+                                    <i class="bi bi-people-fill me-3"></i>
+                                </a></li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li><a class="dropdown-item d-flex justify-content-end align-items-center py-3" href="{{ route('app.home')}}#services">
+                                    <span>الخدمات</span>
+                                    <i class="bi bi-gear-fill me-3"></i>
+                                </a></li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li><a class="dropdown-item d-flex justify-content-end align-items-center py-3" href="{{ route('app.contact_us')}}">
+                                    <span>اتصل بنا</span>
+                                    <i class="bi bi-envelope-fill me-3"></i>
+                                </a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

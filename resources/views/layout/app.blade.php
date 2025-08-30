@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ asset('assets/luxoria-1.png') }}" type="image/png">
 
     <title>
-        لوكسوريا - @yield('title')
+        بيكسوق - @yield('title')
     </title>
 
     {{-- AOS --}}
@@ -19,6 +19,8 @@
 
     {{-- bootstrap css --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    {{-- bootstrap icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
     {{-- font awesom --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">

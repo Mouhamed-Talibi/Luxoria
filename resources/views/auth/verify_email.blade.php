@@ -9,7 +9,7 @@
     <link rel="icon" href="{{ asset('assets/luxoria-1.png') }}" type="image/png" />
 
     <!-- العنوان -->
-    <title>لكسوريا - تأكيد البريد الإلكتروني</title>
+    <title>بيكسوق - تأكيد البريد الإلكتروني</title>
 
     <!-- بوتستراب CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -39,7 +39,7 @@
 
         <!-- ملاحظة -->
         <small class="text-danger d-block mb-1">إذا لم تصله، تحقق من مجلد الرسائل المزعجة أو البريد غير المرغوب فيه.</small>
-        <small class="text-muted">لكسوريا - تأكيد البريد الإلكتروني</small>
+        <small class="text-muted">بيكسوق - تأكيد البريد الإلكتروني</small>
     </div>
 
     <!-- بوتستراب جافاسكريبت -->

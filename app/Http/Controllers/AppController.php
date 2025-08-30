@@ -49,6 +49,11 @@
             return view('app.index', compact(['bestSellingProducts', 'categories']));
         }
 
+        // contact Us
+        public function contactUs() {
+            return view('app.contact_us');
+        }
+
         // lang switch method
         public function langSwitch($locale) {
             // check if locale is valid (optional)

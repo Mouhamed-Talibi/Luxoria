@@ -153,7 +153,7 @@
                             </span>
                         </h1>
                         <p class="lead text-muted mb-4" style="line-height: 1.8" data-aos="fade-up" data-aos-delay="400">
-                            تسوق أحدث الموديلات والعطور والاكسسوارات والإلكترونيات بأسعار تنافسية. جودة عالية، شحن سريع، وضمان استرداد الأموال.
+                            مع بيكسوق، استمتع بأحدث الموديلات، العطور الفاخرة، الإكسسوارات الأنيقة والإلكترونيات المميزة بأسعار مناسبة. نضمن لك جودة عالية، شحنًا سريعًا وآمنًا، مع ضمان استرداد أموالك .
                         </p>
                         <div class="d-flex gap-3 justify-content-start" data-aos="fade-up" data-aos-delay="500">
                             <a href="#categories" class="btn btn-dark px-4 py-3 rounded-1 fw-bold">
@@ -166,7 +166,7 @@
                 <div class="col-md-6 col-lg-5 order-md-0" data-aos="zoom-in-left" data-aos-delay="200">
                     <div class="hero-image-container p-3">
                         <div class="hero-image-wrapper">
-                            <img src="{{ asset('assets/shoping.jpg')}}" alt="متجر لوكسوريا" class="hero-img img-fluid" loading="lazy">
+                            <img src="{{ asset('assets/shoping.jpg')}}" alt="متجر بيكسوق" class="hero-img img-fluid" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
             <div class="row text-center mb-5">
                 <div class="col-lg-8 mx-auto" data-aos="fade-up">
                     <h2 class="display-5 fw-bold mb-4">قيمنا الأساسية</h2>
-                    <p class="lead text-muted">الأساس الذي تقوم عليه رؤيتنا وخدمتنا في لوكسوريا</p>
+                    <p class="lead text-muted">الأساس الذي تقوم عليه رؤيتنا وخدمتنا في بيكسوق</p>
                 </div>
             </div>
             

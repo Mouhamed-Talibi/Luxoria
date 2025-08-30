@@ -37,13 +37,12 @@
             padding: 30px;
             text-align: center;
             color: white;
-            position: relative;
         }
         
         .logo {
             font-size: 28px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: inline-block;
         }
         
@@ -53,7 +52,7 @@
         
         .email-title {
             font-size: 26px;
-            margin: 10px 0;
+            margin: 8px 0;
             font-weight: 700;
         }
         
@@ -115,7 +114,7 @@
         
         .btn-container {
             text-align: center;
-            margin: 35px 0;
+            margin: 35px 0 15px 0;
         }
         
         .confirm-btn {
@@ -138,7 +137,7 @@
         
         .link-alternative {
             text-align: center;
-            margin: 20px 0;
+            margin: 25px 0;
             font-size: 14px;
             color: #6c757d;
         }
@@ -199,16 +198,22 @@
             color: #dc3545;
         }
         
+        .spam-note {
+            background: #fffbea;
+            border: 1px solid #ffe58f;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #856404;
+        }
+        
         .highlight {
             font-weight: 700;
             color: #2c3e50;
         }
         
         @media (max-width: 650px) {
-            .email-wrapper {
-                border-radius: 0;
-            }
-            
             .email-body {
                 padding: 25px;
             }
@@ -239,9 +244,7 @@
             <p>شكراً لتسجيلك في <span class="highlight">بيكسوق</span>! نحن متحمسون لوجودك معنا.</p>
             
             <div class="user-info">
-                <div class="user-icon">
-                    <i>👤</i>
-                </div>
+                <div class="user-icon">👤</div>
                 <div class="user-details">
                     <div class="user-name">{{ $name }}</div>
                     <div class="user-email">{{ $email }}</div>
@@ -265,10 +268,16 @@
                 <p>⏳ ينتهي رابط التأكيد خلال 24 ساعة لأسباب أمنية.</p>
                 <p>إذا لم تقم بإنشاء هذا الحساب، يمكنك تجاهل هذه الرسالة.</p>
             </div>
+
+            <div class="spam-note">
+                📩 ملاحظة: إذا لم تجد الرسالة في البريد الوارد (Inbox)، يرجى التحقق من مجلد <strong>البريد المزعج (Spam)</strong>.
+            </div>
         </div>
         
         <div class="email-footer">
-            <p>إذا كنت بحاجة إلى مساعدة، لا تتردد في التواصل معنا على <a href="mailto:picksouck.contact@gmail.com" style="color: #007bff;">picksouck.contact@gmail.com</a></p>
+            <p>إذا كنت بحاجة إلى مساعدة، لا تتردد في التواصل معنا على 
+                <a href="mailto:picksouck.contact@gmail.com" style="color: #007bff;">picksouck.contact@gmail.com</a>
+            </p>
             
             <div class="social-links">
                 <a href="#" class="social-link">f</a>
@@ -277,7 +286,7 @@
                 <a href="#" class="social-link">ig</a>
             </div>
             
-            <p>© {{ date('Y') }} لكسوريا. جميع الحقوق محفوظة.</p>
+            <p>© {{ date('Y') }} بيكسوق. جميع الحقوق محفوظة.</p>
             <p>هذه رسالة تلقائية، يرجى عدم الرد عليها.</p>
         </div>
     </div>

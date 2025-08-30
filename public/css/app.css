@@ -241,7 +241,7 @@ footer .social-icons a:hover i{
 
 /* Services Section */
 .services {
-    background-color: #252424;
+    background-color:#24364b;
     padding: 3rem 0;
 }
 
@@ -260,7 +260,7 @@ footer .social-icons a:hover i{
 
 .service:hover .service-title {
     text-decoration-line: underline;
-    text-decoration-color: var(--blue);
+    text-decoration-color: #466a94;
     text-decoration-style: solid;
 }
 

@@ -10,7 +10,7 @@
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
-                    <h1 class="display-4 fw-bold text-primary mb-3">لوكسوريا</h1>
+                    <h1 class="display-4 fw-bold text-primary mb-3">بيكسوق</h1>
                     <p class="lead text-muted">متجرك المتخصص في بيع جميع المنتجات من مختلف الأصناف بجودة فائقة وأسعار مناسبة</p>
                 </div>
             </div>
@@ -25,15 +25,15 @@
                     <div class="row gx-2 gx-lg-3">
                         <div class="col-6">
                             <div class="mb-3">
-                                <img class="img-fluid rounded shadow-lg" src="{{ asset('assets/about-3.jpg')}}" alt="فريق لوكسوريا" data-aos="zoom-in" data-aos-delay="100">
+                                <img class="img-fluid rounded shadow-lg" src="{{ asset('assets/about-3.jpg')}}" alt="فريق بيكسوق" data-aos="zoom-in" data-aos-delay="100">
                             </div>
                             <div class="mb-3">
-                                <img class="img-fluid rounded shadow-lg" src="{{ asset('assets/about-1.jpg')}}" alt="منتجات لوكسوريا" data-aos="zoom-in" data-aos-delay="300">
+                                <img class="img-fluid rounded shadow-lg" src="{{ asset('assets/about-1.jpg')}}" alt="منتجات بيكسوق" data-aos="zoom-in" data-aos-delay="300">
                             </div>
                         </div>
                         <div class="col-6 mt-5">
                             <div class="mb-3">
-                                <img class="img-fluid rounded shadow-lg" src="{{ asset('assets/about-2.jpg')}}" alt="متجر لوكسوريا" data-aos="zoom-in" data-aos-delay="200">
+                                <img class="img-fluid rounded shadow-lg" src="{{ asset('assets/about-2.jpg')}}" alt="متجر بيكسوق" data-aos="zoom-in" data-aos-delay="200">
                             </div>
                             <div class="mb-3">
                                 <img class="img-fluid rounded shadow-lg" src="{{ asset('assets/about-4.jpg')}}" alt="خدمة العملاء" data-aos="zoom-in" data-aos-delay="400">
@@ -49,7 +49,7 @@
                         <hr class="text-primary mb-4" style="height: 3px; width: 70px;">
                         
                         <div class="mb-4" data-aos="fade-up" data-aos-delay="100">
-                            <p class="mb-4">لوكسوريا متجرك المتخصص في بيع جميع المنتجات من مختلف الأصناف، حيث نقدم تشكيلة واسعة من المنتجات عالية الجودة التي تلبي جميع احتياجاتك اليومية وتطلعاتك نحو حياة أكثر رفاهية.</p>
+                            <p class="mb-4">بيكسوق متجرك المتخصص في بيع جميع المنتجات من مختلف الأصناف، حيث نقدم تشكيلة واسعة من المنتجات عالية الجودة التي تلبي جميع احتياجاتك اليومية وتطلعاتك نحو حياة أكثر رفاهية.</p>
                         </div>
                         
                         <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
@@ -71,7 +71,7 @@
             <div class="row text-center mb-5">
                 <div class="col-lg-8 mx-auto" data-aos="fade-up">
                     <h2 class="display-5 fw-bold mb-4">قيمنا الأساسية</h2>
-                    <p class="lead text-muted">الأساس الذي تقوم عليه رؤيتنا وخدمتنا في لوكسوريا</p>
+                    <p class="lead text-muted">الأساس الذي تقوم عليه رؤيتنا وخدمتنا في بيكسوق</p>
                 </div>
             </div>
             

@@ -5,8 +5,8 @@
             <!-- الشعار والوصف -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="text-center text-md-end">
-                    <img src="{{ asset('assets/luxoria-1.png') }}" alt="شعار لكسوريا" style="height: 120px; width:120px;" class="mb-3">
-                    <p class="text-secondary">لكسوريا - وجهتك الأولى للمنتجات الفاخرة وتجربة تسوق استثنائية.</p>
+                    <img src="{{ asset('assets/luxoria-1.png') }}" alt="شعار بيكسوق" style="height: 120px; width:120px;" class="mb-3">
+                    <p class="text-secondary">بيكسوق - وجهتك الأولى للمنتجات الفاخرة وتجربة تسوق استثنائية.</p>
                     <div class="social-icons mt-4 d-flex justify-content-center justify-content-md-start gap-3">
                         <a href="#" class=""><i class="fab fa-instagram"></i></a>
                         <a href="#" class=""><i class="fab fa-linkedin-in"></i></a>
@@ -39,7 +39,7 @@
                 <ul class="list-unstyled text-md-end text-center">
                     <li class="mb-2"><i class="fas fa-map-marker-alt text-info ms-2"></i>أكادير، المغرب</li>
                     <li class="mb-2"><i class="fas fa-phone text-info ms-2"></i>+212 638182872</li>
-                    <li><i class="fas fa-envelope text-info ms-2"></i>luxoria@contact.com</li>
+                    <li><i class="fas fa-envelope text-info ms-2"></i>picksouk.contact@gmail.com</li>
                 </ul>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
         <!-- حقوق النشر -->
         <div class="text-center">
-            <p class="text-light mb-0">&copy; {{ date('Y') }} <span class="text-info">لكسوريا</span>. جميع الحقوق محفوظة.</p>
+            <p class="text-light mb-0">&copy; {{ date('Y') }} <span class="text-info">بيكسوق</span>. جميع الحقوق محفوظة.</p>
         </div>
     </div>
 </footer>

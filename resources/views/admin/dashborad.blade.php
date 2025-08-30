@@ -173,7 +173,7 @@
                     <div class="action border border-left-secondary p-3 rounded-4 text-center">
                         <i class="fa-solid fa-cart-flatbed fs-2"></i>
                         <h2>
-                            <a href="{{ route('admin.add_products')}}" class="btn">Manage Orders</a>
+                            <a href="{{ route('admin.orders.index')}}" class="btn">Manage Orders</a>
                         </h2>
                     </div>
                 </div>
