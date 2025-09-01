@@ -372,7 +372,7 @@
                 <div class="col-md-6 col-lg-5 order-md-0">
                     <div class="hero-image-container p-3">
                         <div class="hero-image-wrapper animate-on-scroll">
-                            <img src="{{ asset('assets/shoping-1.jpg')}}" alt="متجر بيكسوق" class="hero-img img-fluid" loading="lazy">
+                            <img src="{{ asset('assets/shoping-3.png')}}" alt="متجر بيكسوق" class="hero-img img-fluid" loading="lazy">
                         </div>
                     </div>
                 </div>

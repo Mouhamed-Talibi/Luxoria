@@ -271,3 +271,11 @@
     // products category
     Route::get('categories/{category}', [CategoryController::class, 'productsCategory'])
         ->name('products_category');
+
+    // show product
+    Route::get('products/{product}', [AppController::class, 'showProduct'])
+        ->name('showProduct');
+
+    // products route
+    Route::get('products', [AppController::class, 'products'])
+        ->name('products');

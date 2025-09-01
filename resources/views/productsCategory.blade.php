@@ -186,10 +186,10 @@
                             <h5 class="product-title">{{ $product->name }}</h5>
                             
                             <div class="mt-auto">
-                                <a href="#" class="btn btn-details">
+                                <a href="{{ route('showProduct', $product)}}" class="btn btn-details">
                                     <i class="fas fa-info-circle me-1"></i> معرفة المزيد
                                 </a>
-                                <a href="#" class="btn btn-cart">
+                                <a href="#" class="btn btn-cart" data-bs-toggle="modal" data-bs-target="#loginRequiredModal">
                                     <i class="fas fa-shopping-cart"></i> اضافة الى السلة
                                 </a>
                             </div>
@@ -206,48 +206,21 @@
         @endif
     @endif
 </div>
-@endsection
 
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add animation to cards when they come into view
-        const cards = document.querySelectorAll('.product-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        cards.forEach(card => {
-            card.style.opacity = 0;
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(card);
-        });
-        
-        // Add to cart animation
-        const cartButtons = document.querySelectorAll('.btn-cart');
-        cartButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i> تمت الإضافة';
-                this.style.background = '#2ecc71';
-                this.style.borderColor = '#2ecc71';
-                
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.background = '';
-                    this.style.borderColor = '';
-                }, 2000);
-            });
-        });
-    });
-</script>
-@endpush
+    <!-- Modal -->
+    <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg rounded-5 p-4">
+            <div class="modal-body text-center">
+                <p class="fs-5 text-dark fw-semibold mb-3">يجب تسجيل الدخول أولاً حتى تتمكن من استخدام هذه الميزة</p>
+                <i class="fas fa-lock fa-3x text-primary mb-3"></i>
+                <p class="text-muted">يرجى تسجيل الدخول إلى حسابك للمتابعة.</p>
+            </div>
+            <div class="modal-footer border-0 d-flex justify-content-center">
+                <a href="{{ route('auth.login') }}" class="btn btn-primary px-4">تسجيل الدخول</a>
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">إلغاء</button>
+            </div>
+            </div>
+        </div>
+    </div>
+@endsection

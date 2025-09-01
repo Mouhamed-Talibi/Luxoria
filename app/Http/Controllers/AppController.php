@@ -87,4 +87,33 @@
         public function aboutUs() {
             return view('app.about');
         }
+
+        // show product
+        public function showProduct(Product $product) {
+            $product = Product::with([
+                'images',
+                'parfumDetails',
+                'electronicsDetails',
+                'health_beauty_Details',
+                'clothesDetails',
+                'bagsDetails',
+            ])->findOrFail($product->id);
+            return view('product', compact('product'));
+        }
+
+        // products
+        public function products() {
+            $categories = Category::all();
+            $products = Product::with([
+                'images',
+                'parfumDetails',
+                'electronicsDetails',
+                'bagsDetails',
+                'health_beauty_Details',
+                'clothesDetails',
+                'category',
+            ])->paginate(20);
+            return view('products', compact(['products', 'categories']));
+        }
+
     }

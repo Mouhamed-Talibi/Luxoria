@@ -166,7 +166,7 @@
                 <div class="col-md-6 col-lg-5 order-md-0" data-aos="zoom-in-left" data-aos-delay="200">
                     <div class="hero-image-container p-3">
                         <div class="hero-image-wrapper">
-                            <img src="{{ asset('assets/shoping.jpg')}}" alt="متجر بيكسوق" class="hero-img img-fluid" loading="lazy">
+                            <img src="{{ asset('assets/shoping-2.png')}}" alt="متجر بيكسوق" class="hero-img img-fluid" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -232,12 +232,6 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="col-12 text-start mt-4" data-aos="fade-left">
-                        <a href="#" class="btn btn-dark px-2 py-2 rounded-1 d-inline-flex align-items-center">
-                            <span class="ms-2">عرض الكل</span>
-                            <i class="fas fa-arrow-left ms-2"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
