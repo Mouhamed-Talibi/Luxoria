@@ -427,7 +427,7 @@
                                 </div>
                                 <div class="category-text text-center p-4">
                                     <h3 class="text-dark mb-0 fs-5 fw-semibold">{{ $category->name }}</h3>
-                                    <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#loginRequiredModal" aria-label="View {{ $category->name }}"></a>
+                                    <a href="{{ route('products_category', $category)}}" class="stretched-link"></a>
                                 </div>
                                 <div class="w-75 mx-auto">
                                     <p class="text-secondary ">{{ Str::limit($category->description, 80) }}</p>

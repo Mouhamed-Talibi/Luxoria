@@ -22,30 +22,43 @@
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
                     <div class="contact-card">
                         <div class="contact-header">
-                            <h3 class="mb-0"><i class="fas fa-envelope me-2"></i>أرسل رسالة</h3>
+                            <h3 class="mb-0"><i class="fas fa-envelope ms-3"></i>أرسل رسالة</h3>
                         </div>
                         <div class="contact-form">
-                            <form>
+                            <form  action="{{ route('send_message')}}" method="POST">
+                                @csrf
+
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label">الاسم الكامل</label>
-                                        <input type="text" class="form-control" id="name" required>
+                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ Auth::user()->name ?? old('name')}}">
+                                        @error('name')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="form-label">البريد الإلكتروني</label>
-                                        <input type="email" class="form-control" id="email" required>
+                                        <input type="email"  name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ Auth::user()->email ?? old('email')}}">
+                                        @error('email')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="subject" class="form-label">الموضوع</label>
-                                    <input type="text" class="form-control" id="subject" required>
-                                </div>
-                                <div class="mb-3">
                                     <label for="message" class="form-label">الرسالة</label>
-                                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                                    <textarea  name="message" class="form-control @error('message') is-invalid @enderror" id="message" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+                                        @error('message')
+                                            <p class="text-danger">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
                                 <div class="text-center mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane me-2"></i>إرسال الرسالة</button>
+                                    <button type="submit" class="btn btn-outline-primary"><i class="fas fa-paper-plane ms-2"></i>إرسال الرسالة</button>
                                 </div>
                             </form>
                         </div>
@@ -101,7 +114,7 @@
                         <div class="social-links">
                             <a href="https://www.facebook.com/share/1GhYQJWtjP/?mibextid=wwXIfr" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://www.instagram.com/picksouk?igsh=eXZuNzF4bjg0dnNp&utm_source=qr" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="https://wa.me/2120680670898" class="social-icon" target="_blank">
+                            <a href="https://wa.me/+2120680670898" class="social-icon" target="_blank">
                                 <i class="fab fa-whatsapp"></i>
                             </a>
                         </div>
@@ -138,10 +151,6 @@
             --primary-color: #0d6efd;
             --secondary-color: #f8f9fa;
             --accent-color: #ff6b35;
-        }
-        
-        .contact-us {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
         .contact-card {

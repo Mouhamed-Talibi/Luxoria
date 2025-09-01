@@ -8,6 +8,7 @@
     use App\Http\Controllers\ClothesController;
     use App\Http\Controllers\ElectronicsController;
     use App\Http\Controllers\HealthAndBeautyController;
+    use App\Http\Controllers\MessageController;
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\ParfumDetailController;
     use App\Http\Controllers\PaymentController;
@@ -54,9 +55,6 @@
         // home route
         Route::get('/home', [AppController::class, 'index'])
             ->name('home');
-        // lang switch
-        Route::get('/lang/{local}', [AppController::class, 'langSwitch'])
-            ->name('lang.switch');
         // show product page
         Route::get('products/{product}', [ProductController::class, 'show'])
             ->name('show_product');
@@ -248,8 +246,12 @@
                 ->name('orders.destroy');
         // payments routes
             // index route
-            route::get('payments', [PaymentController::class, 'index'])
+            Route::get('payments', [PaymentController::class, 'index'])
                 ->name('payments.index');
+        // messages route
+            // index route
+            Route::get('messages', [MessageController::class, 'index'])
+                ->name('messages.index');
     });
 
     // testimonials store
@@ -261,3 +263,11 @@
         Mail::to('picksouk.contact@gmail.com')->send(new App\Mail\TestMail());
         return 'Test email sent!';
     });
+
+    // send message route
+    Route::post('picksouck/send-message', [MessageController::class, 'store'])
+        ->name('send_message');
+
+    // products category
+    Route::get('categories/{category}', [CategoryController::class, 'productsCategory'])
+        ->name('products_category');

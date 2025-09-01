@@ -40,7 +40,7 @@
     {{-- loader --}}
     <div id="loader" class="loader-container">
         <div class="loader"></div>
-        <p>Loading Luxoria, Please Wait..</p>
+        <p>Loading picksouk, Please Wait..</p>
     </div>
 
     {{-- content site --}}

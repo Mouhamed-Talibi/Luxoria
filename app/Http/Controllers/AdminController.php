@@ -70,7 +70,7 @@ class AdminController extends Controller
         // last registered users
         $lastRegisteredUsers = User::where('role', '!=', 'admin')
             ->orderBy('created_at', 'desc')
-            ->take(5)
+            ->take(10)
             ->get();
 
         $recentOrders = Order::where('status', '=', 'processing')

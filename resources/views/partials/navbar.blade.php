@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/luxoria.png') }}" alt="Logo" width="70" height="70">
+                <img src="{{ asset('assets/picksouk.jpg') }}" alt="Logo" width="70" height="70">
             </a>
             
             <!-- Mobile Toggle Button -->

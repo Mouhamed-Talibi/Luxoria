@@ -8,7 +8,7 @@
     {{-- csrf-token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- fav icon --}}
-    <link rel="icon" href="{{ asset('assets/luxoria-1.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/picksouk.jpg') }}" type="image/png">
     {{-- google fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
 
     {{-- title --}}
     <title>
-        Luxoria - @yield('title')
+        Picksouk - @yield('title')
     </title>
 
     {{-- bootstrap link --}}
@@ -165,6 +165,14 @@
                                 href="{{ route('admin.orders.index') }}">
                             <i class="bi bi-speedometer2 fs-5 me-3"></i> <!-- Larger icon -->
                             <span class="flex-grow-1">Orders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center py-3 px-4 rounded-3 transition-all 
+                                {{ request()->routeIs('admin.messages.index') ? 'active bg-primary-soft text-dark fw-semibold' : 'text-light' }}" 
+                                href="{{ route('admin.messages.index') }}">
+                            <i class="bi bi-speedometer2 fs-5 me-3"></i> <!-- Larger icon -->
+                            <span class="flex-grow-1">Messages</span>
                         </a>
                     </li>
                 </ul>

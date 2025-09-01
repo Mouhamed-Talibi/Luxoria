@@ -5,6 +5,7 @@
     use App\Http\Requests\AddCategoryRequest;
     use App\Http\Requests\UpdateCategoryRequest;
     use App\Models\Category;
+    use App\Models\Product;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Storage;
@@ -114,4 +115,18 @@
             $products = $category->products()->paginate(8);
             return view('app.category_products', compact('category', 'products'));
         }
+
+        // producsCategory
+        public function productsCategory(Category $category) {
+            $category = Category::findOrFail($category->id);
+            $productsCategory = Product::with([
+                'images',
+                'parfumDetails',
+                'electronicsDetails',
+                'health_beauty_Details',
+            ])->where('category_id', $category->id)
+                ->paginate(9); 
+            return view('productsCategory', compact(['productsCategory', 'category']));
+        }
+
     }
